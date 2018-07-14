@@ -3,6 +3,10 @@
 #include <memory>
 #include <iostream>
 
+extern "C" 
+{
+	_declspec(dllexport) DWORD NvOptimusEnablement = 0x00000001;
+}
 
 class EngineApp : public GLApp
 {

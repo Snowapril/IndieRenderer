@@ -1,10 +1,11 @@
 #ifndef ENGINE_PROPERTY_HPP
 #define ENGINE_PROPERTY_HPP
 
-#define CLIENT_WIDTH  1200
-#define CLIENT_HEIGHT 900
+#define CLIENT_WIDTH  1600
+#define CLIENT_HEIGHT  900
 
 namespace Color {
+
 	const float White[4]			= { 1.0f,  1.0f,  1.0f,  1.0f };
 	const float Black[4]			= { 0.0f,  0.0f,  0.0f,  1.0f };
 	const float Red[4]				= { 1.0f,  0.0f,  0.0f,  1.0f };
@@ -15,6 +16,7 @@ namespace Color {
 	const float Magenta[4]			= { 1.0f,  0.0f,  1.0f,  1.0f };
 	const float Silver[4]			= { 0.75f, 0.75f, 0.75f, 1.0f };
 	const float LightSteelBlue[4]	= { 0.69f, 0.77f, 0.87f, 1.0f };
+
 }
 
 #endif

@@ -18,6 +18,9 @@
     <ClInclude Include="EngineProperty.hpp">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="GLMesh.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineTimer.cpp">
@@ -30,6 +33,9 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="IndieEngine.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="GLMesh.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

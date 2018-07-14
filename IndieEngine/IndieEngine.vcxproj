@@ -131,11 +131,13 @@
     <ClInclude Include="EngineTimer.hpp" />
     <ClInclude Include="GLApp.hpp" />
     <ClInclude Include="EngineProperty.hpp" />
+    <ClInclude Include="GLMesh.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\dependencies\glad.c" />
     <ClCompile Include="EngineTimer.cpp" />
     <ClCompile Include="GLApp.cpp" />
+    <ClCompile Include="GLMesh.cpp" />
     <ClCompile Include="IndieEngine.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
