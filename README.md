@@ -9,4 +9,4 @@ my github blog url : https://snowapril.github.io
 * glad
 * glog
 * glm
-* std_image
+* stb_image
