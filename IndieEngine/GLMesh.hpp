@@ -19,6 +19,10 @@ private:
 	std::vector<glm::uvec3> indices;
 
 	unsigned int VAO;
+
+private:
+	void bindBuffer(void);
+
 public:
 	GLMesh();
 	GLMesh(const std::vector<Vertex>& _vertices, const std::vector<glm::uvec3>& _indices);
@@ -27,10 +31,10 @@ public:
 
 	unsigned int getVertexArrayObject(void) const { return VAO; }
 
-	void bindBuffer(void);
-	void bindBuffer(const std::vector<Vertex>& _vertices, const std::vector<glm::uvec3>& _indices);
-	void bindBuffer(std::vector<Vertex>&& _vertices, std::vector<glm::uvec3>&& _indices);
-
+	void setupMesh(void);
+	void setupMesh(const std::vector<Vertex>& _vertices, const std::vector<glm::uvec3>& _indices);
+	void setupMesh(std::vector<Vertex>&& _vertices, std::vector<glm::uvec3>&& _indices);
+	
 	void drawMesh(void) const;
 };
 
