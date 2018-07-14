@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{790c7eca-08c6-4483-bcf5-039e0045fde2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{aca0f003-08a5-4d07-abf9-7f3aaa6628f4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="EngineTimer.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="GLApp.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineProperty.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="EngineTimer.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dependencies\glad.c">
+      <Filter>include</Filter>
+    </ClCompile>
+    <ClCompile Include="GLApp.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="IndieEngine.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
