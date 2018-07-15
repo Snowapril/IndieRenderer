@@ -3,6 +3,7 @@
 #include <cassert>
 #include <iostream>
 #include <sstream>
+#include "EngineLogger.hpp"
 
 GLApp::GLApp()
 	: appWindow(0), appPaused(false), minimized(false), maximized(false), resizing(false), 
@@ -63,7 +64,7 @@ bool GLApp::initWindow(void)
 {
 	if (!glfwInit())
 	{
-		std::cerr << "GLFW Initialization Failed." << std::endl;
+		EngineLogger::getInstance()->getConsole()->critical("GLFW Initialization Failed.");
 		return false;
 	}
 
@@ -79,22 +80,21 @@ bool GLApp::initWindow(void)
 	appWindow = glfwCreateWindow(clientWidth, clientHeight, WndCaption.c_str(), nullptr, nullptr);
 	if (!appWindow) {
 		glfwTerminate();
-		std::cerr << "GLFW Create Window Failed." << std::endl;
+		EngineLogger::getInstance()->getConsole()->critical("GLFW Create Window Failed.");
 		return false;
 	}
 	glfwMakeContextCurrent(appWindow);
 
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
 		glfwTerminate();
-		std::cerr << "GLAD Load GLLoader Failed." << std::endl;
+		EngineLogger::getInstance()->getConsole()->critical("GLAD Load GLLoader Failed.");
 		return false;
 	}
 
 	const GLubyte* vendor = glGetString(GL_VENDOR);
 	const GLubyte* renderer = glGetString(GL_RENDERER);
 
-	std::clog << vendor << std::endl;
-	std::clog << renderer << std::endl;
+	EngineLogger::getInstance()->getConsole()->info("Vendor : {:<15}, Renderer : {:<15}", vendor, renderer);
 
 	return true;
 }

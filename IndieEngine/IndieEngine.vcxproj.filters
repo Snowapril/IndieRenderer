@@ -7,6 +7,9 @@
     <Filter Include="include">
       <UniqueIdentifier>{aca0f003-08a5-4d07-abf9-7f3aaa6628f4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="glsl">
+      <UniqueIdentifier>{b36d92d9-4fe0-4397-bd03-3beb84f61f63}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EngineTimer.hpp">
@@ -21,6 +24,15 @@
     <ClInclude Include="GLMesh.hpp">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="GLShader.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineApp.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineLogger.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineTimer.cpp">
@@ -32,11 +44,28 @@
     <ClCompile Include="GLApp.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="IndieEngine.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="GLMesh.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="GLShader.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineApp.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineLogger.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="vertex_shader.glsl">
+      <Filter>glsl</Filter>
+    </None>
+    <None Include="fragment_shader.glsl">
+      <Filter>glsl</Filter>
+    </None>
   </ItemGroup>
 </Project>
