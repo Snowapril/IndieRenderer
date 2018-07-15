@@ -7,6 +7,6 @@ my github blog url : https://snowapril.github.io
 ## Dependencies
 * glfw3
 * glad
-* glog
+* spdlog
 * glm
 * stb_image
