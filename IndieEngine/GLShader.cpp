@@ -1,6 +1,5 @@
 #include "GLShader.hpp"
 #include <glad/glad.h>
-#include <iostream>
 #include "EngineLogger.hpp"
 #include <string>
 #include <fstream>
@@ -58,7 +57,7 @@ void GLShader::setupShader(const char* vs_path, const char* fs_path, const char*
 			}
 		}
 		catch (std::ifstream::failure e) {
-			EngineLogger::getInstance()->getConsole()->critical("ifstream Failure : {:<15}", e.what());
+			EngineLogger::getInstance()->getConsole()->critical("ifstream Failure : {:<20}", e.what());
 		}
 	}
 
@@ -152,7 +151,7 @@ void GLShader::sendUniform(const std::string & varName, int i) const
 	int loc = getUniformLocation(varName);
 
 	if (loc == -1) {
-		EngineLogger::getInstance()->getConsole()->critical("Undefined Uniform Variable Name : ");
+		EngineLogger::getInstance()->getConsole()->critical("Undefined Uniform Variable Name : {}",  varName;
 	}
 	else {
 		glUniform1i(loc, i);
@@ -164,7 +163,7 @@ void GLShader::sendUniform(const std::string & varName, bool b) const
 	int loc = getUniformLocation(varName);
 
 	if (loc == -1) {
-		EngineLogger::getInstance()->getConsole()->critical("Undefined Uniform Variable Name : ");
+		EngineLogger::getInstance()->getConsole()->critical("Undefined Uniform Variable Name : {}", varName);
 	}
 	else {
 		glUniform1i(loc, b);
@@ -176,7 +175,7 @@ void GLShader::sendUniform(const std::string & varName, const glm::vec3 & vec) c
 	int loc = getUniformLocation(varName);
 
 	if (loc == -1) {
-		EngineLogger::getInstance()->getConsole()->critical("Undefined Uniform Variable Name : ");
+		EngineLogger::getInstance()->getConsole()->critical("Undefined Uniform Variable Name : {}", varName);
 	}
 	else {
 		glUniform3fv(loc, 1, &vec[0]);
@@ -188,7 +187,7 @@ void GLShader::sendUniform(const std::string & varName, const glm::vec4 & vec) c
 	int loc = getUniformLocation(varName);
 
 	if (loc == -1) {
-		EngineLogger::getInstance()->getConsole()->critical("Undefined Uniform Variable Name : ");
+		EngineLogger::getInstance()->getConsole()->critical("Undefined Uniform Variable Name : {}", varName);
 	}
 	else {
 		glUniform4fv(loc, 1, &vec[0]);
@@ -200,7 +199,7 @@ void GLShader::sendUniform(const std::string & varName, const glm::mat4 & mat) c
 	int loc = getUniformLocation(varName);
 
 	if (loc == -1) {
-		EngineLogger::getInstance()->getConsole()->critical("Undefined Uniform Variable Name : ");
+		EngineLogger::getInstance()->getConsole()->critical("Undefined Uniform Variable Name : {}", varName);
 	}
 	else {
 		glUniformMatrix4fv(loc, 1, GL_FALSE, glm::value_ptr(mat));

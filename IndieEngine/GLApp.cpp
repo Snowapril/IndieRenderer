@@ -1,7 +1,6 @@
 #include "GLApp.hpp"
 #include "EngineProperty.hpp"
 #include <cassert>
-#include <iostream>
 #include <sstream>
 #include "EngineLogger.hpp"
 

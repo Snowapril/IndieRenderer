@@ -1,6 +1,5 @@
 #include "EngineLogger.hpp"
 #include "spdlog/sinks/stdout_color_sinks.h"
-#include <iostream>
 
 EngineLogger* EngineLogger::loggerInstance = nullptr;
 
