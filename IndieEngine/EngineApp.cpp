@@ -31,12 +31,33 @@ bool EngineApp::init(void)
 	if (!GLApp::init())
 		return false;
 
+	if (!buildGeometryBuffers())
+		return false;
+
+	if (!buildShaderFiles())
+		return false;
+
+	return true;
+}
+
+bool EngineApp::buildGeometryBuffers(void)
+{
+
+
+	return true;
+}
+
+bool EngineApp::buildShaderFiles(void)
+{
+	testShader = std::make_shared<GLShader>("../resources/shader/vertex_shader.glsl", "../resources/shader/fragment_shader.glsl", nullptr);
+
 	return true;
 }
 
 void EngineApp::keyCallback(int key, int scancode, int action, int mode)
 {
-
+	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
+		glfwSetWindowShouldClose(appWindow, GLFW_TRUE);
 }
 
 void EngineApp::mousePosCallback(double xpos, double ypos)

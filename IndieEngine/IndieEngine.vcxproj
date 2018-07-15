@@ -129,11 +129,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="EngineApp.hpp" />
+    <ClInclude Include="EngineCamera.hpp" />
     <ClInclude Include="EngineLogger.hpp" />
     <ClInclude Include="EngineTimer.hpp" />
     <ClInclude Include="GLApp.hpp" />
     <ClInclude Include="EngineProperty.hpp" />
     <ClInclude Include="GLMesh.hpp" />
+    <ClInclude Include="GLModel.hpp" />
     <ClInclude Include="GLShader.hpp" />
   </ItemGroup>
   <ItemGroup>
@@ -143,12 +145,13 @@
     <ClCompile Include="EngineTimer.cpp" />
     <ClCompile Include="GLApp.cpp" />
     <ClCompile Include="GLMesh.cpp" />
+    <ClCompile Include="GLModel.cpp" />
     <ClCompile Include="GLShader.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="fragment_shader.glsl" />
-    <None Include="vertex_shader.glsl" />
+    <None Include="..\resources\shader\fragment_shader.glsl" />
+    <None Include="..\resources\shader\vertex_shader.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

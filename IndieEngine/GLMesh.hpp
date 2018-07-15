@@ -11,7 +11,6 @@ typedef struct _Vertex {
 	glm::vec2 TexCoords;
 } Vertex;
 
-
 class GLMesh
 {
 private:

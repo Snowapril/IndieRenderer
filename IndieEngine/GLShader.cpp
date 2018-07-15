@@ -132,7 +132,7 @@ void GLShader::setupShader(const char* vs_path, const char* fs_path, const char*
 		glDeleteShader(gs);
 
 	EngineLogger::getInstance()->getConsole()->info("Compile Shader Sources Complete.\n\tVertex Shader   : [{}]\n\tFragment Shader : "
-													"[{}]\n\tGeometry Shader : [{}]", vs_path, fs_path, gs_path == nullptr ? "None" : gs_path);
+		"[{}]\n\tGeometry Shader : [{}]", vs_path, fs_path, gs_path == nullptr ? "None" : gs_path);
 }
 
 void GLShader::useProgram(void) const

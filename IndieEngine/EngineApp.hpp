@@ -1,12 +1,22 @@
-#pragma once
 #ifndef ENGINE_APP_HPP
 #define ENGINE_APP_HPP
 
 #include "GLApp.hpp"
+#include "GLMesh.hpp"
+#include "GLModel.hpp"
+#include <memory>
+#include "GLShader.hpp"
 
 class EngineApp : public GLApp
 {
 private:
+	GLModel shaderBall;
+
+	std::shared_ptr<GLShader> testShader;
+
+private:
+	bool buildGeometryBuffers(void);
+	bool buildShaderFiles(void);
 
 protected:
 

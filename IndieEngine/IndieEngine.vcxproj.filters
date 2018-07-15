@@ -33,6 +33,12 @@
     <ClInclude Include="EngineLogger.hpp">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="EngineCamera.hpp">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="GLModel.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineTimer.cpp">
@@ -59,12 +65,15 @@
     <ClCompile Include="EngineLogger.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="GLModel.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="vertex_shader.glsl">
+    <None Include="..\resources\shader\fragment_shader.glsl">
       <Filter>glsl</Filter>
     </None>
-    <None Include="fragment_shader.glsl">
+    <None Include="..\resources\shader\vertex_shader.glsl">
       <Filter>glsl</Filter>
     </None>
   </ItemGroup>

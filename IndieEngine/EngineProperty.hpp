@@ -1,8 +1,10 @@
 #ifndef ENGINE_PROPERTY_HPP
 #define ENGINE_PROPERTY_HPP
 
-#define CLIENT_WIDTH  1600
+#define CLIENT_WIDTH   1600
 #define CLIENT_HEIGHT  900
+#define FULL_SCREEN    false
+#define ENABLE_4XMSAA  true
 
 namespace Color {
 

@@ -7,7 +7,7 @@
 
 GLApp::GLApp()
 	: appWindow(0), appPaused(false), minimized(false), maximized(false), resizing(false), 
-	WndCaption("OpenGL Indie Engine Project"), clientWidth(CLIENT_WIDTH), clientHeight(CLIENT_HEIGHT), enable4xMsaa(false)
+	WndCaption("OpenGL Indie Engine Project"), clientWidth(CLIENT_WIDTH), clientHeight(CLIENT_HEIGHT), enable4xMsaa(ENABLE_4XMSAA)
 {
 }
 
@@ -69,7 +69,7 @@ bool GLApp::initWindow(void)
 	}
 
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	if (enable4xMsaa)
 		glfwWindowHint(GLFW_SAMPLES, 4);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
