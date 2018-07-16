@@ -1,10 +1,14 @@
-#ifndef ENGINE_PROPERTY_HPP
+#ifndef ENGINE_PROPERTY_HPPd
 #define ENGINE_PROPERTY_HPP
 
 #define CLIENT_WIDTH   1600
 #define CLIENT_HEIGHT  900
 #define FULL_SCREEN    false
 #define ENABLE_4XMSAA  true
+#define CAMERA_FOV     45.f
+#define CAMERA_MIN_FOV 10.f
+#define CAMERA_MAX_FOV 60.f
+#define ENABLE_CULLING true
 
 namespace Color {
 

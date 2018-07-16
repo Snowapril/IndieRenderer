@@ -17,6 +17,8 @@ protected:
 	int clientHeight;
 
 	bool enable4xMsaa;
+	bool enableCulling;
+
 	bool maximized;
 	bool minimized;
 	bool resizing;

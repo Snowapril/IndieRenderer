@@ -6,7 +6,7 @@
 #include "GLDebugger.hpp"
 
 GLApp::GLApp()
-	: appWindow(0), appPaused(false), minimized(false), maximized(false), resizing(false), 
+	: appWindow(0), appPaused(false), minimized(false), maximized(false), resizing(false), enableCulling(ENABLE_CULLING),
 	WndCaption("OpenGL Indie Engine Project"), clientWidth(CLIENT_WIDTH), clientHeight(CLIENT_HEIGHT), enable4xMsaa(ENABLE_4XMSAA)
 {
 }
@@ -106,6 +106,13 @@ bool GLApp::initOpenGL(void)
 	if (enable4xMsaa)
 		glEnable(GL_MULTISAMPLE);
 
+	if (enableCulling) {
+		glEnable(GL_CULL_FACE);
+		glCullFace(GL_BACK);
+		glFrontFace(GL_CCW);
+	}
+
+	glEnable(GL_DEPTH_TEST);
 	return true;
 }
 

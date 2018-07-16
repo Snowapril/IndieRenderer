@@ -6,16 +6,21 @@
 #include "GLModel.hpp"
 #include <memory>
 #include "GLShader.hpp"
+#include "EngineCamera.hpp"
 
 class EngineApp : public GLApp
 {
 private:
 	GLModel shaderBall;
-	GLMesh shaderMesh;
-
+	GLMesh testMesh;
 	std::shared_ptr<GLShader> testShader;
+	unsigned int vpUBO;
+
+	EngineCamera camera;
+
 private:
 	bool buildGeometryBuffers(void);
+	bool buildUniformBuffers(void);
 	bool buildShaderFiles(void);
 
 protected:

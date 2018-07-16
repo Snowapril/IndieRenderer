@@ -3,9 +3,11 @@
 #include <fstream>
 #include <limits>
 #include <chrono>
+#include <unordered_map>
+#include <sstream>
+
 
 GLModel::GLModel()
-	: posStack(), normStack(), uvStack(), posIdxStack(), normIdxStack(), uvIdxStack()
 {
 }
 
@@ -18,8 +20,8 @@ void GLModel::loadModelFromObjFile(const std::string & modelPath, bool verbose, 
 {
 	const auto start = std::chrono::system_clock::now();
 
-	EngineLogger::getInstance()->getConsole()->info("Start reading Obj File [ {} ], Verbose : {}, Normalization : {}", 
-		modelPath, verbose ? "ON" : "OFF", normalization ? "ON" : "OFF");	
+	EngineLogger::getInstance()->getConsole()->info("Start reading Obj File [ {} ]", modelPath);
+	EngineLogger::getInstance()->getConsole()->info("Verbose: {}, Normalization : {}", verbose ? "ON" : "OFF", normalization ? "ON" : "OFF");
 
 	bool read_vt(false), read_vn(false);
 
@@ -32,6 +34,11 @@ void GLModel::loadModelFromObjFile(const std::string & modelPath, bool verbose, 
 	}
 
 	int count = 0;
+	unsigned int idxCount = 0;
+	std::unordered_map<unsigned int, unsigned int> indexMap;
+	std::vector<glm::vec3> posStack;
+	std::vector<glm::vec3> normStack;
+	std::vector<glm::vec2> uvStack;
 
 	char buffer[255];
 	while (file >> buffer)
@@ -57,7 +64,7 @@ void GLModel::loadModelFromObjFile(const std::string & modelPath, bool verbose, 
 
 			float u, v;
 			file >> u >> v;
-			
+
 			uvStack.emplace_back(glm::vec2(u, v));
 			if (verbose && count == 1500) EngineLogger::getInstance()->getConsole()->info("UV : ({}, {})", u, v);
 		}
@@ -73,7 +80,7 @@ void GLModel::loadModelFromObjFile(const std::string & modelPath, bool verbose, 
 		}
 		else if (strcmp(buffer, "f") == 0) //faces
 		{
-			unsigned int v[3], vt[3], vn[3];
+			unsigned int v[3], vt[3] = { 0, }, vn[3] = { 0, };
 			if (read_vt && read_vt)
 			{
 				for (int i = 0; i < 3; ++i)
@@ -113,7 +120,7 @@ void GLModel::loadModelFromObjFile(const std::string & modelPath, bool verbose, 
 			{
 				for (int i = 0; i < 3; ++i)
 				{
-					file >> v[i]; 
+					file >> v[i];
 
 					--v[i];
 				}
@@ -122,11 +129,40 @@ void GLModel::loadModelFromObjFile(const std::string & modelPath, bool verbose, 
 			if (verbose && count == 1500)
 				EngineLogger::getInstance()->getConsole()->info("Vertex face : ({}, {}, {})", v[0], v[1], v[2]);
 
-			posIdxStack.emplace_back(glm::uvec3(v[0], v[1], v[2]));
-			if (read_vt)
-				uvIdxStack.emplace_back(glm::uvec3(vt[0], vt[1], vt[2]));
-			if (read_vn)
-				normIdxStack.emplace_back(glm::uvec3(vn[0], vn[1], vn[2]));
+			unsigned int synthesizedIndex;
+			Vertex vertex;
+			std::string hashStr;
+			unsigned int hashKey;
+
+			for (int i = 0; i < 3; ++i) {
+				hashStr = std::to_string(v[i]) + std::to_string(vn[i]) + std::to_string(vt[i]);
+				hashKey = getHash(hashStr.c_str());
+				if (indexMap.find(hashKey) != indexMap.end())
+				{
+					synthesizedIndex = indexMap[hashKey];
+				}
+				else
+				{
+					synthesizedIndex = idxCount++;
+					indexMap[hashKey] = synthesizedIndex;
+
+					vertex = { posStack[v[i]], normStack[vn[i]], uvStack[vt[i]] };
+					meshes.back().vertices.push_back(vertex);
+				}
+				meshes.back().indices.push_back(synthesizedIndex);
+				hashStr.clear();
+			}
+		}
+		else if (strcmp(buffer, "o") == 0)
+		{
+			meshes.push_back(GLMesh());
+			std::string meshName;
+
+			file >> meshName;
+			meshes.back().meshName = meshName;
+
+			indexMap.clear();
+			idxCount = 0;
 		}
 		else file.getline(buffer, 255);
 
@@ -138,11 +174,12 @@ void GLModel::loadModelFromObjFile(const std::string & modelPath, bool verbose, 
 
 	file.close();
 	EngineLogger::getInstance()->getConsole()->info("Reading Obj File [ {} ] is finished | {} (s)", modelPath, duration.count());
-	EngineLogger::getInstance()->getConsole()->info("#Vertices : {}, #Indices : {}", posStack.size(), posIdxStack.size());
-
 
 	if (normalization)
 		scaleToUnitBox();
+
+	for (auto& mesh : meshes)
+		mesh.bindBuffer();
 }
 
 void GLModel::scaleToUnitBox(float cardinality)
@@ -151,21 +188,24 @@ void GLModel::scaleToUnitBox(float cardinality)
 
 	const float minFloat = std::numeric_limits<float>::min();
 	const float maxFloat = std::numeric_limits<float>::max();
-	
+
 	glm::vec3 bbMin = glm::vec3(maxFloat, maxFloat, maxFloat);
 	glm::vec3 bbMax = glm::vec3(minFloat, minFloat, minFloat);
-			  
-	for (const auto& pos : posStack)
+
+	for (int numMesh = 0; numMesh < meshes.size(); ++numMesh)
 	{
-		bbMin.x = std::min(pos.x, bbMin.x);
-		bbMin.y = std::min(pos.y, bbMin.y);
-		bbMin.z = std::min(pos.z, bbMin.z);
-		bbMax.x = std::max(pos.x, bbMax.x);
-		bbMax.y = std::max(pos.y, bbMax.y);
-		bbMax.z = std::max(pos.z, bbMax.z);
+		for (const auto& vertex : meshes[numMesh].vertices)
+		{
+			bbMin.x = std::min(vertex.Position.x, bbMin.x);
+			bbMin.y = std::min(vertex.Position.y, bbMin.y);
+			bbMin.z = std::min(vertex.Position.z, bbMin.z);
+			bbMax.x = std::max(vertex.Position.x, bbMax.x);
+			bbMax.y = std::max(vertex.Position.y, bbMax.y);
+			bbMax.z = std::max(vertex.Position.z, bbMax.z);
+		}
 	}
-	
-	EngineLogger::getInstance()->getConsole()->info("Bounding Box min : ({}, {}, {}), max : ({}, {}, {})", 
+
+	EngineLogger::getInstance()->getConsole()->info("Bounding Box min : ({}, {}, {}), max : ({}, {}, {})",
 		bbMin.x, bbMin.y, bbMin.z, bbMax.x, bbMax.y, bbMax.z);
 
 	const float dx = bbMax.x - bbMin.x;
@@ -175,10 +215,13 @@ void GLModel::scaleToUnitBox(float cardinality)
 	const float dm = std::max(std::max(dx, dy), dz);
 	const float inv_dm = 1.f / dm;
 
-	for (auto& position : posStack)
+	for (int numMesh = 0; numMesh < meshes.size(); ++numMesh)
 	{
-		position -= bbMin;
-		position *= cardinality * inv_dm;
+		for (auto& vertex : meshes[numMesh].vertices)
+		{
+			vertex.Position -= bbMin;
+			vertex.Position *= cardinality * inv_dm;
+		}
 	}
 
 	const auto end = std::chrono::system_clock::now();
@@ -186,22 +229,19 @@ void GLModel::scaleToUnitBox(float cardinality)
 	EngineLogger::getInstance()->getConsole()->info("Scaling model finished | {} (s)", duration.count());
 }
 
-void GLModel::moveToMesh(GLMesh & targetMesh) const
+void GLModel::drawModel(void) const
 {
-	std::vector<Vertex> vertices;
-	std::vector<unsigned int> indices;
+	for (const auto& mesh : meshes)
+		mesh.drawMesh();
+}
 
-	const int numIndices = static_cast<int>(posIdxStack.size());
-	Vertex tempVertex;
-
-	for (int i = 0; i < numIndices; ++i)
-	{
-		for (int idx = 0; idx < 3; ++idx)
-		{
-			tempVertex = { posStack[posIdxStack[i][idx]], normStack[normIdxStack[i][idx]], uvStack[uvIdxStack[i][idx]] };
-			vertices.emplace_back(std::move(tempVertex));
-		}
+//from https://stackoverflow.com/questions/8317508/hash-function-for-a-string
+unsigned int GLModel::getHash(const char* str)
+{
+	unsigned h = 37;
+	while (*str) {
+		h = (h * 54059) ^ (str[0] * 76963);
+		str++;
 	}
-
-	targetMesh.setupMesh(std::move(vertices), std::move(indices));
+	return h % 86969;
 }
