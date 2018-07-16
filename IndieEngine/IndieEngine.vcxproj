@@ -130,10 +130,12 @@
   <ItemGroup>
     <ClInclude Include="EngineApp.hpp" />
     <ClInclude Include="EngineCamera.hpp" />
+    <ClInclude Include="EngineGUI.hpp" />
     <ClInclude Include="EngineLogger.hpp" />
     <ClInclude Include="EngineTimer.hpp" />
     <ClInclude Include="GLApp.hpp" />
     <ClInclude Include="EngineProperty.hpp" />
+    <ClInclude Include="GLDebugger.hpp" />
     <ClInclude Include="GLMesh.hpp" />
     <ClInclude Include="GLModel.hpp" />
     <ClInclude Include="GLShader.hpp" />
@@ -141,6 +143,8 @@
   <ItemGroup>
     <ClCompile Include="..\dependencies\glad.c" />
     <ClCompile Include="EngineApp.cpp" />
+    <ClCompile Include="EngineCamera.cpp" />
+    <ClCompile Include="EngineGUI.cpp" />
     <ClCompile Include="EngineLogger.cpp" />
     <ClCompile Include="EngineTimer.cpp" />
     <ClCompile Include="GLApp.cpp" />

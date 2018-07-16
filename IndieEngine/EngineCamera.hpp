@@ -10,4 +10,5 @@ protected:
 public:
 	EngineCamera();
 };
+
 #endif

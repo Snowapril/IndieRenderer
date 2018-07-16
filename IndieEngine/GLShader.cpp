@@ -130,8 +130,10 @@ void GLShader::setupShader(const char* vs_path, const char* fs_path, const char*
 	if (gs_path != nullptr)
 		glDeleteShader(gs);
 
-	EngineLogger::getInstance()->getConsole()->info("Compile Shader Sources Complete.\n\tVertex Shader   : [{}]\n\tFragment Shader : "
-		"[{}]\n\tGeometry Shader : [{}]", vs_path, fs_path, gs_path == nullptr ? "None" : gs_path);
+	EngineLogger::getInstance()->getConsole()->info("Compile Shader Sources Complete.");
+	EngineLogger::getInstance()->getConsole()->info("Vertex Shader   : [{}]", vs_path);
+	EngineLogger::getInstance()->getConsole()->info("Fragment Shader : [{}]", fs_path);
+	EngineLogger::getInstance()->getConsole()->info("Geometry Shader : [{}]", gs_path == nullptr ? "None" : gs_path);
 }
 
 void GLShader::useProgram(void) const
@@ -151,7 +153,7 @@ void GLShader::sendUniform(const std::string & varName, int i) const
 	int loc = getUniformLocation(varName);
 
 	if (loc == -1) {
-		EngineLogger::getInstance()->getConsole()->critical("Undefined Uniform Variable Name : {}",  varName;
+		EngineLogger::getInstance()->getConsole()->critical("Undefined Uniform Variable Name : {}", varName);
 	}
 	else {
 		glUniform1i(loc, i);

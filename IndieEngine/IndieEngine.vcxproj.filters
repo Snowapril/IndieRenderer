@@ -33,10 +33,16 @@
     <ClInclude Include="EngineLogger.hpp">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="EngineCamera.hpp">
-      <Filter>src</Filter>
-    </ClInclude>
     <ClInclude Include="GLModel.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="GLDebugger.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineCamera.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineGUI.hpp">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
@@ -66,6 +72,12 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="GLModel.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineCamera.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineGUI.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

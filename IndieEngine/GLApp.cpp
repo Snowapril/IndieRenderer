@@ -3,6 +3,7 @@
 #include <cassert>
 #include <sstream>
 #include "EngineLogger.hpp"
+#include "GLDebugger.hpp"
 
 GLApp::GLApp()
 	: appWindow(0), appPaused(false), minimized(false), maximized(false), resizing(false), 
@@ -38,6 +39,8 @@ int GLApp::Run(void)
 		glfwPollEvents();
 	}
 
+	CheckError();
+
 	return 0;
 }
 
@@ -45,7 +48,7 @@ void GLApp::onResize(void)
 {
 	assert(appWindow);
 
-
+	glViewport(0, 0, clientWidth, clientHeight);
 }
 
 bool GLApp::init(void)

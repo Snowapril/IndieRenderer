@@ -13,9 +13,10 @@ typedef struct _Vertex {
 
 class GLMesh
 {
+	friend class GLModel;
 private:
 	std::vector<Vertex> vertices;
-	std::vector<glm::uvec3> indices;
+	std::vector<unsigned int> indices;
 
 	unsigned int VAO;
 
@@ -24,16 +25,16 @@ private:
 
 public:
 	GLMesh();
-	GLMesh(const std::vector<Vertex>& _vertices, const std::vector<glm::uvec3>& _indices);
-	GLMesh(std::vector<Vertex>&& _vertices, std::vector<glm::uvec3>&& _indices);
+	GLMesh(const std::vector<Vertex>& _vertices, const std::vector<unsigned int>& _indices);
+	GLMesh(std::vector<Vertex>&& _vertices, std::vector<unsigned int>&& _indices);
 	~GLMesh();
 
 	unsigned int getVertexArrayObject(void) const { return VAO; }
 
 	void setupMesh(void);
-	void setupMesh(const std::vector<Vertex>& _vertices, const std::vector<glm::uvec3>& _indices);
-	void setupMesh(std::vector<Vertex>&& _vertices, std::vector<glm::uvec3>&& _indices);
-	
+	void setupMesh(const std::vector<Vertex>& _vertices, const std::vector<unsigned int>& _indices);
+	void setupMesh(std::vector<Vertex>&& _vertices, std::vector<unsigned int>&& _indices);
+
 	void drawMesh(void) const;
 };
 

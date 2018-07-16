@@ -2,19 +2,6 @@
 #include "EngineProperty.hpp"
 
 
-void EngineApp::updateScene(float dt)
-{
-
-}
-
-void EngineApp::drawScene(void) const
-{
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
-	glClearColor(Color::Blue[0], Color::Blue[1], Color::Blue[2], Color::Blue[3]);
-}
-
-
-
 EngineApp::EngineApp()
 	: GLApp()
 {
@@ -40,9 +27,22 @@ bool EngineApp::init(void)
 	return true;
 }
 
-bool EngineApp::buildGeometryBuffers(void)
+void EngineApp::updateScene(float dt)
 {
 
+}
+
+void EngineApp::drawScene(void) const
+{
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+	glClearColor(Color::Blue[0], Color::Blue[1], Color::Blue[2], Color::Blue[3]);
+
+	//shaderMesh.drawMesh();
+}
+
+bool EngineApp::buildGeometryBuffers(void)
+{
+	shaderBall.loadModelFromObjFile("../resources/model/shaderball/shaderball2.obj");
 
 	return true;
 }

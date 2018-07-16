@@ -11,9 +11,9 @@ class EngineApp : public GLApp
 {
 private:
 	GLModel shaderBall;
+	GLMesh shaderMesh;
 
 	std::shared_ptr<GLShader> testShader;
-
 private:
 	bool buildGeometryBuffers(void);
 	bool buildShaderFiles(void);

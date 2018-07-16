@@ -5,7 +5,7 @@ GLMesh::GLMesh()
 {
 }
 
-GLMesh::GLMesh(const std::vector<Vertex>& _vertices, const std::vector<glm::uvec3>& _indices)
+GLMesh::GLMesh(const std::vector<Vertex>& _vertices, const std::vector<unsigned int>& _indices)
 {
 	vertices = _vertices;
 	indices = _indices;
@@ -14,7 +14,7 @@ GLMesh::GLMesh(const std::vector<Vertex>& _vertices, const std::vector<glm::uvec
 	indices.shrink_to_fit();
 }
 
-GLMesh::GLMesh(std::vector<Vertex>&& _vertices, std::vector<glm::uvec3>&& _indices)
+GLMesh::GLMesh(std::vector<Vertex>&& _vertices, std::vector<unsigned int>&& _indices)
 {
 	vertices = std::move(_vertices);
 	indices = std::move(_indices);
@@ -40,7 +40,7 @@ void GLMesh::bindBuffer(void)
 	glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec3) * vertices.size(), &vertices[0], GL_STATIC_DRAW);
 
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IBO);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(glm::uvec3) * indices.size(), &indices[0], GL_STATIC_DRAW);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(GLuint) * indices.size(), &indices[0], GL_STATIC_DRAW);
 
 	glEnableVertexAttribArray(0);
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)0);
@@ -62,7 +62,7 @@ void GLMesh::setupMesh(void)
 	bindBuffer();
 }
 
-void GLMesh::setupMesh(const std::vector<Vertex>& _vertices, const std::vector<glm::uvec3>& _indices)
+void GLMesh::setupMesh(const std::vector<Vertex>& _vertices, const std::vector<unsigned int>& _indices)
 {
 	vertices = _vertices;
 	indices  = _indices;
@@ -73,7 +73,7 @@ void GLMesh::setupMesh(const std::vector<Vertex>& _vertices, const std::vector<g
 	bindBuffer();
 }
 
-void GLMesh::setupMesh(std::vector<Vertex>&& _vertices, std::vector<glm::uvec3>&& _indices)
+void GLMesh::setupMesh(std::vector<Vertex>&& _vertices, std::vector<unsigned int>&& _indices)
 {
 	vertices = std::move(_vertices);
 	indices  = std::move(_indices);
