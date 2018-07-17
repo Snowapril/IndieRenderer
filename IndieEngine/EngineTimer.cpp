@@ -34,7 +34,7 @@ void EngineTimer::start(void)
 
 	if (isStopped)
 	{
-		pausedTime += (_startTime - stopTime) * secondsPerCount;
+		pausedTime += _startTime - stopTime;
 		prevTime    = _startTime;
 		stopTime    = 0;
 		isStopped   = false;
@@ -77,9 +77,9 @@ void EngineTimer::tick(void)
 	__int64 _currTime;
 	QueryPerformanceCounter((LARGE_INTEGER*)&_currTime);
 
-	currTime = _currTime;
+	currTime  = _currTime;
 	deltaTime = (currTime - prevTime) * secondsPerCount;
-	prevTime = currTime;
+	prevTime  = currTime;
 
 	if (deltaTime < 0.0)
 		deltaTime = 0.0;

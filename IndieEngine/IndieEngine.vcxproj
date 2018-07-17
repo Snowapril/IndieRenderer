@@ -147,6 +147,7 @@
     <ClCompile Include="EngineCamera.cpp" />
     <ClCompile Include="EngineGUI.cpp" />
     <ClCompile Include="EngineLogger.cpp" />
+    <ClCompile Include="EngineProfiler.cpp" />
     <ClCompile Include="EngineTimer.cpp" />
     <ClCompile Include="GLApp.cpp" />
     <ClCompile Include="GLMesh.cpp" />

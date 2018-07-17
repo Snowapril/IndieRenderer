@@ -4,6 +4,7 @@
 #include <sstream>
 #include "EngineLogger.hpp"
 #include "GLDebugger.hpp"
+#include "EngineProfiler.hpp"
 
 GLApp::GLApp()
 	: appWindow(0), appPaused(false), minimized(false), maximized(false), resizing(false), enableCulling(ENABLE_CULLING),
@@ -41,6 +42,10 @@ int GLApp::Run(void)
 
 	CheckError();
 
+#ifdef _DEBUG
+	EngineProfiler::logging("./logs/performance.txt");
+#endif
+
 	return 0;
 }
 
@@ -66,7 +71,7 @@ bool GLApp::initWindow(void)
 {
 	if (!glfwInit())
 	{
-		EngineLogger::getInstance()->getConsole()->critical("GLFW Initialization Failed.");
+		EngineLogger::getConsole()->critical("GLFW Initialization Failed.");
 		return false;
 	}
 
@@ -82,21 +87,21 @@ bool GLApp::initWindow(void)
 	appWindow = glfwCreateWindow(clientWidth, clientHeight, WndCaption.c_str(), nullptr, nullptr);
 	if (!appWindow) {
 		glfwTerminate();
-		EngineLogger::getInstance()->getConsole()->critical("GLFW Create Window Failed.");
+		EngineLogger::getConsole()->critical("GLFW Create Window Failed.");
 		return false;
 	}
 	glfwMakeContextCurrent(appWindow);
 
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
 		glfwTerminate();
-		EngineLogger::getInstance()->getConsole()->critical("GLAD Load GLLoader Failed.");
+		EngineLogger::getConsole()->critical("GLAD Load GLLoader Failed.");
 		return false;
 	}
 
 	const GLubyte* vendor = glGetString(GL_VENDOR);
 	const GLubyte* renderer = glGetString(GL_RENDERER);
 
-	EngineLogger::getInstance()->getConsole()->info("Vendor : {:<15}, Renderer : {:<15}", vendor, renderer);
+	EngineLogger::getConsole()->info("Vendor : {:<15}, Renderer : {:<15}", vendor, renderer);
 
 	return true;
 }

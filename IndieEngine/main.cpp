@@ -24,7 +24,7 @@ int main(int argc, char* argv[])
 	gEngineApp = std::make_unique<EngineApp>();
 	
 	if (!gEngineApp->init()) {
-		EngineLogger::getInstance()->getConsole()->critical("Engine App Initialization Failed");
+		EngineLogger::getConsole()->critical("Engine App Initialization Failed");
 		return -1;
 	}
 	

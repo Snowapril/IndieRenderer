@@ -5,6 +5,7 @@
 #include <fstream>
 #include <sstream>
 #include <glm/gtc/type_ptr.hpp>
+#include "EngineProfiler.hpp"
 
 GLShader::GLShader()
 	: programID(0)
@@ -23,6 +24,8 @@ GLShader::~GLShader()
 
 void GLShader::setupShader(const char* vs_path, const char* fs_path, const char* gs_path)
 {
+	Profile();
+
 	std::string vs_string, fs_string, gs_string;
 
 	{
@@ -57,7 +60,7 @@ void GLShader::setupShader(const char* vs_path, const char* fs_path, const char*
 			}
 		}
 		catch (std::ifstream::failure e) {
-			EngineLogger::getInstance()->getConsole()->critical("ifstream Failure : {:<20}", e.what());
+			EngineLogger::getConsole()->critical("ifstream Failure : {:<20}", e.what());
 		}
 	}
 
@@ -74,7 +77,7 @@ void GLShader::setupShader(const char* vs_path, const char* fs_path, const char*
 	glGetShaderiv(vs, GL_COMPILE_STATUS, &success);
 	if (!success) {
 		glGetShaderInfoLog(vs, sizeof(infoLog), nullptr, infoLog);
-		EngineLogger::getInstance()->getConsole()->critical("Vertex Shader Compile Failed, info log :\n{}", infoLog);
+		EngineLogger::getConsole()->critical("Vertex Shader Compile Failed, info log :\n{}", infoLog);
 		return;
 	}
 
@@ -85,7 +88,7 @@ void GLShader::setupShader(const char* vs_path, const char* fs_path, const char*
 	glGetShaderiv(fs, GL_COMPILE_STATUS, &success);
 	if (!success) {
 		glGetShaderInfoLog(fs, sizeof(infoLog), nullptr, infoLog);
-		EngineLogger::getInstance()->getConsole()->critical("Fragment Shader Compile Failed, info log :\n{}", infoLog);
+		EngineLogger::getConsole()->critical("Fragment Shader Compile Failed, info log :\n{}", infoLog);
 		glDeleteShader(vs);
 		return;
 	}
@@ -99,7 +102,7 @@ void GLShader::setupShader(const char* vs_path, const char* fs_path, const char*
 		glGetShaderiv(gs, GL_COMPILE_STATUS, &success);
 		if (!success) {
 			glGetShaderInfoLog(gs, sizeof(infoLog), nullptr, infoLog);
-			EngineLogger::getInstance()->getConsole()->critical("Geometry Shader Compile Failed, info log :\n{}", infoLog);
+			EngineLogger::getConsole()->critical("Geometry Shader Compile Failed, info log :\n{}", infoLog);
 			glDeleteShader(vs);
 			glDeleteShader(fs);
 			return;
@@ -116,7 +119,7 @@ void GLShader::setupShader(const char* vs_path, const char* fs_path, const char*
 	glGetProgramiv(programID, GL_LINK_STATUS, &success);
 	if (!success) {
 		glGetProgramInfoLog(programID, sizeof(infoLog), nullptr, infoLog);
-		EngineLogger::getInstance()->getConsole()->critical("Program Linking Failed, info Log : \n{}", infoLog);
+		EngineLogger::getConsole()->critical("Program Linking Failed, info Log : \n{}", infoLog);
 		glDeleteShader(vs);
 		glDeleteShader(fs);
 		if (gs_path != nullptr)
@@ -130,10 +133,10 @@ void GLShader::setupShader(const char* vs_path, const char* fs_path, const char*
 	if (gs_path != nullptr)
 		glDeleteShader(gs);
 
-	EngineLogger::getInstance()->getConsole()->info("Compile Shader Sources Complete.");
-	EngineLogger::getInstance()->getConsole()->info("Vertex Shader   : [{}]", vs_path);
-	EngineLogger::getInstance()->getConsole()->info("Fragment Shader : [{}]", fs_path);
-	EngineLogger::getInstance()->getConsole()->info("Geometry Shader : [{}]", gs_path == nullptr ? "None" : gs_path);
+	EngineLogger::getConsole()->info("Compile Shader Sources Complete.");
+	EngineLogger::getConsole()->info("Vertex Shader   : [{}]", vs_path);
+	EngineLogger::getConsole()->info("Fragment Shader : [{}]", fs_path);
+	EngineLogger::getConsole()->info("Geometry Shader : [{}]", gs_path == nullptr ? "None" : gs_path);
 }
 
 void GLShader::useProgram(void) const
@@ -153,7 +156,7 @@ void GLShader::sendUniform(const std::string & varName, int i) const
 	int loc = getUniformLocation(varName);
 
 	if (loc == -1) {
-		EngineLogger::getInstance()->getConsole()->critical("Undefined Uniform Variable Name : {}", varName);
+		EngineLogger::getConsole()->critical("Undefined Uniform Variable Name : {}", varName);
 	}
 	else {
 		glUniform1i(loc, i);
@@ -165,7 +168,7 @@ void GLShader::sendUniform(const std::string & varName, bool b) const
 	int loc = getUniformLocation(varName);
 
 	if (loc == -1) {
-		EngineLogger::getInstance()->getConsole()->critical("Undefined Uniform Variable Name : {}", varName);
+		EngineLogger::getConsole()->critical("Undefined Uniform Variable Name : {}", varName);
 	}
 	else {
 		glUniform1i(loc, b);
@@ -177,7 +180,7 @@ void GLShader::sendUniform(const std::string & varName, const glm::vec3 & vec) c
 	int loc = getUniformLocation(varName);
 
 	if (loc == -1) {
-		EngineLogger::getInstance()->getConsole()->critical("Undefined Uniform Variable Name : {}", varName);
+		EngineLogger::getConsole()->critical("Undefined Uniform Variable Name : {}", varName);
 	}
 	else {
 		glUniform3fv(loc, 1, &vec[0]);
@@ -189,7 +192,7 @@ void GLShader::sendUniform(const std::string & varName, const glm::vec4 & vec) c
 	int loc = getUniformLocation(varName);
 
 	if (loc == -1) {
-		EngineLogger::getInstance()->getConsole()->critical("Undefined Uniform Variable Name : {}", varName);
+		EngineLogger::getConsole()->critical("Undefined Uniform Variable Name : {}", varName);
 	}
 	else {
 		glUniform4fv(loc, 1, &vec[0]);
@@ -201,7 +204,7 @@ void GLShader::sendUniform(const std::string & varName, const glm::mat4 & mat) c
 	int loc = getUniformLocation(varName);
 
 	if (loc == -1) {
-		EngineLogger::getInstance()->getConsole()->critical("Undefined Uniform Variable Name : {}", varName);
+		EngineLogger::getConsole()->critical("Undefined Uniform Variable Name : {}", varName);
 	}
 	else {
 		glUniformMatrix4fv(loc, 1, GL_FALSE, glm::value_ptr(mat));

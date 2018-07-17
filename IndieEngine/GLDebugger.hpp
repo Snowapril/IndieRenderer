@@ -22,10 +22,10 @@ public:
 			case GL_OUT_OF_MEMORY:                 error = "OUT_OF_MEMORY"; break;
 			case GL_INVALID_FRAMEBUFFER_OPERATION: error = "INVALID_FRAMEBUFFER_OPERATION"; break;
 			}
-			EngineLogger::getInstance()->getConsole()->debug("Error [ {} ] || {} ( {} )", error.c_str(), file, line);
+			EngineLogger::getConsole()->debug("Error [ {} ] || {} ( {} )", error.c_str(), file, line);
 		}
 
-		if (errorCode == GL_NO_ERROR) EngineLogger::getInstance()->getConsole()->debug("NO ERROR at {} ( {} )\n", file, line);
+		if (errorCode == GL_NO_ERROR) EngineLogger::getConsole()->debug("NO ERROR at {} ( {} )\n", file, line);
 		return errorCode;
 	}
 };

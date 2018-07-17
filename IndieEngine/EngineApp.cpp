@@ -2,6 +2,8 @@
 #include "EngineProperty.hpp"
 #include "EngineLogger.hpp"
 #include <glm/gtc/matrix_transform.hpp>
+#include "EngineProfiler.hpp"
+
 
 EngineApp::EngineApp()
 	: GLApp()
@@ -33,11 +35,15 @@ bool EngineApp::init(void)
 
 void EngineApp::updateScene(float dt)
 {
+	Profile();
+
 	camera.sendVP(vpUBO, getAspectRatio());
 }
 
 void EngineApp::drawScene(void) const
 {
+	Profile();
+
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 	glClearColor(Color::Blue[0], Color::Blue[1], Color::Blue[2], Color::Blue[3]);
 
@@ -119,7 +125,7 @@ void EngineApp::resizingCallback(int newWidth, int newHeight)
 	if (newWidth == 0)  newWidth = 1;
 	if (newHeight == 0) newHeight = 1;
 
-	clientWidth = newWidth;
+	clientWidth  = newWidth;
 	clientHeight = newHeight;
 
 	onResize();

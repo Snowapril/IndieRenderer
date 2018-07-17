@@ -5,6 +5,7 @@
 #include <chrono>
 #include <unordered_map>
 #include <sstream>
+#include "EngineProfiler.hpp"
 
 
 GLModel::GLModel()
@@ -18,10 +19,11 @@ GLModel::GLModel(const std::string & modelPath, bool verbose, bool normalization
 
 void GLModel::loadModelFromObjFile(const std::string & modelPath, bool verbose, bool normalization)
 {
+	Profile();
 	const auto start = std::chrono::system_clock::now();
 
-	EngineLogger::getInstance()->getConsole()->info("Start reading Obj File [ {} ]", modelPath);
-	EngineLogger::getInstance()->getConsole()->info("Verbose: {}, Normalization : {}", verbose ? "ON" : "OFF", normalization ? "ON" : "OFF");
+	EngineLogger::getConsole()->info("Start reading Obj File [ {} ]", modelPath);
+	EngineLogger::getConsole()->info("Verbose: {}, Normalization : {}", verbose ? "ON" : "OFF", normalization ? "ON" : "OFF");
 
 	bool read_vt(false), read_vn(false);
 
@@ -29,7 +31,7 @@ void GLModel::loadModelFromObjFile(const std::string & modelPath, bool verbose, 
 
 	file.open(modelPath);
 	if (!file.is_open()) {
-		EngineLogger::getInstance()->getConsole()->error("While reading obj file [ {} ], an error occurred", modelPath);
+		EngineLogger::getConsole()->error("While reading obj file [ {} ], an error occurred", modelPath);
 		return;
 	}
 
@@ -48,7 +50,7 @@ void GLModel::loadModelFromObjFile(const std::string & modelPath, bool verbose, 
 		if (strcmp(buffer, "#") == 0)
 		{
 			file.getline(buffer, 255);
-			if (verbose) EngineLogger::getInstance()->getConsole()->info("Comment : {}", buffer);
+			if (verbose) EngineLogger::getConsole()->info("Comment : {}", buffer);
 		}
 		else if (strcmp(buffer, "v") == 0) // vertices
 		{
@@ -56,7 +58,7 @@ void GLModel::loadModelFromObjFile(const std::string & modelPath, bool verbose, 
 			file >> x >> y >> z;
 
 			posStack.emplace_back(glm::vec3(x, y, z));
-			if (verbose && count == 1500) EngineLogger::getInstance()->getConsole()->info("Vertex : ({}, {}, {})", x, y, z);
+			if (verbose && count == 1500) EngineLogger::getConsole()->info("Vertex : ({}, {}, {})", x, y, z);
 		}
 		else if (strcmp(buffer, "vt") == 0) //uv tex coordinates
 		{
@@ -66,7 +68,7 @@ void GLModel::loadModelFromObjFile(const std::string & modelPath, bool verbose, 
 			file >> u >> v;
 
 			uvStack.emplace_back(glm::vec2(u, v));
-			if (verbose && count == 1500) EngineLogger::getInstance()->getConsole()->info("UV : ({}, {})", u, v);
+			if (verbose && count == 1500) EngineLogger::getConsole()->info("UV : ({}, {})", u, v);
 		}
 		else if (strcmp(buffer, "vn") == 0) //vertex normals
 		{
@@ -76,12 +78,12 @@ void GLModel::loadModelFromObjFile(const std::string & modelPath, bool verbose, 
 			file >> x >> y >> z;
 
 			normStack.emplace_back(glm::vec3(x, y, z));
-			if (verbose && count == 1500) EngineLogger::getInstance()->getConsole()->info("Normal : ({}, {}, {})", x, y, z);
+			if (verbose && count == 1500) EngineLogger::getConsole()->info("Normal : ({}, {}, {})", x, y, z);
 		}
 		else if (strcmp(buffer, "f") == 0) //faces
 		{
 			unsigned int v[3], vt[3] = { 0, }, vn[3] = { 0, };
-			if (read_vt && read_vt)
+			if (read_vt && read_vn)
 			{
 				for (int i = 0; i < 3; ++i)
 				{
@@ -127,7 +129,7 @@ void GLModel::loadModelFromObjFile(const std::string & modelPath, bool verbose, 
 			}
 
 			if (verbose && count == 1500)
-				EngineLogger::getInstance()->getConsole()->info("Vertex face : ({}, {}, {})", v[0], v[1], v[2]);
+				EngineLogger::getConsole()->info("Vertex face : ({}, {}, {})", v[0], v[1], v[2]);
 
 			unsigned int synthesizedIndex;
 			Vertex vertex;
@@ -173,7 +175,7 @@ void GLModel::loadModelFromObjFile(const std::string & modelPath, bool verbose, 
 	const auto duration = std::chrono::duration<double>(end - start);
 
 	file.close();
-	EngineLogger::getInstance()->getConsole()->info("Reading Obj File [ {} ] is finished | {} (s)", modelPath, duration.count());
+	EngineLogger::getConsole()->info("Reading Obj File [ {} ] is finished | {} (s)", modelPath, duration.count());
 
 	if (normalization)
 		scaleToUnitBox();
@@ -184,6 +186,8 @@ void GLModel::loadModelFromObjFile(const std::string & modelPath, bool verbose, 
 
 void GLModel::scaleToUnitBox(float cardinality)
 {
+	Profile();
+
 	const auto start = std::chrono::system_clock::now();
 
 	const float minFloat = std::numeric_limits<float>::min();
@@ -205,7 +209,7 @@ void GLModel::scaleToUnitBox(float cardinality)
 		}
 	}
 
-	EngineLogger::getInstance()->getConsole()->info("Bounding Box min : ({}, {}, {}), max : ({}, {}, {})",
+	EngineLogger::getConsole()->info("Bounding Box min : ({}, {}, {}), max : ({}, {}, {})",
 		bbMin.x, bbMin.y, bbMin.z, bbMax.x, bbMax.y, bbMax.z);
 
 	const float dx = bbMax.x - bbMin.x;
@@ -226,7 +230,7 @@ void GLModel::scaleToUnitBox(float cardinality)
 
 	const auto end = std::chrono::system_clock::now();
 	const auto duration = std::chrono::duration<double>(end - start);
-	EngineLogger::getInstance()->getConsole()->info("Scaling model finished | {} (s)", duration.count());
+	EngineLogger::getConsole()->info("Scaling model finished | {} (s)", duration.count());
 }
 
 void GLModel::drawModel(void) const

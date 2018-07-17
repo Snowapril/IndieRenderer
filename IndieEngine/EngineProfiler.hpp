@@ -12,16 +12,21 @@ class EngineProfiler
 {
 private:
 	static std::unordered_map<std::string, Cell> profileInfo;
-	static std::string dump(void);
 	static double secondsPerCount;
-	
+
 	std::string currentLabel;
 	__int64 startTime;
 public:
-	EngineProfiler(const char* filename, const char* functionName);
+	EngineProfiler(const std::string& functionName);
 	~EngineProfiler();
+
+	static void logging(const std::string& logFileName);
 };
 
-#define Profile() EngineProfiler(__FILE__, __FUNCTION__);
+#ifdef _DEBUG
+#define Profile() EngineProfiler(__FUNCTION__);
+#else
+#define Profile()
+#endif
 
 #endif

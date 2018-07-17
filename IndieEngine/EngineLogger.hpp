@@ -3,21 +3,16 @@
 
 #include "spdlog/spdlog.h"
 #include <memory>
+#include <unordered_map>
 
 class EngineLogger
 {
 private:
-	static EngineLogger* loggerInstance;
-	std::shared_ptr<spdlog::logger> console;
-
-private:
-	void prepare_logdir();
+	static std::shared_ptr<spdlog::logger> console;
 
 public:
-	EngineLogger();
-	
-	static EngineLogger* getInstance();
-	std::shared_ptr<spdlog::logger> getConsole(void) { return console; }
+	static std::shared_ptr<spdlog::logger> getConsole(void);
+
 };
 
 
