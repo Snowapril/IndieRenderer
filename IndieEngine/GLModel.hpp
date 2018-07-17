@@ -24,5 +24,4 @@ public:
 	std::string getModelName(void) const { return modelName; }
 };
 
-
 #endif

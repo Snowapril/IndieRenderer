@@ -132,6 +132,7 @@
     <ClInclude Include="EngineCamera.hpp" />
     <ClInclude Include="EngineGUI.hpp" />
     <ClInclude Include="EngineLogger.hpp" />
+    <ClInclude Include="EngineProfiler.hpp" />
     <ClInclude Include="EngineTimer.hpp" />
     <ClInclude Include="GLApp.hpp" />
     <ClInclude Include="EngineProperty.hpp" />

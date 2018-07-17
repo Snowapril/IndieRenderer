@@ -45,6 +45,9 @@
     <ClInclude Include="EngineGUI.hpp">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="EngineProfiler.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineTimer.cpp">
