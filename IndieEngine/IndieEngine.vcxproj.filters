@@ -48,6 +48,9 @@
     <ClInclude Include="EngineProfiler.hpp">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="GLResources.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineTimer.cpp">
@@ -86,12 +89,21 @@
     <ClCompile Include="EngineProfiler.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="GLResources.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\resources\shader\fragment_shader.glsl">
+    <None Include="..\resources\shader\post_processing.frag">
       <Filter>glsl</Filter>
     </None>
-    <None Include="..\resources\shader\vertex_shader.glsl">
+    <None Include="..\resources\shader\post_processing.vert">
+      <Filter>glsl</Filter>
+    </None>
+    <None Include="..\resources\shader\simple_shader.frag">
+      <Filter>glsl</Filter>
+    </None>
+    <None Include="..\resources\shader\simple_shader.vert">
       <Filter>glsl</Filter>
     </None>
   </ItemGroup>

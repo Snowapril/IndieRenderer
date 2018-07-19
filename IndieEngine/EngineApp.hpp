@@ -14,14 +14,19 @@ private:
 	GLModel shaderBall;
 	GLMesh testMesh;
 	std::shared_ptr<GLShader> testShader;
+	std::shared_ptr<GLShader> postProcessing;
 	unsigned int vpUBO;
-
 	EngineCamera camera;
 
+	GLuint framebuffer;
+	GLuint colorBufferTexture;
+	GLuint depthStencilRBO;
+	GLuint simpleQuad;
 private:
 	bool buildGeometryBuffers(void);
 	bool buildUniformBuffers(void);
 	bool buildShaderFiles(void);
+	bool buildFramebuffer(void);
 
 protected:
 

@@ -9,11 +9,12 @@
 class GLModel
 {
 private:
-	std::vector<GLMesh> meshes;
 	std::string modelName;
 	
 	static unsigned int getHash(const char* str);
 public:
+	std::vector<GLMesh> meshes; //TODO : move this back to private scope
+
 	GLModel();
 	GLModel(const std::string& modelPath, bool verbose = false, bool normalization = true);
 

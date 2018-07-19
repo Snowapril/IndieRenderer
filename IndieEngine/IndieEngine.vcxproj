@@ -139,6 +139,7 @@
     <ClInclude Include="GLDebugger.hpp" />
     <ClInclude Include="GLMesh.hpp" />
     <ClInclude Include="GLModel.hpp" />
+    <ClInclude Include="GLResources.hpp" />
     <ClInclude Include="GLShader.hpp" />
   </ItemGroup>
   <ItemGroup>
@@ -152,12 +153,15 @@
     <ClCompile Include="GLApp.cpp" />
     <ClCompile Include="GLMesh.cpp" />
     <ClCompile Include="GLModel.cpp" />
+    <ClCompile Include="GLResources.cpp" />
     <ClCompile Include="GLShader.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\resources\shader\fragment_shader.glsl" />
-    <None Include="..\resources\shader\vertex_shader.glsl" />
+    <None Include="..\resources\shader\post_processing.frag" />
+    <None Include="..\resources\shader\post_processing.vert" />
+    <None Include="..\resources\shader\simple_shader.frag" />
+    <None Include="..\resources\shader\simple_shader.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
