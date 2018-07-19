@@ -1,5 +1,6 @@
 #include "GLResources.hpp"
 #include <glad/glad.h>
+#include "EngineLogger.hpp"
 
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb_image.h>
@@ -52,6 +53,53 @@ unsigned int GLResources::createCubeMap(const std::vector<std::string>& faces)
 	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
+
+	return texture;
+}
+
+unsigned int GLResources::createTexture(const std::string& path, bool gamma)
+{
+	stbi_set_flip_vertically_on_load(true);
+	GLuint texture;
+	glGenTextures(1, &texture);
+	glBindTexture(GL_TEXTURE_2D, texture);
+
+	int width, height, nrChannels;
+
+	unsigned char * data = stbi_load(path.c_str(), &width, &height, &nrChannels, 0);
+	if (data == nullptr || width == 0 || nrChannels == 0) {
+		EngineLogger::getConsole()->critical("Cannot Load texture from path [ {} ]", path);
+		return 0;
+	}
+	
+	GLenum format, internalFormat;
+	switch (nrChannels)
+	{
+	case 1:
+		format = GL_RED;
+		internalFormat = GL_RED;
+		break;
+	case 3:
+		format = GL_RGB;
+		internalFormat = gamma ? GL_SRGB : GL_RGB;
+		break;
+	case 4:
+		format = GL_RGBA;
+		internalFormat = gamma ? GL_SRGB_ALPHA : GL_RGBA;
+		break;
+	}
+	glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, width, height, 0, format, GL_UNSIGNED_BYTE, data);
+	glGenerateMipmap(GL_TEXTURE_2D);
+
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, format == GL_RGB ? GL_REPEAT : GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, format == GL_RGB ? GL_REPEAT : GL_CLAMP_TO_EDGE);
+
+	glBindTexture(GL_TEXTURE_2D, 0);
+
+	stbi_image_free(data);
+	stbi_set_flip_vertically_on_load(false);
 
 	return texture;
 }

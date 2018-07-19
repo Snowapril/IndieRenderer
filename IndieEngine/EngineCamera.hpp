@@ -28,6 +28,7 @@ public:
 	void processKeyInput(int key, int action);
 
 	void sendVP(unsigned int UBO, float aspectRatio) const;
+	glm::vec3 getViewPos(void) const;
 };
 
 #endif

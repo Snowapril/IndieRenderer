@@ -106,5 +106,17 @@
     <None Include="..\resources\shader\simple_shader.vert">
       <Filter>glsl</Filter>
     </None>
+    <None Include="..\resources\shader\deferredShader.frag">
+      <Filter>glsl</Filter>
+    </None>
+    <None Include="..\resources\shader\deferredShader.vert">
+      <Filter>glsl</Filter>
+    </None>
+    <None Include="..\resources\shader\gBuffer.frag">
+      <Filter>glsl</Filter>
+    </None>
+    <None Include="..\resources\shader\gBuffer.vert">
+      <Filter>glsl</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -4,7 +4,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include "EngineProfiler.hpp"
 #include "GLResources.hpp"
-
+#include <chrono>
 
 EngineApp::EngineApp()
 	: GLApp()
@@ -14,15 +14,20 @@ EngineApp::EngineApp()
 
 EngineApp::~EngineApp()
 {
-	glDeleteFramebuffers(1, &framebuffer);
-	glDeleteTextures(1, &colorBufferTexture);
-	glDeleteRenderbuffers(1, &depthStencilRBO);
+	glDeleteFramebuffers(1, &gBuffer);
+	glDeleteTextures(1, &gPosition);
+	glDeleteTextures(1, &gNormal);
+	glDeleteTextures(1, &gColorSpec);
+	glDeleteTextures(1, &containerDiff);
+	glDeleteTextures(1, &containerSpec);
 
 	glDeleteVertexArrays(1, &simpleQuad);
 }
 
 bool EngineApp::init(void)
 {
+	const auto start = std::chrono::system_clock().now();
+
 	if (!GLApp::init())
 		return false;
 
@@ -38,6 +43,13 @@ bool EngineApp::init(void)
 	if (!buildFramebuffer())
 		return false;
 
+	if (!loadTextures())
+		return false;
+	
+	const auto end = std::chrono::system_clock().now();
+	const auto duration = std::chrono::duration<double>(end - start);
+	EngineLogger::getConsole()->info("Whole Initialization took {}.", duration.count());
+
 	return true;
 }
 
@@ -52,39 +64,37 @@ void EngineApp::drawScene(void) const
 {
 	Profile();
 
-	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
-	glClearColor(Color::Blue[0], Color::Blue[1], Color::Blue[2], Color::Blue[3]);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
-	glEnable(GL_DEPTH_TEST);
+	const glm::vec3 viewPos = camera.getViewPos();
 
-	glm::mat4 model;
-	float time = engineTimer.getTotalTime();
+	glBindFramebuffer(GL_FRAMEBUFFER, gBuffer);
+		glClearColor(Color::Blue[0], Color::Blue[1], Color::Blue[2], Color::Blue[3]);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		glEnable(GL_DEPTH_TEST);
 
-	glBindBuffer(GL_UNIFORM_BUFFER, vpUBO);
+		glm::mat4 model;
+		float time = engineTimer.getTotalTime();
 
-	testShader->useProgram();
+		glBindBuffer(GL_UNIFORM_BUFFER, vpUBO);
 
-	model = glm::translate(glm::mat4(), glm::vec3(-1.f, 0.f, 0.f));
-	model = glm::rotate(model, time, glm::vec3(0.f, 1.f, 0.f));
+		gBufferShader->useProgram();
 
-	testShader->sendUniform("model", model);
-	testShader->sendUniform("color", glm::vec4(Color::Cyan[0], Color::Cyan[1], Color::Cyan[2], Color::Cyan[3]));
-	testMesh.drawMesh();
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, containerDiff);
+		glActiveTexture(GL_TEXTURE1);
+		glBindTexture(GL_TEXTURE_2D, containerSpec);
 
-	model = glm::rotate(model, - time, glm::vec3(0.f, 1.f, 0.f));
-	model = glm::translate(glm::mat4(), glm::vec3(1.f, 0.f, 0.f));
+		model = glm::translate(glm::mat4(), glm::vec3(-1.f, 0.f, 0.f));
+		model = glm::rotate(model, time, glm::vec3(0.f, 1.f, 0.f));
+		gBufferShader->sendUniform("model", model);
 
+		testMesh.drawMesh();
 
-	const std::vector<GLMesh> &meshes = shaderBall.meshes;
-	for (int i = 0; i < meshes.size(); ++i)
-	{
-		testShader->sendUniform("color", glm::vec4(0.15f * (i + 1), 0.15f * (i + 1), 0.15f * (i + 1), 1.f));
-		testShader->sendUniform("model", model);
+		model = glm::translate(glm::mat4(), glm::vec3(1.f, 0.f, 0.f));
+		model = glm::rotate(model, -time, glm::vec3(0.f, 1.f, 0.f));
 
-		meshes[i].drawMesh();
-	}
+		gBufferShader->sendUniform("model", model);
 
-	shaderBall.drawModel();
+		sphere.drawModel();
 
 	glBindBuffer(GL_UNIFORM_BUFFER, 0);
 
@@ -93,12 +103,45 @@ void EngineApp::drawScene(void) const
 	glClear(GL_COLOR_BUFFER_BIT);
 	glDisable(GL_DEPTH_TEST);
 
-	postProcessing->useProgram();
+	deferredShader->useProgram();
+	deferredShader->sendUniform("viewPos", viewPos);
+	//deferredShader->sendUniform("exposure", exposure);
+
+	//this is same setting with learnopengl tutorial
+	for (unsigned int i = 0; i < lightPositions.size(); i++)
+	{
+		deferredShader->sendUniform("lights[" + std::to_string(i) + "].Position", lightPositions[i]);
+		deferredShader->sendUniform("lights[" + std::to_string(i) + "].Color", lightColors[i]);
+		// update attenuation parameters and calculate radius
+		const float constant = 1.0f; // note that we don't send this to the shader, we assume it is always 1.0 (in our case)
+		const float linear = 0.7f;
+		const float quadratic = 1.8f;
+		deferredShader->sendUniform("lights[" + std::to_string(i) + "].Linear", linear);
+		deferredShader->sendUniform("lights[" + std::to_string(i) + "].Quadratic", quadratic);
+	}
+
 	glBindVertexArray(simpleQuad);
 	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, colorBufferTexture);
+	glBindTexture(GL_TEXTURE_2D, gPosition);
+	glActiveTexture(GL_TEXTURE1);
+	glBindTexture(GL_TEXTURE_2D, gNormal);
+	glActiveTexture(GL_TEXTURE2);
+	glBindTexture(GL_TEXTURE_2D, gColorSpec);
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+
 	glBindVertexArray(0);
+	glBindTexture(GL_TEXTURE_2D, 0);
+}
+
+bool EngineApp::loadTextures(void)
+{
+	if ((containerDiff = GLResources::createTexture("../resources/texture/container/container2.png", true)) == 0)
+		return false;
+
+	if ((containerSpec = GLResources::createTexture("../resources/texture/container/container2_specular.png", true)) == 0)
+		return false;
+
+	return true;
 }
 
 bool EngineApp::buildUniformBuffers(void)
@@ -113,9 +156,36 @@ bool EngineApp::buildUniformBuffers(void)
 	return true;
 }
 
+bool EngineApp::setupLightSources(void)
+{
+	//this is also same setting with learnopengl tutorial
+
+	const unsigned int NR_LIGHTS = 32;
+	std::vector<glm::vec3> lightPositions;
+	std::vector<glm::vec3> lightColors;
+	srand(13);
+	for (unsigned int i = 0; i < NR_LIGHTS; i++)
+	{
+		// calculate slightly random offsets
+		float xPos = ((rand() % 10) / 10.0f) - 5.f;
+		float yPos = ((rand() % 10) / 10.0f) - 5.f;
+		float zPos = ((rand() % 10) / 10.0f) - 5.f;
+		lightPositions.push_back(glm::vec3(xPos, yPos, zPos));
+		// also calculate random color
+		float rColor = ((rand() % 100) / 200.0f) + 0.5f; // between 0.5 and 1.0
+		float gColor = ((rand() % 100) / 200.0f) + 0.5f; // between 0.5 and 1.0
+		float bColor = ((rand() % 100) / 200.0f) + 0.5f; // between 0.5 and 1.0
+		lightColors.push_back(glm::vec3(rColor, gColor, bColor));
+	}
+
+	exposure = 1.f;
+
+	return true;
+}
+
 bool EngineApp::buildGeometryBuffers(void)
 {
-	shaderBall.loadModelFromObjFile("../resources/model/shaderball/shaderball2.obj");
+	sphere.loadModelFromObjFile("../resources/model/sphere/sphere.obj");
 
 	testMesh.setupWithFixedGeometryShape(IndieShape::INDIE_BOX);
 
@@ -124,11 +194,25 @@ bool EngineApp::buildGeometryBuffers(void)
 
 bool EngineApp::buildShaderFiles(void)
 {
-	testShader     = std::make_shared<GLShader>("../resources/shader/simple_shader.vert",   "../resources/shader/simple_shader.frag",   nullptr);
-	postProcessing = std::make_shared<GLShader>("../resources/shader/post_processing.vert", "../resources/shader/post_processing.frag", nullptr);
+	try 
+	{
+		deferredShader = std::make_shared<GLShader>("../resources/shader/deferredShader.vert", "../resources/shader/deferredShader.frag", nullptr);
+		gBufferShader = std::make_shared<GLShader>("../resources/shader/gBuffer.vert", "../resources/shader/gBuffer.frag", nullptr);
+	}
+	catch (std::exception e)
+	{
+		EngineLogger::getConsole()->critical("Failed to create shader.");
+		return false;
+	}
 	
-	postProcessing->useProgram();
-	postProcessing->sendUniform("screenTexture", 0);
+	deferredShader->useProgram();
+	deferredShader->sendUniform("gPosition", 0);
+	deferredShader->sendUniform("gNormal", 1);
+	deferredShader->sendUniform("gColorSpec", 2);
+
+	gBufferShader->useProgram();
+	gBufferShader->sendUniform("diffuseTexture", 0);
+	gBufferShader->sendUniform("specularTexture", 1);
 
 	return true;
 }
@@ -136,14 +220,41 @@ bool EngineApp::buildShaderFiles(void)
 bool EngineApp::buildFramebuffer(void)
 {
 	//for post-processing
-	glGenFramebuffers(1, &framebuffer);
-	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
+	glGenFramebuffers(1, &gBuffer);
+	glBindFramebuffer(GL_FRAMEBUFFER, gBuffer);
 
-	colorBufferTexture = GLResources::createColorbuffer(clientWidth, clientHeight, true);
-	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, colorBufferTexture, 0);
+	glGenTextures(1, &gPosition);
+	glBindTexture(GL_TEXTURE_2D, gPosition);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB16F, clientWidth, clientHeight, 0, GL_RGB, GL_FLOAT, nullptr);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, gPosition, 0);
 
-	depthStencilRBO = GLResources::createDepthStencilRBO(clientWidth, clientHeight);
-	glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, depthStencilRBO);
+	glGenTextures(1, &gNormal);
+	glBindTexture(GL_TEXTURE_2D, gNormal);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB16F, clientWidth, clientHeight, 0, GL_RGB, GL_FLOAT, nullptr);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT1, GL_TEXTURE_2D, gNormal, 0);
+
+	glGenTextures(1, &gColorSpec);
+	glBindTexture(GL_TEXTURE_2D, gColorSpec);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA16F, clientWidth, clientHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT2, GL_TEXTURE_2D, gColorSpec, 0);
+
+	unsigned int attachments[] = { GL_COLOR_ATTACHMENT0, GL_COLOR_ATTACHMENT1, GL_COLOR_ATTACHMENT2 };
+	glDrawBuffers(3, attachments);
+
+	GLuint depthRBO;
+	glGenRenderbuffers(1, &depthRBO);
+	glBindRenderbuffer(GL_RENDERBUFFER, depthRBO);
+	glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT, clientWidth, clientHeight);
+	glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, depthRBO);
+	
+	glBindTexture(GL_TEXTURE_2D, 0);
+	glBindRenderbuffer(GL_RENDERBUFFER, 0);
 
 	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
 		EngineLogger::getConsole()->critical("Framebuffer is not complete!");

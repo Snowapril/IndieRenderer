@@ -44,3 +44,8 @@ void EngineCamera::sendVP(unsigned int UBO, float aspectRatio) const
 
 	glBindBuffer(GL_UNIFORM_BUFFER, 0);
 }
+
+glm::vec3 EngineCamera::getViewPos(void) const
+{
+	return position;
+}

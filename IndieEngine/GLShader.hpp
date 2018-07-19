@@ -22,6 +22,7 @@ public:
 	int getUniformLocation(const std::string& varName) const;
 
 	void sendUniform(const std::string& varName, int i) const;
+	void sendUniform(const std::string& varName, float f) const;
 	void sendUniform(const std::string& varName, bool b) const;
 	void sendUniform(const std::string& varName, const glm::vec3& vec) const;
 	void sendUniform(const std::string& varName, const glm::vec4& vec) const;

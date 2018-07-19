@@ -11,22 +11,33 @@
 class EngineApp : public GLApp
 {
 private:
-	GLModel shaderBall;
+	GLModel sphere;
 	GLMesh testMesh;
-	std::shared_ptr<GLShader> testShader;
-	std::shared_ptr<GLShader> postProcessing;
+	std::shared_ptr<GLShader> deferredShader;
+	std::shared_ptr<GLShader> gBufferShader;
+
 	unsigned int vpUBO;
 	EngineCamera camera;
 
-	GLuint framebuffer;
-	GLuint colorBufferTexture;
-	GLuint depthStencilRBO;
+	std::vector<glm::vec3> lightPositions;
+	std::vector<glm::vec3> lightColors;
+	float exposure;
+
+	GLuint containerDiff;
+	GLuint containerSpec;
+
+	GLuint gBuffer;
+	GLuint gPosition;
+	GLuint gNormal;
+	GLuint gColorSpec;
 	GLuint simpleQuad;
 private:
 	bool buildGeometryBuffers(void);
 	bool buildUniformBuffers(void);
 	bool buildShaderFiles(void);
 	bool buildFramebuffer(void);
+	bool setupLightSources(void);
+	bool loadTextures(void);
 
 protected:
 

@@ -77,9 +77,10 @@ void GLShader::setupShader(const char* vs_path, const char* fs_path, const char*
 	glGetShaderiv(vs, GL_COMPILE_STATUS, &success);
 	if (!success) {
 		glGetShaderInfoLog(vs, sizeof(infoLog), nullptr, infoLog);
-		EngineLogger::getConsole()->critical("Vertex Shader Compile Failed, info log :\n{}", infoLog);
-		return;
+		EngineLogger::getConsole()->critical("Vertex Shader Compile Failed in [{}], info log :\n{}", vs_path, infoLog);
+		throw std::exception();
 	}
+	EngineLogger::getConsole()->info("Vertex Shader [{}] Compile finished.", vs_path);
 
 	fs = glCreateShader(GL_FRAGMENT_SHADER);
 	glShaderSource(fs, 1, &fs_source, nullptr);
@@ -88,10 +89,11 @@ void GLShader::setupShader(const char* vs_path, const char* fs_path, const char*
 	glGetShaderiv(fs, GL_COMPILE_STATUS, &success);
 	if (!success) {
 		glGetShaderInfoLog(fs, sizeof(infoLog), nullptr, infoLog);
-		EngineLogger::getConsole()->critical("Fragment Shader Compile Failed, info log :\n{}", infoLog);
+		EngineLogger::getConsole()->critical("Fragment Shader Compile Failed in [{}], info log :\n{}", fs_path, infoLog);
 		glDeleteShader(vs);
-		return;
+		throw std::exception();
 	}
+	EngineLogger::getConsole()->info("Fragment Shader [{}] Compile finished.", fs_path);
 
 	if (gs_path != nullptr) {
 		gs_source = gs_string.c_str();
@@ -102,11 +104,12 @@ void GLShader::setupShader(const char* vs_path, const char* fs_path, const char*
 		glGetShaderiv(gs, GL_COMPILE_STATUS, &success);
 		if (!success) {
 			glGetShaderInfoLog(gs, sizeof(infoLog), nullptr, infoLog);
-			EngineLogger::getConsole()->critical("Geometry Shader Compile Failed, info log :\n{}", infoLog);
+			EngineLogger::getConsole()->critical("Geometry Shader Compile Failed in [{}], info log :\n{}", gs_path, infoLog);
 			glDeleteShader(vs);
 			glDeleteShader(fs);
-			return;
+			throw std::exception();;
 		}
+		EngineLogger::getConsole()->info("Geometry Shader [{}] Compile finished.", gs_path);
 	}
 
 	programID = glCreateProgram();
@@ -125,7 +128,7 @@ void GLShader::setupShader(const char* vs_path, const char* fs_path, const char*
 		if (gs_path != nullptr)
 			glDeleteShader(gs);
 		glDeleteProgram(programID);
-		return;
+		throw std::exception();;
 	}
 
 	glDeleteShader(vs);
@@ -133,10 +136,7 @@ void GLShader::setupShader(const char* vs_path, const char* fs_path, const char*
 	if (gs_path != nullptr)
 		glDeleteShader(gs);
 
-	EngineLogger::getConsole()->info("Compile Shader Sources Complete.");
-	EngineLogger::getConsole()->info("Vertex Shader   : [{}]", vs_path);
-	EngineLogger::getConsole()->info("Fragment Shader : [{}]", fs_path);
-	EngineLogger::getConsole()->info("Geometry Shader : [{}]", gs_path == nullptr ? "None" : gs_path);
+	EngineLogger::getConsole()->info("Linking Program Succeed.");
 }
 
 void GLShader::useProgram(void) const
@@ -160,6 +160,18 @@ void GLShader::sendUniform(const std::string & varName, int i) const
 	}
 	else {
 		glUniform1i(loc, i);
+	}
+}
+
+void GLShader::sendUniform(const std::string& varName, float f) const
+{
+	int loc = getUniformLocation(varName);
+
+	if (loc == -1) {
+		EngineLogger::getConsole()->critical("Undefined Uniform Variable Name : {}", varName);
+	}
+	else {
+		glUniform1f(loc, f);
 	}
 }
 

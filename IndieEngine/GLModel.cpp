@@ -20,7 +20,6 @@ GLModel::GLModel(const std::string & modelPath, bool verbose, bool normalization
 void GLModel::loadModelFromObjFile(const std::string & modelPath, bool verbose, bool normalization)
 {
 	Profile();
-	const auto start = std::chrono::system_clock::now();
 
 	EngineLogger::getConsole()->info("Start reading Obj File [ {} ]", modelPath);
 	EngineLogger::getConsole()->info("Verbose: {}, Normalization : {}", verbose ? "ON" : "OFF", normalization ? "ON" : "OFF");
@@ -171,11 +170,8 @@ void GLModel::loadModelFromObjFile(const std::string & modelPath, bool verbose, 
 		if (count == 1500) count = 0;
 	}
 
-	const auto end = std::chrono::system_clock::now();
-	const auto duration = std::chrono::duration<double>(end - start);
-
 	file.close();
-	EngineLogger::getConsole()->info("Reading Obj File [ {} ] is finished | {} (s)", modelPath, duration.count());
+	EngineLogger::getConsole()->info("Reading Obj File [ {} ] is finished", modelPath);
 
 	if (normalization)
 		scaleToUnitBox();
@@ -187,8 +183,6 @@ void GLModel::loadModelFromObjFile(const std::string & modelPath, bool verbose, 
 void GLModel::scaleToUnitBox(float cardinality)
 {
 	Profile();
-
-	const auto start = std::chrono::system_clock::now();
 
 	const float minFloat = std::numeric_limits<float>::min();
 	const float maxFloat = std::numeric_limits<float>::max();
@@ -218,19 +212,18 @@ void GLModel::scaleToUnitBox(float cardinality)
 
 	const float dm = std::max(std::max(dx, dy), dz);
 	const float inv_dm = 1.f / dm;
+	
+	const glm::vec3 halfDelta = glm::vec3(dx, dy, dz) / 2.f;
 
 	for (int numMesh = 0; numMesh < meshes.size(); ++numMesh)
 	{
 		for (auto& vertex : meshes[numMesh].vertices)
 		{
-			vertex.Position -= bbMin;
+			vertex.Position -= bbMin + halfDelta;
 			vertex.Position *= cardinality * inv_dm;
 		}
 	}
-
-	const auto end = std::chrono::system_clock::now();
-	const auto duration = std::chrono::duration<double>(end - start);
-	EngineLogger::getConsole()->info("Scaling model finished | {} (s)", duration.count());
+	EngineLogger::getConsole()->info("Scaling model finished.");
 }
 
 void GLModel::drawModel(void) const
