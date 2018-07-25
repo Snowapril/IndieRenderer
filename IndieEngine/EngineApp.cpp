@@ -6,8 +6,10 @@
 #include "GLResources.hpp"
 #include <chrono>
 
+#include "GLDebugger.hpp"
+
 EngineApp::EngineApp()
-	: GLApp()
+	: GLApp(), exposure(1.f), gamma(2.2f)
 {
 
 }
@@ -18,8 +20,6 @@ EngineApp::~EngineApp()
 	glDeleteTextures(1, &gPosition);
 	glDeleteTextures(1, &gNormal);
 	glDeleteTextures(1, &gColorSpec);
-	glDeleteTextures(1, &containerDiff);
-	glDeleteTextures(1, &containerSpec);
 
 	glDeleteVertexArrays(1, &simpleQuad);
 }
@@ -46,9 +46,12 @@ bool EngineApp::init(void)
 	if (!loadTextures())
 		return false;
 	
+	if (!setupLightSources())
+		return false;
+
 	const auto end = std::chrono::system_clock().now();
 	const auto duration = std::chrono::duration<double>(end - start);
-	EngineLogger::getConsole()->info("Whole Initialization took {}.", duration.count());
+	EngineLogger::getConsole()->info("Whole Initialization took {} second.", duration.count());
 
 	return true;
 }
@@ -57,6 +60,9 @@ void EngineApp::updateScene(float dt)
 {
 	Profile();
 
+	camera.processKeyInput(appWindow, dt);
+
+	camera.onUpdate(dt);
 	camera.sendVP(vpUBO, getAspectRatio());
 }
 
@@ -66,80 +72,71 @@ void EngineApp::drawScene(void) const
 
 	const glm::vec3 viewPos = camera.getViewPos();
 
-	glBindFramebuffer(GL_FRAMEBUFFER, gBuffer);
-		glClearColor(Color::Blue[0], Color::Blue[1], Color::Blue[2], Color::Blue[3]);
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		glEnable(GL_DEPTH_TEST);
+	glClearColor(Color::Black[0], Color::Black[1], Color::Black[2], Color::Black[3]);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		glm::mat4 model;
-		float time = engineTimer.getTotalTime();
+	glm::mat4 model;
+	float time = engineTimer.getTotalTime();
 
-		glBindBuffer(GL_UNIFORM_BUFFER, vpUBO);
+	glBindBuffer(GL_UNIFORM_BUFFER, vpUBO);
 
-		gBufferShader->useProgram();
+	pbrShader->useProgram();
 
-		glActiveTexture(GL_TEXTURE0);
-		glBindTexture(GL_TEXTURE_2D, containerDiff);
-		glActiveTexture(GL_TEXTURE1);
-		glBindTexture(GL_TEXTURE_2D, containerSpec);
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, albedoMap);
+	glActiveTexture(GL_TEXTURE1);
+	glBindTexture(GL_TEXTURE_2D, normalMap);
+	glActiveTexture(GL_TEXTURE2);
+	glBindTexture(GL_TEXTURE_2D, metallicMap);
+	glActiveTexture(GL_TEXTURE3);
+	glBindTexture(GL_TEXTURE_2D, roughnessMap);
+	glActiveTexture(GL_TEXTURE4);
+	glBindTexture(GL_TEXTURE_2D, aoMap);
 
-		model = glm::translate(glm::mat4(), glm::vec3(-1.f, 0.f, 0.f));
-		model = glm::rotate(model, time, glm::vec3(0.f, 1.f, 0.f));
-		gBufferShader->sendUniform("model", model);
-
-		testMesh.drawMesh();
-
-		model = glm::translate(glm::mat4(), glm::vec3(1.f, 0.f, 0.f));
-		model = glm::rotate(model, -time, glm::vec3(0.f, 1.f, 0.f));
-
-		gBufferShader->sendUniform("model", model);
-
-		sphere.drawModel();
-
-	glBindBuffer(GL_UNIFORM_BUFFER, 0);
-
-	glBindFramebuffer(GL_FRAMEBUFFER, 0);
-	glClearColor(Color::Blue[0], Color::Blue[1], Color::Blue[2], Color::Blue[3]);
-	glClear(GL_COLOR_BUFFER_BIT);
-	glDisable(GL_DEPTH_TEST);
-
-	deferredShader->useProgram();
-	deferredShader->sendUniform("viewPos", viewPos);
-	//deferredShader->sendUniform("exposure", exposure);
-
-	//this is same setting with learnopengl tutorial
-	for (unsigned int i = 0; i < lightPositions.size(); i++)
+	for (int row = 0; row < 8; ++row)
 	{
-		deferredShader->sendUniform("lights[" + std::to_string(i) + "].Position", lightPositions[i]);
-		deferredShader->sendUniform("lights[" + std::to_string(i) + "].Color", lightColors[i]);
-		// update attenuation parameters and calculate radius
-		const float constant = 1.0f; // note that we don't send this to the shader, we assume it is always 1.0 (in our case)
-		const float linear = 0.7f;
-		const float quadratic = 1.8f;
-		deferredShader->sendUniform("lights[" + std::to_string(i) + "].Linear", linear);
-		deferredShader->sendUniform("lights[" + std::to_string(i) + "].Quadratic", quadratic);
+		for (int col = 0; col < 8; ++col)
+		{
+			model = glm::translate(glm::mat4(), glm::vec3(row * 2.f, col * 2.f, 0.f));
+			model = glm::rotate(model, time, glm::normalize(glm::vec3(0.f, 1.f, 0.4f)));
+			pbrShader->sendUniform("model", model);
+			sphere.drawModel();
+		}
 	}
 
-	glBindVertexArray(simpleQuad);
-	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, gPosition);
-	glActiveTexture(GL_TEXTURE1);
-	glBindTexture(GL_TEXTURE_2D, gNormal);
-	glActiveTexture(GL_TEXTURE2);
-	glBindTexture(GL_TEXTURE_2D, gColorSpec);
-	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+	for (int i = 0; i < 4; ++i)
+	{
+		pbrShader->sendUniform("lightPositions[" + std::to_string(i) + "]", lightPositions[i]);
+		pbrShader->sendUniform("lightColors[" + std::to_string(i) + "]", lightColors[i]);
 
+		model = glm::translate(glm::mat4(), lightPositions[i]);
+
+		pbrShader->sendUniform("model", model);
+		sphere.drawModel();
+	}
+
+	pbrShader->sendUniform("viewPos", viewPos);
+	
 	glBindVertexArray(0);
 	glBindTexture(GL_TEXTURE_2D, 0);
 }
 
 bool EngineApp::loadTextures(void)
 {
-	if ((containerDiff = GLResources::createTexture("../resources/texture/container/container2.png", true)) == 0)
+	if ((albedoMap = GLResources::createTexture("../resources/texture/pbr/rusted_iron/albedo.png", true)) == 0)
 		return false;
 
-	if ((containerSpec = GLResources::createTexture("../resources/texture/container/container2_specular.png", true)) == 0)
+	if ((metallicMap = GLResources::createTexture("../resources/texture/pbr/rusted_iron/metallic.png", true)) == 0)
 		return false;
+
+	if ((normalMap = GLResources::createTexture("../resources/texture/pbr/rusted_iron/normal.png", true)) == 0)
+		return false;
+
+	if ((aoMap = GLResources::createTexture("../resources/texture/pbr/rusted_iron/ao.png", true)) == 0)
+		return false;
+
+	if ((roughnessMap = GLResources::createTexture("../resources/texture/pbr/rusted_iron/roughness.png", true)) == 0)
+		return false;	
 
 	return true;
 }
@@ -160,25 +157,18 @@ bool EngineApp::setupLightSources(void)
 {
 	//this is also same setting with learnopengl tutorial
 
-	const unsigned int NR_LIGHTS = 32;
-	std::vector<glm::vec3> lightPositions;
-	std::vector<glm::vec3> lightColors;
-	srand(13);
-	for (unsigned int i = 0; i < NR_LIGHTS; i++)
-	{
-		// calculate slightly random offsets
-		float xPos = ((rand() % 10) / 10.0f) - 5.f;
-		float yPos = ((rand() % 10) / 10.0f) - 5.f;
-		float zPos = ((rand() % 10) / 10.0f) - 5.f;
-		lightPositions.push_back(glm::vec3(xPos, yPos, zPos));
-		// also calculate random color
-		float rColor = ((rand() % 100) / 200.0f) + 0.5f; // between 0.5 and 1.0
-		float gColor = ((rand() % 100) / 200.0f) + 0.5f; // between 0.5 and 1.0
-		float bColor = ((rand() % 100) / 200.0f) + 0.5f; // between 0.5 and 1.0
-		lightColors.push_back(glm::vec3(rColor, gColor, bColor));
-	}
-
-	exposure = 1.f;
+	lightPositions = {
+		glm::vec3(-10.0f,  10.0f, 10.0f),
+		glm::vec3(10.0f,  10.0f, 10.0f),
+		glm::vec3(-10.0f, -10.0f, 10.0f),
+		glm::vec3(10.0f, -10.0f, 10.0f),
+	};
+	lightColors = {
+		glm::vec3(300.0f, 300.0f, 300.0f),
+		glm::vec3(300.0f, 300.0f, 300.0f),
+		glm::vec3(300.0f, 300.0f, 300.0f),
+		glm::vec3(300.0f, 300.0f, 300.0f)
+	};
 
 	return true;
 }
@@ -198,13 +188,14 @@ bool EngineApp::buildShaderFiles(void)
 	{
 		deferredShader = std::make_shared<GLShader>("../resources/shader/deferredShader.vert", "../resources/shader/deferredShader.frag", nullptr);
 		gBufferShader = std::make_shared<GLShader>("../resources/shader/gBuffer.vert", "../resources/shader/gBuffer.frag", nullptr);
+		simpleShader = std::make_shared<GLShader>("../resources/shader/simple_shader.vert", "../resources/shader/simple_shader.frag", nullptr);
+		pbrShader = std::make_shared<GLShader>("../resources/shader/pbrShader.vert", "../resources/shader/pbrShader.frag", nullptr);
 	}
 	catch (std::exception e)
 	{
 		EngineLogger::getConsole()->critical("Failed to create shader.");
 		return false;
 	}
-	
 	deferredShader->useProgram();
 	deferredShader->sendUniform("gPosition", 0);
 	deferredShader->sendUniform("gNormal", 1);
@@ -213,6 +204,15 @@ bool EngineApp::buildShaderFiles(void)
 	gBufferShader->useProgram();
 	gBufferShader->sendUniform("diffuseTexture", 0);
 	gBufferShader->sendUniform("specularTexture", 1);
+
+	pbrShader->useProgram();
+	pbrShader->sendUniform("exposure", exposure);
+	pbrShader->sendUniform("gamma", gamma);
+	pbrShader->sendUniform("albedoMap", 0);
+	pbrShader->sendUniform("normalMap", 1);
+	pbrShader->sendUniform("metallicMap", 2);
+	pbrShader->sendUniform("roughnessMap", 3);
+	pbrShader->sendUniform("aoMap", 4);
 
 	return true;
 }
@@ -302,17 +302,17 @@ bool EngineApp::buildFramebuffer(void)
 void EngineApp::keyCallback(int key, int scancode, int action, int mode)
 {
 	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
-		glfwSetWindowShouldClose(appWindow, GLFW_TRUE);
+		glfwSetWindowShouldClose(appWindow, GLFW_TRUE);	
 }
 
 void EngineApp::mousePosCallback(double xpos, double ypos)
 {
-
+	camera.processCursorPos(xpos, ypos);
 }
 
 void EngineApp::mouseBtnCallback(int btn, int action, int mods)
 {
-
+	camera.processMouseInput(btn, action, mods);
 }
 
 void EngineApp::scrollCallback(double xoffset, double yoffset)

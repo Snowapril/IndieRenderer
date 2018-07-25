@@ -1,3 +1,13 @@
+/**
+* @file		EngineLogger.hpp
+* @author	Shinjihong
+* @date		15 July 2018
+* @version	1.0.0
+* @brief	Logger static class for IndieEngine.
+* @details	provide all logging features using spdlog open source library .
+* @see		
+*/
+
 #ifndef ENGINE_LOGGER_HPP
 #define ENGINE_LOGGER_HPP
 
@@ -9,10 +19,8 @@ class EngineLogger
 {
 private:
 	static std::shared_ptr<spdlog::logger> console;
-
 public:
 	static std::shared_ptr<spdlog::logger> getConsole(void);
-
 };
 
 

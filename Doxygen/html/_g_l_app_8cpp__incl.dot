@@ -1,0 +1,38 @@
+digraph "GLApp.cpp"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node0 [label="GLApp.cpp",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node0 -> Node1 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 [label="GLApp.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_g_l_app_8hpp.html",tooltip="OpenGL Window settings. "];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="glad/glad.h",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="GL/glfw3.h",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="string",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node1 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="EngineTimer.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_engine_timer_8hpp.html",tooltip="Timer class for IndieEngine. "];
+  Node0 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="EngineProperty.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_engine_property_8hpp.html",tooltip="all Engine properties defined with macro. "];
+  Node0 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="cassert",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node0 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="sstream",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node0 -> Node9 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="EngineLogger.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_engine_logger_8hpp.html",tooltip="Logger static class for IndieEngine. "];
+  Node9 -> Node10 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="spdlog/spdlog.h",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node9 -> Node11 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="memory",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node9 -> Node12 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 [label="unordered_map",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node0 -> Node13 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node13 [label="GLDebugger.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_g_l_debugger_8hpp.html",tooltip="Debugging static class for OpenGL. "];
+  Node13 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node13 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node13 -> Node9 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node0 -> Node14 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node14 [label="EngineProfiler.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_engine_profiler_8hpp.html",tooltip="Profiler class for profiling IndieEngine. "];
+  Node14 -> Node12 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

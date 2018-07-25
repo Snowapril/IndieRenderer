@@ -1,3 +1,13 @@
+/**
+* @file		GLShader.hpp
+* @author	Shinjihong
+* @date		15 July 2018
+* @version	1.0.0
+* @brief	OpenGL GLSL Shader.
+* @details	Initialize shader with given GLSL files' path. user can send uniform from CPU to GPU with this class.
+* @see
+*/
+
 #ifndef GL_SHADER_HPP
 #define GL_SHADER_HPP
 

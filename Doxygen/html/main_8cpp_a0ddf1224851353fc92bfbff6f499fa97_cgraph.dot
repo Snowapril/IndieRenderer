@@ -1,0 +1,19 @@
+digraph "main"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node17 [label="main",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node17 -> Node18 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node18 [label="EngineLogger::getConsole",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_engine_logger.html#afe518f5a643a2996031466760e03928d"];
+  Node17 -> Node19 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node19 [label="localResizingCallback",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$main_8cpp.html#a7b4625cf07bfee1fa9048df2c0b4a641"];
+  Node17 -> Node20 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node20 [label="localKeyCallback",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$main_8cpp.html#a587a273e12e24f7192bbe28a6fca780d",tooltip="Callback function prototypes. "];
+  Node17 -> Node21 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node21 [label="localMousePosCallback",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$main_8cpp.html#a783a72831fdaf6fced620d867e3ea313"];
+  Node17 -> Node22 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node22 [label="localMouseBtnCallback",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$main_8cpp.html#aad2fbd028463a143f01260292400cdff"];
+  Node17 -> Node23 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node23 [label="localScrollCallback",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$main_8cpp.html#a27ecd44f507b1dd595769f74c9824d68"];
+}

@@ -1,0 +1,13 @@
+digraph "GLApp::init"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node16 [label="GLApp::init",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node16 -> Node17 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node17 [label="GLApp::initWindow",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_g_l_app.html#a21aa44460643b9b276ffea9b353e4871",tooltip="initialize OpenGL Window. "];
+  Node17 -> Node18 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node18 [label="EngineLogger::getConsole",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_engine_logger.html#afe518f5a643a2996031466760e03928d"];
+  Node16 -> Node19 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node19 [label="GLApp::initOpenGL",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_g_l_app.html#a63dc35d1c4ddb0369a8c1ffcd0032f16",tooltip="initilaize OpenGL setting, for example multisampling, culling face, depth test i.e ..."];
+}

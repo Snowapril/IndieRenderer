@@ -1,3 +1,13 @@
+/**
+* @file		EngineApp.hpp
+* @author	Shinjihong
+* @date		15 July 2018
+* @version	1.0.0
+* @brief	Engine class which is main of this program.
+* @details	All rendering techniques will be done here.
+* @see		GLApp.hpp
+*/
+
 #ifndef ENGINE_APP_HPP
 #define ENGINE_APP_HPP
 
@@ -11,44 +21,74 @@
 class EngineApp : public GLApp
 {
 private:
-	GLModel sphere;
-	GLMesh testMesh;
-	std::shared_ptr<GLShader> deferredShader;
-	std::shared_ptr<GLShader> gBufferShader;
+	/// Sphere, loaded with my custom 3D Loader.
+	GLModel sphere;  
+	GLMesh testMesh; 
+	/// shader for deferred rendering.
+	std::shared_ptr<GLShader> deferredShader; 
+	/// shader for G Buffer.
+	std::shared_ptr<GLShader> gBufferShader;  
+	/// shader for simple test
+	std::shared_ptr<GLShader> simpleShader;
+	/// shader for Physically Based Rendering
+	std::shared_ptr<GLShader> pbrShader;
 
-	unsigned int vpUBO;
-	EngineCamera camera;
+	/// uniform buffer which have view, projection matrix.
+	unsigned int vpUBO;  
+	/// IndieEngine Camera, rotation, zoom will be provioded. moving is not supoorted .
+	EngineCamera camera; 
 
-	std::vector<glm::vec3> lightPositions;
-	std::vector<glm::vec3> lightColors;
-	float exposure;
+	/// Light sources' position vector.
+	std::vector<glm::vec3> lightPositions; 
+	/// Light sources' color.
+	std::vector<glm::vec3> lightColors;    
+	/// will be used for tone mapping.
+	float exposure; 
+	float gamma;
 
-	GLuint containerDiff;
-	GLuint containerSpec;
+	GLuint albedoMap;
+	GLuint normalMap;
+	GLuint metallicMap;
+	GLuint roughnessMap;
+	GLuint aoMap;
 
-	GLuint gBuffer;
-	GLuint gPosition;
-	GLuint gNormal;
-	GLuint gColorSpec;
-	GLuint simpleQuad;
+	/// Framebuffer for G Buffer.
+	GLuint gBuffer;     
+	/// Position buffer
+	GLuint gPosition;  
+	/// Normal buffer
+	GLuint gNormal;    
+	/// Albedo & Specular buffer which is floating point buffer for HDR. components RGBA is partitioned to RGB and A. RGB is for Color, A is for specular.
+	GLuint gColorSpec;  
+	/// simple Quad vertex array object for rendering framebuffer texture .
+	GLuint simpleQuad;  
 private:
-	bool buildGeometryBuffers(void);
-	bool buildUniformBuffers(void);
-	bool buildShaderFiles(void);
-	bool buildFramebuffer(void);
-	bool setupLightSources(void);
-	bool loadTextures(void);
+	/// bind geometry buffers, that is, bind geometry data in vertex array objects.
+	bool buildGeometryBuffers(void); 
+	/// bind uniform buffers
+	bool buildUniformBuffers(void);  
+	/// compile & link all shader files.
+	bool buildShaderFiles(void);     
+	/// bind framebuffer for the engine. G-Buffer will be binded in this case.
+	bool buildFramebuffer(void);	 
+	/// push loght sources' data into the light sources' vector/
+	bool setupLightSources(void);    
+	/// loading all textures needed.
+	bool loadTextures(void);         
 
 protected:
 
 public:
 	EngineApp();
-	~EngineApp();
+	virtual ~EngineApp();
 
-	bool init(void) override;
+	/// all initialization for engine, for example, buildGeometryBuffers, buildUniformBuffers, will be done here.
+	bool init(void) override;  
 
-	void updateScene(float dt) override;
-	void drawScene(void) const override;
+	/// update scene with delta time. delta time will be provided from EngineTimer.
+	void updateScene(float dt) override; 
+	/// draw scene.
+	void drawScene(void) const override; 
 
 	void keyCallback(int key, int scancode, int action, int mode) override;
 	void mousePosCallback(double xpos, double ypos) override;

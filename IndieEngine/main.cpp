@@ -1,22 +1,27 @@
+/** 
+* @mainpage		Indie Graphics Engine.
+*/
+
+
 #include <memory>
 #include <iostream>
 #include "EngineApp.hpp"
 #include "EngineLogger.hpp"
 
-//for optimus feature, in my case HD630? is default and GTX 1060 is external graphics card.
+/// for optimus feature, in my case HD630? is default and GTX 1060 is external graphics card.
 extern "C" 
 {
 	_declspec(dllexport) DWORD NvOptimusEnablement = 0x00000001;
 }
 
-//Callback function prototypes
+/// Callback function prototypes
 void localKeyCallback(GLFWwindow* window, int key, int scancode, int action, int mode);
 void localMousePosCallback(GLFWwindow* window, double xpos, double ypos);
 void localMouseBtnCallback(GLFWwindow* window, int btn, int action, int mods);
 void localScrollCallback(GLFWwindow* window, double xoffset, double yoffset);
 void localResizingCallback(GLFWwindow* window, int newWidth, int newHeight);
 
-//global smart pointer of Engine Application Class.
+/// global smart pointer of Engine Application Class.
 std::unique_ptr<EngineApp> gEngineApp;
 
 int main(int argc, char* argv[])
@@ -31,6 +36,7 @@ int main(int argc, char* argv[])
 	GLFWwindow* appWindow = gEngineApp->getAppWindow();
 	glfwSetFramebufferSizeCallback(appWindow, localResizingCallback);
 	glfwSetKeyCallback(appWindow, localKeyCallback);
+	glfwSetInputMode(appWindow, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 	glfwSetCursorPosCallback(appWindow, localMousePosCallback);
 	glfwSetMouseButtonCallback(appWindow, localMouseBtnCallback);
 	glfwSetScrollCallback(appWindow, localScrollCallback);

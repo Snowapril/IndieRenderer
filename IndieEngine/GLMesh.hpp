@@ -1,3 +1,13 @@
+/**
+* @file		GLMesh.hpp
+* @author	Shinjihong
+* @date		17 July 2018
+* @version	1.0.0
+* @brief	OpenGL Mesh in IndieEngine. 
+* @details	Mesh contains vertices and indices. vertex is composed with position, normal, uv vectors.
+* @see		
+*/
+
 #ifndef GL_MESH_HPP
 #define GL_MESH_HPP
 

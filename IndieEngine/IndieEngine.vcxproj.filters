@@ -118,5 +118,11 @@
     <None Include="..\resources\shader\gBuffer.vert">
       <Filter>glsl</Filter>
     </None>
+    <None Include="..\resources\shader\pbrShader.frag">
+      <Filter>glsl</Filter>
+    </None>
+    <None Include="..\resources\shader\pbrShader.vert">
+      <Filter>glsl</Filter>
+    </None>
   </ItemGroup>
 </Project>

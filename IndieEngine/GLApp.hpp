@@ -1,3 +1,13 @@
+/**
+* @file		GLApp.hpp
+* @author	Shinjihong
+* @date		15 July 2018
+* @version	1.0.0
+* @brief	OpenGL Window settings.
+* @details	Initialize OpenGL Window and provide all virtual function for inheritance.
+* @see
+*/
+
 #ifndef GLAPP_HPP
 #define GLAPP_HPP
 
@@ -9,33 +19,41 @@
 class GLApp
 {
 protected:
-	GLFWwindow * appWindow;
+	/// OpenGL Window
+	GLFWwindow * appWindow;  
+	/// OpenGL Window Title.
+	std::string WndCaption;  
+	/// OpenGL Window Width
+	int clientWidth;  
+	/// OpenGL Window Height
+	int clientHeight; 
+	/// provide multi sampling or not.
+	bool enable4xMsaa;  
+	/// provide culling face or not.
+	bool enableCulling; 
 
-	std::string WndCaption;
-
-	int clientWidth;
-	int clientHeight;
-
-	bool enable4xMsaa;
-	bool enableCulling;
-
-	bool maximized;
-	bool minimized;
-	bool resizing;
-
-	bool appPaused;
-
-	EngineTimer engineTimer;
+	/// is window maximized or not
+	bool maximized; 
+	/// is window minimized or not
+	bool minimized; 
+	/// is window resizing or not
+	bool resizing;  
+	/// is window paused or not
+	bool appPaused; 
+	/// provide time to Engine. delta time and total time can be provided.
+	EngineTimer engineTimer; 
 protected:
+	/// initialize OpenGL Window.
 	bool initWindow(void);
+	/// initilaize OpenGL setting, for example multisampling, culling face, depth test i.e
 	bool initOpenGL(void);
-
-	void calculateFrameStats(void);
+	/// calculate FPS and frame time.
+	void calculateFrameStats(void); 
 public:
 	GLApp();
-	~GLApp();
+	virtual ~GLApp();
 
-	float getAspectRatio(void) const { return static_cast<float>(clientWidth) / clientHeight; }
+	float getAspectRatio(void) const { return static_cast<float>(clientWidth) / clientHeight; } 
 	GLFWwindow* getAppWindow(void) const { return appWindow; }
 
 	int Run(void);

@@ -7,8 +7,8 @@
 #include "EngineProfiler.hpp"
 
 GLApp::GLApp()
-	: appWindow(0), appPaused(false), minimized(false), maximized(false), resizing(false), enableCulling(ENABLE_CULLING),
-	WndCaption("OpenGL Indie Engine Project"), clientWidth(CLIENT_WIDTH), clientHeight(CLIENT_HEIGHT), enable4xMsaa(ENABLE_4XMSAA)
+	: appWindow(0), appPaused(false), minimized(false), maximized(false), resizing(false), enableCulling(true),
+	WndCaption("OpenGL Indie Engine Project"), clientWidth(CLIENT_WIDTH), clientHeight(CLIENT_HEIGHT), enable4xMsaa(true)
 {
 }
 
@@ -77,8 +77,7 @@ bool GLApp::initWindow(void)
 
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-	if (enable4xMsaa)
-		glfwWindowHint(GLFW_SAMPLES, 4);
+	if (enable4xMsaa) glfwWindowHint(GLFW_SAMPLES, 4);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 #ifdef __APPLE__
 	glfwWindowHint(GLFW_OPENGL_COMPAT_PROFILE, GLFW_OPENGL_FORWARD_COMPAT);

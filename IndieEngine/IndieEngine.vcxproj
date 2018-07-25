@@ -162,6 +162,8 @@
     <None Include="..\resources\shader\deferredShader.vert" />
     <None Include="..\resources\shader\gBuffer.frag" />
     <None Include="..\resources\shader\gBuffer.vert" />
+    <None Include="..\resources\shader\pbrShader.frag" />
+    <None Include="..\resources\shader\pbrShader.vert" />
     <None Include="..\resources\shader\post_processing.frag" />
     <None Include="..\resources\shader\post_processing.vert" />
     <None Include="..\resources\shader\simple_shader.frag" />

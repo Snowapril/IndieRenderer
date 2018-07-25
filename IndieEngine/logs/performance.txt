@@ -1,6 +1,6 @@
 Function Name                           Trial   Total Time  Average Time   
-GLModel::loadModelFromObjFile           1       4.74074e-06 4.74074e-06    
-EngineApp::updateScene                  1013    0.00264424  2.6103e-06     
-GLShader::setupShader                   2       3.28205e-06 1.64102e-06    
-GLModel::scaleToUnitBox                 1       1.82336e-06 1.82336e-06    
-EngineApp::drawScene                    1013    0.00139013  1.37229e-06    
+GLModel::loadModelFromObjFile           1       5.10541e-06 5.10541e-06    
+EngineApp::updateScene                  254     0.000881412 3.47013e-06    
+GLShader::setupShader                   4       5.83475e-06 1.45869e-06    
+GLModel::scaleToUnitBox                 1       1.45869e-05 1.45869e-05    
+EngineApp::drawScene                    254     0.000367589 1.4472e-06     

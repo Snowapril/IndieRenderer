@@ -8,9 +8,9 @@ in VS_OUT
 }fs_in;
 
 out vec4 fragColor;
-uniform vec4 color;
+uniform vec3 color;
 
 void main(void)
 {
-	fragColor = color;
+	fragColor = vec4(color, 1.0);
 }
