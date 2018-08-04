@@ -3,7 +3,7 @@
 #include "EngineLogger.hpp"
 
 #define STB_IMAGE_IMPLEMENTATION
-#include <stb_image.h>
+#include <stb/stb_image.h>
 
 unsigned int GLResources::createColorbuffer(int width, int height, bool hdr)
 {

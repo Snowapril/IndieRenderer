@@ -10,6 +10,9 @@
     <Filter Include="glsl">
       <UniqueIdentifier>{b36d92d9-4fe0-4397-bd03-3beb84f61f63}</UniqueIdentifier>
     </Filter>
+    <Filter Include="imgui">
+      <UniqueIdentifier>{3fd2425b-fb4a-474d-9449-dbda4b21af90}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EngineTimer.hpp">
@@ -91,6 +94,15 @@
     </ClCompile>
     <ClCompile Include="GLResources.cpp">
       <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dependencies\imgui\imgui.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dependencies\imgui\imgui_draw.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dependencies\imgui\imgui_impl_glfw_gl3.cpp">
+      <Filter>imgui</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

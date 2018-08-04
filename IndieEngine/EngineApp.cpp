@@ -9,7 +9,7 @@
 #include "GLDebugger.hpp"
 
 EngineApp::EngineApp()
-	: GLApp(), exposure(1.f), gamma(2.2f)
+	: GLApp(), EngineGUI()
 {
 
 }
@@ -49,6 +49,9 @@ bool EngineApp::init(void)
 	if (!setupLightSources())
 		return false;
 
+	if (!initGUI(appWindow))
+		return false;
+
 	const auto end = std::chrono::system_clock().now();
 	const auto duration = std::chrono::duration<double>(end - start);
 	EngineLogger::getConsole()->info("Whole Initialization took {} second.", duration.count());
@@ -59,8 +62,9 @@ bool EngineApp::init(void)
 void EngineApp::updateScene(float dt)
 {
 	Profile();
+	updateGUI(dt, static_cast<float>(clientHeight));
 
-	camera.processKeyInput(appWindow, dt);
+	//camera.processKeyInput(appWindow, dt);
 
 	camera.onUpdate(dt);
 	camera.sendVP(vpUBO, getAspectRatio());
@@ -75,7 +79,6 @@ void EngineApp::drawScene(void) const
 	glClearColor(Color::Black[0], Color::Black[1], Color::Black[2], Color::Black[3]);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	glm::mat4 model;
 	float time = engineTimer.getTotalTime();
 
 	glBindBuffer(GL_UNIFORM_BUFFER, vpUBO);
@@ -93,18 +96,16 @@ void EngineApp::drawScene(void) const
 	glActiveTexture(GL_TEXTURE4);
 	glBindTexture(GL_TEXTURE_2D, aoMap);
 
-	for (int row = 0; row < 8; ++row)
-	{
-		for (int col = 0; col < 8; ++col)
-		{
-			model = glm::translate(glm::mat4(), glm::vec3(row * 2.f, col * 2.f, 0.f));
-			model = glm::rotate(model, time, glm::normalize(glm::vec3(0.f, 1.f, 0.4f)));
-			pbrShader->sendUniform("model", model);
-			sphere.drawModel();
-		}
-	}
+	glm::mat4 model;
+	model = glm::translate(glm::mat4(), glm::vec3(0.f));
+	model = glm::scale(model, glm::vec3(1.2f));
+	model = glm::rotate(model, time * rotationVelocity, glm::vec3(0.f, 1.f, 0.f));
 
-	for (int i = 0; i < 4; ++i)
+	pbrShader->sendUniform("model", model);
+	
+	sphere.drawModel(GL_TRIANGLES);
+
+	for (int i = 0; i < lightPositions.size(); ++i)
 	{
 		pbrShader->sendUniform("lightPositions[" + std::to_string(i) + "]", lightPositions[i]);
 		pbrShader->sendUniform("lightColors[" + std::to_string(i) + "]", lightColors[i]);
@@ -112,13 +113,21 @@ void EngineApp::drawScene(void) const
 		model = glm::translate(glm::mat4(), lightPositions[i]);
 
 		pbrShader->sendUniform("model", model);
-		sphere.drawModel();
+		sphere.drawModel(GL_TRIANGLES);
 	}
 
 	pbrShader->sendUniform("viewPos", viewPos);
 	
+	//pbrShader render settings here
+	pbrShader->sendUniform("gamma", gamma);
+	pbrShader->sendUniform("useReinhard", useReinhard);
+	if (!useReinhard)
+		pbrShader->sendUniform("exposure", exposure);
+
 	glBindVertexArray(0);
 	glBindTexture(GL_TEXTURE_2D, 0);
+
+	renderGUI();
 }
 
 bool EngineApp::loadTextures(void)
@@ -175,8 +184,7 @@ bool EngineApp::setupLightSources(void)
 
 bool EngineApp::buildGeometryBuffers(void)
 {
-	sphere.loadModelFromObjFile("../resources/model/sphere/sphere.obj");
-
+	sphere.loadModelFromObjFile("../resources/model/sphere/sphere.obj");// sphere.setupWithFixedGeometryShape(IndieShape::INDIE_SPHERE);
 	testMesh.setupWithFixedGeometryShape(IndieShape::INDIE_BOX);
 
 	return true;
@@ -196,6 +204,7 @@ bool EngineApp::buildShaderFiles(void)
 		EngineLogger::getConsole()->critical("Failed to create shader.");
 		return false;
 	}
+
 	deferredShader->useProgram();
 	deferredShader->sendUniform("gPosition", 0);
 	deferredShader->sendUniform("gNormal", 1);
@@ -303,11 +312,37 @@ void EngineApp::keyCallback(int key, int scancode, int action, int mode)
 {
 	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
 		glfwSetWindowShouldClose(appWindow, GLFW_TRUE);	
+
+	if (key == GLFW_KEY_ENTER && action == GLFW_PRESS)
+	{
+		fullscreen = !fullscreen;
+		GLFWmonitor* glfwMonitor = glfwGetPrimaryMonitor();
+		const GLFWvidmode* glfwMode = glfwGetVideoMode(glfwMonitor);
+
+		if (fullscreen)
+		{
+			clientWidth = glfwMode->width;
+			clientHeight = glfwMode->height;
+			glm::ivec2 startPos(0, 0);
+
+			glfwSetWindowMonitor(appWindow, glfwMonitor, startPos.x, startPos.y, clientWidth, clientHeight, glfwMode->refreshRate);
+		}
+		else
+		{
+			clientWidth = CLIENT_WIDTH;
+			clientHeight = CLIENT_HEIGHT;
+			glm::ivec2 startPos((glfwMode->width - clientWidth) / 2, (glfwMode->height - clientHeight) / 2);
+
+			glfwSetWindowMonitor(appWindow, nullptr, startPos.x, startPos.y, clientWidth, clientHeight, glfwMode->refreshRate);
+		}
+
+		onResize();
+	}
 }
 
 void EngineApp::mousePosCallback(double xpos, double ypos)
 {
-	camera.processCursorPos(xpos, ypos);
+	//camera.processCursorPos(xpos, ypos);
 }
 
 void EngineApp::mouseBtnCallback(int btn, int action, int mods)

@@ -35,7 +35,7 @@ public:
 	/// scale loaded model to unit size box.
 	void scaleToUnitBox(float cardinality = 1.f); 
 	/// draw call for model. 
-	void drawModel(void) const; 
+	void drawModel(unsigned int drawMode) const;
 	std::string getModelName(void) const { return modelName; }
 };
 

@@ -144,6 +144,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\dependencies\glad.c" />
+    <ClCompile Include="..\dependencies\imgui\imgui.cpp" />
+    <ClCompile Include="..\dependencies\imgui\imgui_draw.cpp" />
+    <ClCompile Include="..\dependencies\imgui\imgui_impl_glfw_gl3.cpp" />
     <ClCompile Include="EngineApp.cpp" />
     <ClCompile Include="EngineCamera.cpp" />
     <ClCompile Include="EngineGUI.cpp" />

@@ -32,6 +32,7 @@ protected:
 	/// provide culling face or not.
 	bool enableCulling; 
 
+	bool fullscreen;
 	/// is window maximized or not
 	bool maximized; 
 	/// is window minimized or not
@@ -44,11 +45,12 @@ protected:
 	EngineTimer engineTimer; 
 protected:
 	/// initialize OpenGL Window.
-	bool initWindow(void);
+	bool initWindow(bool fullscreen = false);
 	/// initilaize OpenGL setting, for example multisampling, culling face, depth test i.e
 	bool initOpenGL(void);
 	/// calculate FPS and frame time.
 	void calculateFrameStats(void); 
+	bool recreateWindow(bool fullscreen);
 public:
 	GLApp();
 	virtual ~GLApp();

@@ -21,6 +21,8 @@ uniform vec3 viewPos;
 uniform float exposure;
 uniform float gamma;
 
+uniform bool useReinhard;
+
 const float PI = 3.14159265359;
 
 vec3 getNormalFromMap()
@@ -44,7 +46,6 @@ float DistributionGGX(vec3 N, vec3 H, float roughness);
 float GeometrySchlickGGX(float NdotV, float roughness);
 float GeometrySmith(vec3 N, vec3 V, vec3 L, float roughness);
 vec3 fresnelSchlick(float cosTheta, vec3 F0);
-
 
 void main(void)
 {
@@ -90,10 +91,10 @@ void main(void)
 	vec3 color = ambient + Lo;
 
 	//Reinhard tone mapping
-	//color = color / (color + vec3(1.0));
-
-	//exposure
-	color = vec3(1.0) - exp(-color * exposure);
+	if (useReinhard)
+		color = color / (color + vec3(1.0));
+	else
+		color = vec3(1.0) - exp(-color * exposure);
 
 	//gamma correction
 	color = pow(color, vec3(1.0/gamma));

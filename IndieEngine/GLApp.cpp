@@ -7,8 +7,8 @@
 #include "EngineProfiler.hpp"
 
 GLApp::GLApp()
-	: appWindow(0), appPaused(false), minimized(false), maximized(false), resizing(false), enableCulling(true),
-	WndCaption("OpenGL Indie Engine Project"), clientWidth(CLIENT_WIDTH), clientHeight(CLIENT_HEIGHT), enable4xMsaa(true)
+	: appWindow(0), appPaused(false), fullscreen(false), minimized(false), maximized(false), resizing(false), enableCulling(true),
+	WndCaption("OpenGL Indie Engine Project"), enable4xMsaa(true)
 {
 }
 
@@ -67,7 +67,7 @@ bool GLApp::init(void)
 	return true;
 }
 
-bool GLApp::initWindow(void)
+bool GLApp::initWindow(bool fullscreen)
 {
 	if (!glfwInit())
 	{
@@ -82,8 +82,22 @@ bool GLApp::initWindow(void)
 #ifdef __APPLE__
 	glfwWindowHint(GLFW_OPENGL_COMPAT_PROFILE, GLFW_OPENGL_FORWARD_COMPAT);
 #endif
+	glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
+		
+	GLFWmonitor* glfwMonitor = glfwGetPrimaryMonitor();
+	const GLFWvidmode* glfwMode = glfwGetVideoMode(glfwMonitor);
 
-	appWindow = glfwCreateWindow(clientWidth, clientHeight, WndCaption.c_str(), nullptr, nullptr);
+	glfwWindowHint(GLFW_RED_BITS, glfwMode->redBits);
+	glfwWindowHint(GLFW_BLUE_BITS, glfwMode->blueBits);
+	glfwWindowHint(GLFW_GREEN_BITS, glfwMode->greenBits);
+	glfwWindowHint(GLFW_REFRESH_RATE, glfwMode->refreshRate);
+
+	this->fullscreen = fullscreen;
+	clientWidth  = fullscreen ? glfwMode->width : CLIENT_WIDTH;
+	clientHeight = fullscreen ? glfwMode->height : CLIENT_HEIGHT;
+
+	appWindow = glfwCreateWindow(clientWidth, clientHeight, WndCaption.c_str(), fullscreen ? glfwMonitor : nullptr , nullptr);
+
 	if (!appWindow) {
 		glfwTerminate();
 		EngineLogger::getConsole()->critical("GLFW Create Window Failed.");

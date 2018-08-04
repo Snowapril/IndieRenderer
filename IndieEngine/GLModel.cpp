@@ -147,7 +147,15 @@ void GLModel::loadModelFromObjFile(const std::string & modelPath, bool verbose, 
 					synthesizedIndex = idxCount++;
 					indexMap[hashKey] = synthesizedIndex;
 
-					vertex = { posStack[v[i]], normStack[vn[i]], uvStack[vt[i]] };
+					glm::vec3 normal(0.f, 1.f, 0.f);
+					glm::vec2 texCoords(0.f, 0.f);
+
+					if (read_vn)
+						normal = normStack[vn[i]];
+					if (read_vt)
+						texCoords = uvStack[vt[i]];
+
+					vertex = { posStack[v[i]], normal, texCoords };
 					meshes.back().vertices.push_back(vertex);
 				}
 				meshes.back().indices.push_back(synthesizedIndex);
@@ -226,10 +234,10 @@ void GLModel::scaleToUnitBox(float cardinality)
 	EngineLogger::getConsole()->info("Scaling model finished.");
 }
 
-void GLModel::drawModel(void) const
+void GLModel::drawModel(unsigned int drawMode) const
 {
 	for (const auto& mesh : meshes)
-		mesh.drawMesh();
+		mesh.drawMesh(drawMode);
 }
 
 //from https://stackoverflow.com/questions/8317508/hash-function-for-a-string

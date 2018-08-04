@@ -22,7 +22,8 @@ typedef struct _Vertex {
 } Vertex;
 
 enum class IndieShape {
-	INDIE_BOX = 0,
+	INDIE_BOX		= 0,
+	INDIE_SPHERE	= 1,
 };
 
 class GLMesh
@@ -54,7 +55,7 @@ public:
 
 	void setupWithFixedGeometryShape(IndieShape shape);
 
-	void drawMesh(void) const;
+	void drawMesh(unsigned int drawMode) const;
 	std::string getMeshName(void) const { return meshName; }
 };
 

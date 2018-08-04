@@ -11,11 +11,26 @@
 #ifndef ENGINE_GUI_HPP
 #define ENGINE_GUI_HPP
 
+struct GLFWwindow;
+
 class EngineGUI
 {
 private:
+	int toneMappingMode;
 protected:
+	bool isGUIOpen;
+	bool useReinhard;
+	/// will be used for tone mapping.
+	float exposure;
+	float gamma;
+	float rotationVelocity;
 public:
+	EngineGUI();
+	virtual ~EngineGUI();
+
+	bool initGUI(GLFWwindow* window);
+	void updateGUI(float dt, float height);
+	void renderGUI(void) const;
 };
 
 

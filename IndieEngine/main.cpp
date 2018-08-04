@@ -2,7 +2,6 @@
 * @mainpage		Indie Graphics Engine.
 */
 
-
 #include <memory>
 #include <iostream>
 #include "EngineApp.hpp"
@@ -15,6 +14,7 @@ extern "C"
 }
 
 /// Callback function prototypes
+static void	error(int error, const char* description);
 void localKeyCallback(GLFWwindow* window, int key, int scancode, int action, int mode);
 void localMousePosCallback(GLFWwindow* window, double xpos, double ypos);
 void localMouseBtnCallback(GLFWwindow* window, int btn, int action, int mods);
@@ -37,11 +37,17 @@ int main(int argc, char* argv[])
 	glfwSetFramebufferSizeCallback(appWindow, localResizingCallback);
 	glfwSetKeyCallback(appWindow, localKeyCallback);
 	glfwSetInputMode(appWindow, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+	glfwSetErrorCallback(error);
 	glfwSetCursorPosCallback(appWindow, localMousePosCallback);
 	glfwSetMouseButtonCallback(appWindow, localMouseBtnCallback);
 	glfwSetScrollCallback(appWindow, localScrollCallback);
 
 	return gEngineApp->Run();
+}
+
+static void	error(int error, const char* description)
+{
+	EngineLogger::getConsole()->error(description);
 }
 
 void localKeyCallback(GLFWwindow* window, int key, int scancode, int action, int mode)

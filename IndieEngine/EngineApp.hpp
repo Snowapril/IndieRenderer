@@ -17,12 +17,13 @@
 #include <memory>
 #include "GLShader.hpp"
 #include "EngineCamera.hpp"
+#include "EngineGUI.hpp"
 
-class EngineApp : public GLApp
+class EngineApp : public GLApp, EngineGUI
 {
 private:
 	/// Sphere, loaded with my custom 3D Loader.
-	GLModel sphere;  
+	GLModel sphere;
 	GLMesh testMesh; 
 	/// shader for deferred rendering.
 	std::shared_ptr<GLShader> deferredShader; 
@@ -42,9 +43,7 @@ private:
 	std::vector<glm::vec3> lightPositions; 
 	/// Light sources' color.
 	std::vector<glm::vec3> lightColors;    
-	/// will be used for tone mapping.
-	float exposure; 
-	float gamma;
+	
 
 	GLuint albedoMap;
 	GLuint normalMap;

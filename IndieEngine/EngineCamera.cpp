@@ -6,9 +6,10 @@
 #include <GL/glfw3.h>
 
 EngineCamera::EngineCamera()
-	: fov(CAMERA_MAX_FOV), position(0.f, 1.5f, 3.f), direction(1.f, 0.f, 0.f), isFirstCursorMove(true), speed(CAMERA_SPEED),
+	: fov(CAMERA_MAX_FOV), position(0.f, 1.5f, 3.f), isFirstCursorMove(true), speed(CAMERA_SPEED),
 		lastCursorPos(0.f, 0.f), yaw(0.f), pitch(0.f), toggleZoom(false), updateFov(false), mouseSensitivity(MOUSE_SENSITIVITY)
 {
+	direction = glm::normalize(glm::vec3(0.f) - position);
 }
 
 void EngineCamera::onUpdate(float dt)
