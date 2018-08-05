@@ -85,25 +85,17 @@ void EngineApp::drawScene(void) const
 
 	pbrShader->useProgram();
 
-	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, albedoMap);
-	glActiveTexture(GL_TEXTURE1);
-	glBindTexture(GL_TEXTURE_2D, normalMap);
-	glActiveTexture(GL_TEXTURE2);
-	glBindTexture(GL_TEXTURE_2D, metallicMap);
-	glActiveTexture(GL_TEXTURE3);
-	glBindTexture(GL_TEXTURE_2D, roughnessMap);
-	glActiveTexture(GL_TEXTURE4);
-	glBindTexture(GL_TEXTURE_2D, aoMap);
+	//Material settings
+	materials[materialIdx]->bindMaterial();
 
+	//Transformation settings
 	glm::mat4 model;
 	model = glm::translate(glm::mat4(), glm::vec3(0.f));
-	model = glm::scale(model, glm::vec3(1.2f));
 	model = glm::rotate(model, time * rotationVelocity, glm::vec3(0.f, 1.f, 0.f));
+	model = glm::scale(model, glm::vec3(scaleRatio));
 
 	pbrShader->sendUniform("model", model);
-	
-	sphere.drawModel(GL_TRIANGLES);
+	renderModel.drawModel(GL_TRIANGLES);
 
 	for (int i = 0; i < lightPositions.size(); ++i)
 	{
@@ -113,7 +105,7 @@ void EngineApp::drawScene(void) const
 		model = glm::translate(glm::mat4(), lightPositions[i]);
 
 		pbrShader->sendUniform("model", model);
-		sphere.drawModel(GL_TRIANGLES);
+		renderModel.drawModel(GL_TRIANGLES);
 	}
 
 	pbrShader->sendUniform("viewPos", viewPos);
@@ -132,20 +124,9 @@ void EngineApp::drawScene(void) const
 
 bool EngineApp::loadTextures(void)
 {
-	if ((albedoMap = GLResources::createTexture("../resources/texture/pbr/rusted_iron/albedo.png", true)) == 0)
-		return false;
-
-	if ((metallicMap = GLResources::createTexture("../resources/texture/pbr/rusted_iron/metallic.png", true)) == 0)
-		return false;
-
-	if ((normalMap = GLResources::createTexture("../resources/texture/pbr/rusted_iron/normal.png", true)) == 0)
-		return false;
-
-	if ((aoMap = GLResources::createTexture("../resources/texture/pbr/rusted_iron/ao.png", true)) == 0)
-		return false;
-
-	if ((roughnessMap = GLResources::createTexture("../resources/texture/pbr/rusted_iron/roughness.png", true)) == 0)
-		return false;	
+	materials.push_back(std::make_unique<EnginePBRMaterial>("../resources/texture/pbr/grass/"));
+	materials.push_back(std::make_unique<EnginePBRMaterial>("../resources/texture/pbr/gold/"));
+	materials.push_back(std::make_unique<EnginePBRMaterial>("../resources/texture/pbr/rusted_iron/"));
 
 	return true;
 }
@@ -184,7 +165,9 @@ bool EngineApp::setupLightSources(void)
 
 bool EngineApp::buildGeometryBuffers(void)
 {
-	sphere.loadModelFromObjFile("../resources/model/sphere/sphere.obj");// sphere.setupWithFixedGeometryShape(IndieShape::INDIE_SPHERE);
+	if (!renderModel.loadModel("../resources/model/shaderball/shaderball2.obj"))
+		return false;
+
 	testMesh.setupWithFixedGeometryShape(IndieShape::INDIE_BOX);
 
 	return true;

@@ -5,8 +5,15 @@
 
 using namespace ImGui;
 
+enum class Material : int
+{
+	GRASS = 0,
+		GOLD = 1,
+		RUSTED_IRON = 2
+};
+
 EngineGUI::EngineGUI()
-	: isGUIOpen(true), exposure(1.f), gamma(2.2f), rotationVelocity(1.f), toneMappingMode(1), useReinhard(true)
+	: isGUIOpen(true), exposure(0.5f), gamma(2.2f), rotationVelocity(1.f), scaleRatio(1.f), toneMappingMode(1), useReinhard(true), materialIdx(0)
 {
 
 }
@@ -54,9 +61,30 @@ void EngineGUI::updateGUI(float dt, float height)
 	
 	if (ImGui::TreeNode("Camera"))
 	{
-		ImGui::SliderFloat("Rotation Speed", &rotationVelocity, 0.0f, 5.f);
+		if (ImGui::TreeNode("Transformation"))
+		{
+			ImGui::SliderFloat("Rotation Speed", &rotationVelocity, 0.0f, 5.f);
+			ImGui::SliderFloat("Scale", &scaleRatio, 0.0f, 3.0f);
 
+			ImGui::TreePop();
+		}
+
+		if (ImGui::TreeNode("Material"))
+		{
+			ImGui::RadioButton("Grass", &materialIdx, static_cast<int>(Material::GRASS));
+			ImGui::RadioButton("Gold", &materialIdx, static_cast<int>(Material::GOLD));
+			ImGui::RadioButton("Rusted Iron", &materialIdx, static_cast<int>(Material::RUSTED_IRON));
+
+			ImGui::TreePop();
+		}
+		
 		ImGui::TreePop();
+	}
+
+	if (ImGui::CollapsingHeader("Key Support", 0, true, true))
+	{
+		ImGui::Text("Enter : Window/Full screen");
+		ImGui::Text("RMB   : Zoom in/out");
 	}
 
 	if (ImGui::CollapsingHeader("Profiling", 0, true, true))

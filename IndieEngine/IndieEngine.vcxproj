@@ -88,12 +88,12 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <Optimization>Disabled</Optimization>
+      <Optimization>Full</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>opengl32.lib;glfw3.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>zlibd.lib;assimp-vc140-mt_d.lib;opengl32.lib;glfw3.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
@@ -123,7 +123,7 @@
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>opengl32.lib;glfw3.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>zlib.lib;assimp-vc140-mt.lib;opengl32.lib;glfw3.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
@@ -132,10 +132,12 @@
     <ClInclude Include="EngineCamera.hpp" />
     <ClInclude Include="EngineGUI.hpp" />
     <ClInclude Include="EngineLogger.hpp" />
+    <ClInclude Include="EnginePBRMaterial.hpp" />
     <ClInclude Include="EngineProfiler.hpp" />
     <ClInclude Include="EngineTimer.hpp" />
     <ClInclude Include="GLApp.hpp" />
     <ClInclude Include="EngineProperty.hpp" />
+    <ClInclude Include="GLCustomModel.hpp" />
     <ClInclude Include="GLDebugger.hpp" />
     <ClInclude Include="GLMesh.hpp" />
     <ClInclude Include="GLModel.hpp" />
@@ -151,9 +153,11 @@
     <ClCompile Include="EngineCamera.cpp" />
     <ClCompile Include="EngineGUI.cpp" />
     <ClCompile Include="EngineLogger.cpp" />
+    <ClCompile Include="EnginePBRMaterial.cpp" />
     <ClCompile Include="EngineProfiler.cpp" />
     <ClCompile Include="EngineTimer.cpp" />
     <ClCompile Include="GLApp.cpp" />
+    <ClCompile Include="GLCustomModel.cpp" />
     <ClCompile Include="GLMesh.cpp" />
     <ClCompile Include="GLModel.cpp" />
     <ClCompile Include="GLResources.cpp" />

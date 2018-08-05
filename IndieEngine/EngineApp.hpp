@@ -18,12 +18,14 @@
 #include "GLShader.hpp"
 #include "EngineCamera.hpp"
 #include "EngineGUI.hpp"
+#include "GLCustomModel.hpp"
+#include "EnginePBRMaterial.hpp"
 
 class EngineApp : public GLApp, EngineGUI
 {
 private:
 	/// Sphere, loaded with my custom 3D Loader.
-	GLModel sphere;
+	GLModel renderModel;
 	GLMesh testMesh; 
 	/// shader for deferred rendering.
 	std::shared_ptr<GLShader> deferredShader; 
@@ -44,12 +46,7 @@ private:
 	/// Light sources' color.
 	std::vector<glm::vec3> lightColors;    
 	
-
-	GLuint albedoMap;
-	GLuint normalMap;
-	GLuint metallicMap;
-	GLuint roughnessMap;
-	GLuint aoMap;
+	std::vector<std::unique_ptr<EnginePBRMaterial>> materials;
 
 	/// Framebuffer for G Buffer.
 	GLuint gBuffer;     

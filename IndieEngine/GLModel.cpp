@@ -12,186 +12,49 @@ GLModel::GLModel()
 {
 }
 
-GLModel::GLModel(const std::string & modelPath, bool verbose, bool normalization)
+GLModel::GLModel(const std::string & modelPath)
 {
-	loadModelFromObjFile(modelPath, verbose, normalization);
+	loadModel(modelPath);
 }
 
-void GLModel::loadModelFromObjFile(const std::string & modelPath, bool verbose, bool normalization)
+bool GLModel::loadModel(const std::string& path)
 {
-	Profile();
+	Assimp::Importer importer;
+	const aiScene* scene = importer.ReadFile(path, aiProcess_Triangulate | aiProcess_FlipUVs);
 
-	EngineLogger::getConsole()->info("Start reading Obj File [ {} ]", modelPath);
-	EngineLogger::getConsole()->info("Verbose: {}, Normalization : {}", verbose ? "ON" : "OFF", normalization ? "ON" : "OFF");
-
-	bool read_vt(false), read_vn(false);
-
-	std::ifstream file;
-
-	file.open(modelPath);
-	if (!file.is_open()) {
-		EngineLogger::getConsole()->error("While reading obj file [ {} ], an error occurred", modelPath);
-		return;
-	}
-
-	int count = 0;
-	unsigned int idxCount = 0;
-	std::unordered_map<unsigned int, unsigned int> indexMap;
-	std::vector<glm::vec3> posStack;
-	std::vector<glm::vec3> normStack;
-	std::vector<glm::vec2> uvStack;
-
-	char buffer[255];
-	while (file >> buffer)
+	if (!scene || scene->mFlags == AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode) // if is Not Zero
 	{
-		++count;
-
-		if (strcmp(buffer, "#") == 0)
-		{
-			file.getline(buffer, 255);
-			if (verbose) EngineLogger::getConsole()->info("Comment : {}", buffer);
-		}
-		else if (strcmp(buffer, "v") == 0) // vertices
-		{
-			float x, y, z;
-			file >> x >> y >> z;
-
-			posStack.emplace_back(glm::vec3(x, y, z));
-			if (verbose && count == 1500) EngineLogger::getConsole()->info("Vertex : ({}, {}, {})", x, y, z);
-		}
-		else if (strcmp(buffer, "vt") == 0) //uv tex coordinates
-		{
-			read_vt = true;
-
-			float u, v;
-			file >> u >> v;
-
-			uvStack.emplace_back(glm::vec2(u, v));
-			if (verbose && count == 1500) EngineLogger::getConsole()->info("UV : ({}, {})", u, v);
-		}
-		else if (strcmp(buffer, "vn") == 0) //vertex normals
-		{
-			read_vn = true;
-
-			float x, y, z;
-			file >> x >> y >> z;
-
-			normStack.emplace_back(glm::vec3(x, y, z));
-			if (verbose && count == 1500) EngineLogger::getConsole()->info("Normal : ({}, {}, {})", x, y, z);
-		}
-		else if (strcmp(buffer, "f") == 0) //faces
-		{
-			unsigned int v[3], vt[3] = { 0, }, vn[3] = { 0, };
-			if (read_vt && read_vn)
-			{
-				for (int i = 0; i < 3; ++i)
-				{
-					file >> v[i]; file.get(buffer, 2);
-					file >> vt[i]; file.get(buffer, 2);
-					file >> vn[i];
-
-					--v[i];
-					--vt[i];
-					--vn[i];
-				}
-			}
-			else if (read_vt && !read_vn)
-			{
-				for (int i = 0; i < 3; ++i)
-				{
-					file >> v[i]; file.get(buffer, 2); file.get(buffer, 2);
-					file >> vt[i];
-
-					--v[i];
-					--vt[i];
-				}
-			}
-			else if (!read_vt && read_vn)
-			{
-				for (int i = 0; i < 3; ++i)
-				{
-					file >> v[i]; file.get(buffer, 2); file.get(buffer, 2);
-					file >> vn[i];
-
-					--v[i];
-					--vn[i];
-				}
-			}
-			else
-			{
-				for (int i = 0; i < 3; ++i)
-				{
-					file >> v[i];
-
-					--v[i];
-				}
-			}
-
-			if (verbose && count == 1500)
-				EngineLogger::getConsole()->info("Vertex face : ({}, {}, {})", v[0], v[1], v[2]);
-
-			unsigned int synthesizedIndex;
-			Vertex vertex;
-			std::string hashStr;
-			unsigned int hashKey;
-
-			for (int i = 0; i < 3; ++i) {
-				hashStr = std::to_string(v[i]) + std::to_string(vn[i]) + std::to_string(vt[i]);
-				hashKey = getHash(hashStr.c_str());
-				if (indexMap.find(hashKey) != indexMap.end())
-				{
-					synthesizedIndex = indexMap[hashKey];
-				}
-				else
-				{
-					synthesizedIndex = idxCount++;
-					indexMap[hashKey] = synthesizedIndex;
-
-					glm::vec3 normal(0.f, 1.f, 0.f);
-					glm::vec2 texCoords(0.f, 0.f);
-
-					if (read_vn)
-						normal = normStack[vn[i]];
-					if (read_vt)
-						texCoords = uvStack[vt[i]];
-
-					vertex = { posStack[v[i]], normal, texCoords };
-					meshes.back().vertices.push_back(vertex);
-				}
-				meshes.back().indices.push_back(synthesizedIndex);
-				hashStr.clear();
-			}
-		}
-		else if (strcmp(buffer, "o") == 0)
-		{
-			meshes.push_back(GLMesh());
-			std::string meshName;
-
-			file >> meshName;
-			meshes.back().meshName = meshName;
-
-			indexMap.clear();
-			idxCount = 0;
-		}
-		else file.getline(buffer, 255);
-
-		if (count == 1500) count = 0;
+		EngineLogger::getConsole()->critical("Assimp error : {:15}", importer.GetErrorString());
+		return false;
 	}
 
-	file.close();
-	EngineLogger::getConsole()->info("Reading Obj File [ {} ] is finished", modelPath);
+	directory = path.substr(0, path.find_last_of('/'));
+	processNode(scene->mRootNode, scene);
 
-	if (normalization)
-		scaleToUnitBox();
+	scaleToUnitBox(1.f);
 
 	for (auto& mesh : meshes)
 		mesh.bindBuffer();
+
+	return true;
+}
+
+void GLModel::processNode(aiNode* node, const aiScene* scene)
+{
+	for (unsigned int i = 0; i < node->mNumMeshes; i++)
+	{
+		aiMesh* mesh = scene->mMeshes[node->mMeshes[i]];
+		meshes.push_back(processMesh(mesh, scene));
+	}
+
+	for (unsigned int i = 0; i < node->mNumChildren; i++)
+	{
+		processNode(node->mChildren[i], scene);
+	}
 }
 
 void GLModel::scaleToUnitBox(float cardinality)
 {
-	Profile();
-
 	const float minFloat = std::numeric_limits<float>::min();
 	const float maxFloat = std::numeric_limits<float>::max();
 
@@ -220,7 +83,7 @@ void GLModel::scaleToUnitBox(float cardinality)
 
 	const float dm = std::max(std::max(dx, dy), dz);
 	const float inv_dm = 1.f / dm;
-	
+
 	const glm::vec3 halfDelta = glm::vec3(dx, dy, dz) / 2.f;
 
 	for (int numMesh = 0; numMesh < meshes.size(); ++numMesh)
@@ -234,19 +97,52 @@ void GLModel::scaleToUnitBox(float cardinality)
 	EngineLogger::getConsole()->info("Scaling model finished.");
 }
 
+GLMesh GLModel::processMesh(aiMesh* mesh, const aiScene* scene)
+{
+	std::vector<Vertex> vertices;
+	std::vector<unsigned int> indices;
+
+	for (unsigned int i = 0; i < mesh->mNumVertices; i++)
+	{
+		Vertex vertex;
+		glm::vec3 vector;
+
+		vector.x = mesh->mVertices[i].x;
+		vector.y = mesh->mVertices[i].y;
+		vector.z = mesh->mVertices[i].z;
+		vertex.Position = vector;
+
+		vector.x = mesh->mNormals[i].x;
+		vector.y = mesh->mNormals[i].y;
+		vector.z = mesh->mNormals[i].z;
+		vertex.Normal = vector;
+
+		if (mesh->mTextureCoords[0])
+		{
+			glm::vec2 vec;
+			vec.x = mesh->mTextureCoords[0][i].x;
+			vec.y = mesh->mTextureCoords[0][i].y;
+			vertex.TexCoords = vec;
+		}
+		else
+			vertex.TexCoords = glm::vec2(0.0f, 0.0f);
+
+		vertices.push_back(vertex);
+	}
+
+	for (unsigned int i = 0; i < mesh->mNumFaces; i++)
+	{
+		aiFace face = mesh->mFaces[i];
+
+		for (unsigned int j = 0; j < face.mNumIndices; j++)
+			indices.push_back(face.mIndices[j]);
+	}
+
+	return GLMesh(vertices, indices);
+}
+
 void GLModel::drawModel(unsigned int drawMode) const
 {
 	for (const auto& mesh : meshes)
 		mesh.drawMesh(drawMode);
-}
-
-//from https://stackoverflow.com/questions/8317508/hash-function-for-a-string
-unsigned int GLModel::getHash(const char* str)
-{
-	unsigned h = 37;
-	while (*str) {
-		h = (h * 54059) ^ (str[0] * 76963);
-		str++;
-	}
-	return h % 86969;
 }

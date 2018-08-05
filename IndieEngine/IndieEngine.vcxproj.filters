@@ -54,6 +54,12 @@
     <ClInclude Include="GLResources.hpp">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="GLCustomModel.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="EnginePBRMaterial.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineTimer.cpp">
@@ -103,6 +109,12 @@
     </ClCompile>
     <ClCompile Include="..\dependencies\imgui\imgui_impl_glfw_gl3.cpp">
       <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="GLCustomModel.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="EnginePBRMaterial.cpp">
+      <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

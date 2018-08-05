@@ -29,6 +29,7 @@ enum class IndieShape {
 class GLMesh
 {
 	friend class GLModel;
+	friend class GLCustomModel;
 private:
 	std::vector<Vertex> vertices;
 	std::vector<unsigned int> indices;
