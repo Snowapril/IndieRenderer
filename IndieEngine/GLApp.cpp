@@ -131,6 +131,8 @@ bool GLApp::initOpenGL(void)
 	}
 
 	glEnable(GL_DEPTH_TEST);
+	glDepthFunc(GL_LEQUAL);
+
 	return true;
 }
 

@@ -148,5 +148,17 @@
     <None Include="..\resources\shader\pbrShader.vert">
       <Filter>glsl</Filter>
     </None>
+    <None Include="..\resources\shader\equiRectangularMapToCubemap.frag">
+      <Filter>glsl</Filter>
+    </None>
+    <None Include="..\resources\shader\equiRectangularMapToCubemap.vert">
+      <Filter>glsl</Filter>
+    </None>
+    <None Include="..\resources\shader\cubeMap.frag">
+      <Filter>glsl</Filter>
+    </None>
+    <None Include="..\resources\shader\cubeMap.vert">
+      <Filter>glsl</Filter>
+    </None>
   </ItemGroup>
 </Project>

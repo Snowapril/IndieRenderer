@@ -26,7 +26,6 @@ class EngineApp : public GLApp, EngineGUI
 private:
 	/// Sphere, loaded with my custom 3D Loader.
 	GLModel renderModel;
-	GLMesh testMesh; 
 	/// shader for deferred rendering.
 	std::shared_ptr<GLShader> deferredShader; 
 	/// shader for G Buffer.
@@ -35,6 +34,8 @@ private:
 	std::shared_ptr<GLShader> simpleShader;
 	/// shader for Physically Based Rendering
 	std::shared_ptr<GLShader> pbrShader;
+	/// shader for rendering environment cube
+	std::shared_ptr<GLShader> cubeMapShader;
 
 	/// uniform buffer which have view, projection matrix.
 	unsigned int vpUBO;  
@@ -58,6 +59,9 @@ private:
 	GLuint gColorSpec;  
 	/// simple Quad vertex array object for rendering framebuffer texture .
 	GLuint simpleQuad;  
+
+	GLuint envCubeMap;
+	GLMesh simpleCube;
 private:
 	/// bind geometry buffers, that is, bind geometry data in vertex array objects.
 	bool buildGeometryBuffers(void); 
@@ -72,6 +76,7 @@ private:
 	/// loading all textures needed.
 	bool loadTextures(void);         
 
+	bool buildCubemapFromEquirectangularMap(void);
 protected:
 
 public:

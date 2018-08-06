@@ -1,4 +1,4 @@
 Function Name                           Trial   Total Time  Average Time   
-EngineApp::updateScene                  554     0.00142915  2.57969e-06    
-GLShader::setupShader                   4       1.45869e-05 3.64672e-06    
-EngineApp::drawScene                    554     0.00129313  2.33416e-06    
+EngineApp::updateScene                  78      0.000224638 2.87998e-06    
+GLShader::setupShader                   6       1.60456e-05 2.67427e-06    
+EngineApp::drawScene                    78      0.000230473 2.95478e-06    

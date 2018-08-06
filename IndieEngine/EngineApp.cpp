@@ -40,8 +40,8 @@ bool EngineApp::init(void)
 	if (!buildUniformBuffers())
 		return false;
 
-	if (!buildFramebuffer())
-		return false;
+	//if (!buildFramebuffer())
+	//	return false;
 
 	if (!loadTextures())
 		return false;
@@ -76,7 +76,7 @@ void EngineApp::drawScene(void) const
 
 	const glm::vec3 viewPos = camera.getViewPos();
 
-	glClearColor(Color::Black[0], Color::Black[1], Color::Black[2], Color::Black[3]);
+	glClearColor(Color::Blue[0], Color::Blue[1], Color::Blue[2], Color::Blue[3]);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	float time = engineTimer.getTotalTime();
@@ -116,6 +116,18 @@ void EngineApp::drawScene(void) const
 	if (!useReinhard)
 		pbrShader->sendUniform("exposure", exposure);
 
+	cubeMapShader->useProgram();
+	cubeMapShader->sendUniform("gamma", gamma);
+	cubeMapShader->sendUniform("exposure", exposure);
+	cubeMapShader->sendUniform("useReinhard", useReinhard);
+	
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_CUBE_MAP, envCubeMap);
+	
+	simpleCube.drawMesh(GL_TRIANGLES);
+
+	//unbind
+	glBindBuffer(GL_UNIFORM_BUFFER, 0);
 	glBindVertexArray(0);
 	glBindTexture(GL_TEXTURE_2D, 0);
 
@@ -127,6 +139,9 @@ bool EngineApp::loadTextures(void)
 	materials.push_back(std::make_unique<EnginePBRMaterial>("../resources/texture/pbr/grass/"));
 	materials.push_back(std::make_unique<EnginePBRMaterial>("../resources/texture/pbr/gold/"));
 	materials.push_back(std::make_unique<EnginePBRMaterial>("../resources/texture/pbr/rusted_iron/"));
+
+	if (!buildCubemapFromEquirectangularMap())
+		return false;
 
 	return true;
 }
@@ -165,10 +180,8 @@ bool EngineApp::setupLightSources(void)
 
 bool EngineApp::buildGeometryBuffers(void)
 {
-	if (!renderModel.loadModel("../resources/model/shaderball/shaderball2.obj"))
+	if (!renderModel.loadModel("../resources/model/sphere/sphere.obj"))
 		return false;
-
-	testMesh.setupWithFixedGeometryShape(IndieShape::INDIE_BOX);
 
 	return true;
 }
@@ -181,6 +194,7 @@ bool EngineApp::buildShaderFiles(void)
 		gBufferShader = std::make_shared<GLShader>("../resources/shader/gBuffer.vert", "../resources/shader/gBuffer.frag", nullptr);
 		simpleShader = std::make_shared<GLShader>("../resources/shader/simple_shader.vert", "../resources/shader/simple_shader.frag", nullptr);
 		pbrShader = std::make_shared<GLShader>("../resources/shader/pbrShader.vert", "../resources/shader/pbrShader.frag", nullptr);
+		cubeMapShader = std::make_shared<GLShader>("../resources/shader/cubeMap.vert", "../resources/shader/cubeMap.frag", nullptr);
 	}
 	catch (std::exception e)
 	{
@@ -205,6 +219,9 @@ bool EngineApp::buildShaderFiles(void)
 	pbrShader->sendUniform("metallicMap", 2);
 	pbrShader->sendUniform("roughnessMap", 3);
 	pbrShader->sendUniform("aoMap", 4);
+
+	cubeMapShader->useProgram();
+	cubeMapShader->sendUniform("envMap", 0);
 
 	return true;
 }
@@ -288,6 +305,81 @@ bool EngineApp::buildFramebuffer(void)
 	glDeleteBuffers(1, &VBO);
 	glDeleteBuffers(1, &IBO);
 
+	return true;
+}
+
+bool EngineApp::buildCubemapFromEquirectangularMap(void)
+{
+	GLShader convertShader("../resources/shader/equiRectangularMapToCubemap.vert", "../resources/shader/equiRectangularMapToCubemap.frag");
+
+	unsigned int captureFBO, captureRBO;
+
+	glGenFramebuffers(1, &captureFBO);
+	glGenRenderbuffers(1, &captureRBO);
+
+	glBindFramebuffer(GL_FRAMEBUFFER, captureFBO);
+	glBindRenderbuffer(GL_RENDERBUFFER, captureRBO);
+	glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT24, 512, 512);
+	glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, captureRBO);
+
+	unsigned int hdrTexture;
+	if ((hdrTexture = GLResources::createHDRTexture("../resources/texture/hdr/newport_loft.hdr")) == 0)
+	{
+		glDeleteRenderbuffers(1, &captureRBO);
+		glDeleteFramebuffers(1, &captureFBO);
+		return false;
+	}
+
+	glGenTextures(1, &envCubeMap);
+	glBindTexture(GL_TEXTURE_CUBE_MAP, envCubeMap);
+
+	for (unsigned int i = 0; i < 6; ++i)
+		glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_RGB16F, 512, 512, 0, GL_RGB, GL_FLOAT, nullptr);
+
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+	glm::mat4 captureProjection = glm::perspective(glm::radians(90.0f), 1.0f, 0.1f, 10.0f);
+	glm::mat4 captureViews[] = 
+	{
+		glm::lookAt(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1.0f,  0.0f, 0.0f), glm::vec3(0.0f, -1.0f, 0.0f)),
+		glm::lookAt(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(-1.0f, 0.0f, 0.0f), glm::vec3(0.0f, -1.0f, 0.0f)),
+		glm::lookAt(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f,  1.0f, 0.0f), glm::vec3(0.0f, 0.0f,  1.0f)),
+		glm::lookAt(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, -1.0f, 0.0f), glm::vec3(0.0f, 0.0f, -1.0f)),
+		glm::lookAt(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 1.0f),  glm::vec3(0.0f, -1.0f, 0.0f)),
+		glm::lookAt(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, -1.0f, 0.0f))
+	};
+
+	convertShader.useProgram();
+	convertShader.sendUniform("equiRectangularMap", 0);
+	convertShader.sendUniform("projection", captureProjection);
+
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, hdrTexture);
+
+	glViewport(0, 0, 512, 512);
+	glBindFramebuffer(GL_FRAMEBUFFER, captureFBO);
+
+	simpleCube.setupWithFixedGeometryShape(IndieShape::INDIE_BOX);
+
+	for (unsigned int i = 0; i < 6; ++i)
+	{
+		convertShader.sendUniform("view", captureViews[i]);
+		glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, envCubeMap, 0);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+		simpleCube.drawMesh(GL_TRIANGLES);
+	}
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+	//glDeleteTextures(1, &hdrTexture);
+	//glDeleteRenderbuffers(1, &captureRBO);
+	//glDeleteFramebuffers(1, &captureFBO);
+
+	onResize();
 	return true;
 }
 
