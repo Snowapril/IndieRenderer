@@ -116,6 +116,7 @@ void EngineApp::drawScene(void) const
 	if (!useReinhard)
 		pbrShader->sendUniform("exposure", exposure);
 
+	glFrontFace(GL_CW);
 	cubeMapShader->useProgram();
 	cubeMapShader->sendUniform("gamma", gamma);
 	cubeMapShader->sendUniform("exposure", exposure);
@@ -125,6 +126,7 @@ void EngineApp::drawScene(void) const
 	glBindTexture(GL_TEXTURE_CUBE_MAP, envCubeMap);
 	
 	simpleCube.drawMesh(GL_TRIANGLES);
+	glFrontFace(GL_CCW);
 
 	//unbind
 	glBindBuffer(GL_UNIFORM_BUFFER, 0);
@@ -310,6 +312,8 @@ bool EngineApp::buildFramebuffer(void)
 
 bool EngineApp::buildCubemapFromEquirectangularMap(void)
 {
+	const int hdrResolution = 512;
+
 	GLShader convertShader("../resources/shader/equiRectangularMapToCubemap.vert", "../resources/shader/equiRectangularMapToCubemap.frag");
 
 	unsigned int captureFBO, captureRBO;
@@ -319,7 +323,7 @@ bool EngineApp::buildCubemapFromEquirectangularMap(void)
 
 	glBindFramebuffer(GL_FRAMEBUFFER, captureFBO);
 	glBindRenderbuffer(GL_RENDERBUFFER, captureRBO);
-	glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT24, 512, 512);
+	glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT24, hdrResolution, hdrResolution);
 	glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, captureRBO);
 
 	unsigned int hdrTexture;
@@ -334,7 +338,7 @@ bool EngineApp::buildCubemapFromEquirectangularMap(void)
 	glBindTexture(GL_TEXTURE_CUBE_MAP, envCubeMap);
 
 	for (unsigned int i = 0; i < 6; ++i)
-		glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_RGB16F, 512, 512, 0, GL_RGB, GL_FLOAT, nullptr);
+		glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_RGB16F, hdrResolution, hdrResolution, 0, GL_RGB, GL_FLOAT, nullptr);
 
 	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
@@ -360,11 +364,12 @@ bool EngineApp::buildCubemapFromEquirectangularMap(void)
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, hdrTexture);
 
-	glViewport(0, 0, 512, 512);
+	glViewport(0, 0, hdrResolution, hdrResolution);
 	glBindFramebuffer(GL_FRAMEBUFFER, captureFBO);
 
 	simpleCube.setupWithFixedGeometryShape(IndieShape::INDIE_BOX);
-
+	
+	glFrontFace(GL_CW);
 	for (unsigned int i = 0; i < 6; ++i)
 	{
 		convertShader.sendUniform("view", captureViews[i]);
@@ -374,6 +379,7 @@ bool EngineApp::buildCubemapFromEquirectangularMap(void)
 		simpleCube.drawMesh(GL_TRIANGLES);
 	}
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	glFrontFace(GL_CCW);
 
 	//glDeleteTextures(1, &hdrTexture);
 	//glDeleteRenderbuffers(1, &captureRBO);

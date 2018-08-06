@@ -1,0 +1,798 @@
+[2018-08-06 19:08:29.017] [setup] [info] Vendor : NVIDIA Corporation, Renderer : GeForce GTX 1060/PCIe/SSE2
+[2018-08-06 19:08:29.081] [setup] [info] Bounding Box min : (207469, 211374, 26554), max : (218479, 222384, 37679.7)
+[2018-08-06 19:08:29.082] [setup] [info] Scaling model finished.
+[2018-08-06 19:08:29.085] [setup] [info] Vertex Shader [../resources/shader/deferredShader.vert] Compile finished.
+[2018-08-06 19:08:29.086] [setup] [info] Fragment Shader [../resources/shader/deferredShader.frag] Compile finished.
+[2018-08-06 19:08:29.086] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:08:29.087] [setup] [info] Vertex Shader [../resources/shader/gBuffer.vert] Compile finished.
+[2018-08-06 19:08:29.087] [setup] [info] Fragment Shader [../resources/shader/gBuffer.frag] Compile finished.
+[2018-08-06 19:08:29.088] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:08:29.088] [setup] [info] Vertex Shader [../resources/shader/simple_shader.vert] Compile finished.
+[2018-08-06 19:08:29.089] [setup] [info] Fragment Shader [../resources/shader/simple_shader.frag] Compile finished.
+[2018-08-06 19:08:29.089] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:08:29.090] [setup] [info] Vertex Shader [../resources/shader/pbrShader.vert] Compile finished.
+[2018-08-06 19:08:29.091] [setup] [info] Fragment Shader [../resources/shader/pbrShader.frag] Compile finished.
+[2018-08-06 19:08:29.092] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:08:29.093] [setup] [info] Vertex Shader [../resources/shader/cubeMap.vert] Compile finished.
+[2018-08-06 19:08:29.094] [setup] [info] Fragment Shader [../resources/shader/cubeMap.frag] Compile finished.
+[2018-08-06 19:08:29.095] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:08:29.269] [setup] [info] [../resources/texture/pbr/grass/albedo.png] loaded.
+[2018-08-06 19:08:29.330] [setup] [info] [../resources/texture/pbr/grass/metallic.png] loaded.
+[2018-08-06 19:08:29.590] [setup] [info] [../resources/texture/pbr/grass/normal.png] loaded.
+[2018-08-06 19:08:29.752] [setup] [info] [../resources/texture/pbr/grass/ao.png] loaded.
+[2018-08-06 19:08:29.850] [setup] [info] [../resources/texture/pbr/grass/roughness.png] loaded.
+[2018-08-06 19:08:29.884] [setup] [info] [../resources/texture/pbr/gold/albedo.png] loaded.
+[2018-08-06 19:08:29.923] [setup] [info] [../resources/texture/pbr/gold/metallic.png] loaded.
+[2018-08-06 19:08:29.958] [setup] [info] [../resources/texture/pbr/gold/normal.png] loaded.
+[2018-08-06 19:08:29.996] [setup] [info] [../resources/texture/pbr/gold/ao.png] loaded.
+[2018-08-06 19:08:30.046] [setup] [info] [../resources/texture/pbr/gold/roughness.png] loaded.
+[2018-08-06 19:08:30.239] [setup] [info] [../resources/texture/pbr/rusted_iron/albedo.png] loaded.
+[2018-08-06 19:08:30.332] [setup] [info] [../resources/texture/pbr/rusted_iron/metallic.png] loaded.
+[2018-08-06 19:08:30.462] [setup] [info] [../resources/texture/pbr/rusted_iron/normal.png] loaded.
+[2018-08-06 19:08:30.500] [setup] [info] [../resources/texture/pbr/rusted_iron/ao.png] loaded.
+[2018-08-06 19:08:30.564] [setup] [info] [../resources/texture/pbr/rusted_iron/roughness.png] loaded.
+[2018-08-06 19:08:30.571] [setup] [info] Vertex Shader [../resources/shader/equiRectangularMapToCubemap.vert] Compile finished.
+[2018-08-06 19:08:30.571] [setup] [info] Fragment Shader [../resources/shader/equiRectangularMapToCubemap.frag] Compile finished.
+[2018-08-06 19:08:30.572] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:08:30.647] [setup] [info] [../resources/texture/hdr/newport_loft.hdr] loaded.
+[2018-08-06 19:08:30.649] [setup] [info] Whole Initialization took 3.32151 second.
+[2018-08-06 19:11:05.035] [setup] [info] Vendor : NVIDIA Corporation, Renderer : GeForce GTX 1060/PCIe/SSE2
+[2018-08-06 19:11:05.090] [setup] [info] Bounding Box min : (207469, 211374, 26554), max : (218479, 222384, 37679.7)
+[2018-08-06 19:11:05.090] [setup] [info] Scaling model finished.
+[2018-08-06 19:11:05.094] [setup] [info] Vertex Shader [../resources/shader/deferredShader.vert] Compile finished.
+[2018-08-06 19:11:05.095] [setup] [info] Fragment Shader [../resources/shader/deferredShader.frag] Compile finished.
+[2018-08-06 19:11:05.096] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:11:05.097] [setup] [info] Vertex Shader [../resources/shader/gBuffer.vert] Compile finished.
+[2018-08-06 19:11:05.097] [setup] [info] Fragment Shader [../resources/shader/gBuffer.frag] Compile finished.
+[2018-08-06 19:11:05.098] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:11:05.099] [setup] [info] Vertex Shader [../resources/shader/simple_shader.vert] Compile finished.
+[2018-08-06 19:11:05.100] [setup] [info] Fragment Shader [../resources/shader/simple_shader.frag] Compile finished.
+[2018-08-06 19:11:05.100] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:11:05.101] [setup] [info] Vertex Shader [../resources/shader/pbrShader.vert] Compile finished.
+[2018-08-06 19:11:05.101] [setup] [info] Fragment Shader [../resources/shader/pbrShader.frag] Compile finished.
+[2018-08-06 19:11:05.102] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:11:05.157] [setup] [info] Vertex Shader [../resources/shader/cubeMap.vert] Compile finished.
+[2018-08-06 19:11:05.157] [setup] [info] Fragment Shader [../resources/shader/cubeMap.frag] Compile finished.
+[2018-08-06 19:11:05.218] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:11:05.386] [setup] [info] [../resources/texture/pbr/grass/albedo.png] loaded.
+[2018-08-06 19:11:05.452] [setup] [info] [../resources/texture/pbr/grass/metallic.png] loaded.
+[2018-08-06 19:11:05.725] [setup] [info] [../resources/texture/pbr/grass/normal.png] loaded.
+[2018-08-06 19:11:05.907] [setup] [info] [../resources/texture/pbr/grass/ao.png] loaded.
+[2018-08-06 19:11:06.005] [setup] [info] [../resources/texture/pbr/grass/roughness.png] loaded.
+[2018-08-06 19:11:06.040] [setup] [info] [../resources/texture/pbr/gold/albedo.png] loaded.
+[2018-08-06 19:11:06.088] [setup] [info] [../resources/texture/pbr/gold/metallic.png] loaded.
+[2018-08-06 19:11:06.122] [setup] [info] [../resources/texture/pbr/gold/normal.png] loaded.
+[2018-08-06 19:11:06.154] [setup] [info] [../resources/texture/pbr/gold/ao.png] loaded.
+[2018-08-06 19:11:06.201] [setup] [info] [../resources/texture/pbr/gold/roughness.png] loaded.
+[2018-08-06 19:11:06.383] [setup] [info] [../resources/texture/pbr/rusted_iron/albedo.png] loaded.
+[2018-08-06 19:11:06.468] [setup] [info] [../resources/texture/pbr/rusted_iron/metallic.png] loaded.
+[2018-08-06 19:11:06.605] [setup] [info] [../resources/texture/pbr/rusted_iron/normal.png] loaded.
+[2018-08-06 19:11:06.643] [setup] [info] [../resources/texture/pbr/rusted_iron/ao.png] loaded.
+[2018-08-06 19:11:06.702] [setup] [info] [../resources/texture/pbr/rusted_iron/roughness.png] loaded.
+[2018-08-06 19:11:06.709] [setup] [info] Vertex Shader [../resources/shader/equiRectangularMapToCubemap.vert] Compile finished.
+[2018-08-06 19:11:06.709] [setup] [info] Fragment Shader [../resources/shader/equiRectangularMapToCubemap.frag] Compile finished.
+[2018-08-06 19:11:06.711] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:11:06.787] [setup] [info] [../resources/texture/hdr/newport_loft.hdr] loaded.
+[2018-08-06 19:11:06.790] [setup] [info] Whole Initialization took 3.48597 second.
+[2018-08-06 19:11:27.790] [setup] [info] Vendor : NVIDIA Corporation, Renderer : GeForce GTX 1060/PCIe/SSE2
+[2018-08-06 19:11:27.844] [setup] [info] Bounding Box min : (207469, 211374, 26554), max : (218479, 222384, 37679.7)
+[2018-08-06 19:11:27.845] [setup] [info] Scaling model finished.
+[2018-08-06 19:11:27.850] [setup] [info] Vertex Shader [../resources/shader/deferredShader.vert] Compile finished.
+[2018-08-06 19:11:27.851] [setup] [info] Fragment Shader [../resources/shader/deferredShader.frag] Compile finished.
+[2018-08-06 19:11:27.851] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:11:27.852] [setup] [info] Vertex Shader [../resources/shader/gBuffer.vert] Compile finished.
+[2018-08-06 19:11:27.852] [setup] [info] Fragment Shader [../resources/shader/gBuffer.frag] Compile finished.
+[2018-08-06 19:11:27.852] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:11:27.854] [setup] [info] Vertex Shader [../resources/shader/simple_shader.vert] Compile finished.
+[2018-08-06 19:11:27.854] [setup] [info] Fragment Shader [../resources/shader/simple_shader.frag] Compile finished.
+[2018-08-06 19:11:27.854] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:11:27.855] [setup] [info] Vertex Shader [../resources/shader/pbrShader.vert] Compile finished.
+[2018-08-06 19:11:27.855] [setup] [info] Fragment Shader [../resources/shader/pbrShader.frag] Compile finished.
+[2018-08-06 19:11:27.855] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:11:27.856] [setup] [info] Vertex Shader [../resources/shader/cubeMap.vert] Compile finished.
+[2018-08-06 19:11:27.856] [setup] [info] Fragment Shader [../resources/shader/cubeMap.frag] Compile finished.
+[2018-08-06 19:11:27.857] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:11:28.034] [setup] [info] [../resources/texture/pbr/grass/albedo.png] loaded.
+[2018-08-06 19:11:28.092] [setup] [info] [../resources/texture/pbr/grass/metallic.png] loaded.
+[2018-08-06 19:11:28.357] [setup] [info] [../resources/texture/pbr/grass/normal.png] loaded.
+[2018-08-06 19:11:28.511] [setup] [info] [../resources/texture/pbr/grass/ao.png] loaded.
+[2018-08-06 19:11:28.610] [setup] [info] [../resources/texture/pbr/grass/roughness.png] loaded.
+[2018-08-06 19:11:28.657] [setup] [info] [../resources/texture/pbr/gold/albedo.png] loaded.
+[2018-08-06 19:11:28.698] [setup] [info] [../resources/texture/pbr/gold/metallic.png] loaded.
+[2018-08-06 19:11:28.739] [setup] [info] [../resources/texture/pbr/gold/normal.png] loaded.
+[2018-08-06 19:11:28.777] [setup] [info] [../resources/texture/pbr/gold/ao.png] loaded.
+[2018-08-06 19:11:28.829] [setup] [info] [../resources/texture/pbr/gold/roughness.png] loaded.
+[2018-08-06 19:11:29.002] [setup] [info] [../resources/texture/pbr/rusted_iron/albedo.png] loaded.
+[2018-08-06 19:11:29.084] [setup] [info] [../resources/texture/pbr/rusted_iron/metallic.png] loaded.
+[2018-08-06 19:11:29.219] [setup] [info] [../resources/texture/pbr/rusted_iron/normal.png] loaded.
+[2018-08-06 19:11:29.259] [setup] [info] [../resources/texture/pbr/rusted_iron/ao.png] loaded.
+[2018-08-06 19:11:29.323] [setup] [info] [../resources/texture/pbr/rusted_iron/roughness.png] loaded.
+[2018-08-06 19:11:29.331] [setup] [info] Vertex Shader [../resources/shader/equiRectangularMapToCubemap.vert] Compile finished.
+[2018-08-06 19:11:29.331] [setup] [info] Fragment Shader [../resources/shader/equiRectangularMapToCubemap.frag] Compile finished.
+[2018-08-06 19:11:29.333] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:11:29.412] [setup] [info] [../resources/texture/hdr/newport_loft.hdr] loaded.
+[2018-08-06 19:11:29.417] [setup] [info] Whole Initialization took 3.37368 second.
+[2018-08-06 19:12:40.765] [setup] [info] Vendor : NVIDIA Corporation, Renderer : GeForce GTX 1060/PCIe/SSE2
+[2018-08-06 19:12:40.779] [setup] [info] Bounding Box min : (-19.7371, -19.7371, -19.7371), max : (19.7371, 19.7371, 19.7371)
+[2018-08-06 19:12:40.779] [setup] [info] Scaling model finished.
+[2018-08-06 19:12:40.781] [setup] [info] Vertex Shader [../resources/shader/deferredShader.vert] Compile finished.
+[2018-08-06 19:12:40.781] [setup] [info] Fragment Shader [../resources/shader/deferredShader.frag] Compile finished.
+[2018-08-06 19:12:40.783] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:12:40.784] [setup] [info] Vertex Shader [../resources/shader/gBuffer.vert] Compile finished.
+[2018-08-06 19:12:40.785] [setup] [info] Fragment Shader [../resources/shader/gBuffer.frag] Compile finished.
+[2018-08-06 19:12:40.786] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:12:40.786] [setup] [info] Vertex Shader [../resources/shader/simple_shader.vert] Compile finished.
+[2018-08-06 19:12:40.787] [setup] [info] Fragment Shader [../resources/shader/simple_shader.frag] Compile finished.
+[2018-08-06 19:12:40.787] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:12:40.787] [setup] [info] Vertex Shader [../resources/shader/pbrShader.vert] Compile finished.
+[2018-08-06 19:12:40.788] [setup] [info] Fragment Shader [../resources/shader/pbrShader.frag] Compile finished.
+[2018-08-06 19:12:40.788] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:12:40.789] [setup] [info] Vertex Shader [../resources/shader/cubeMap.vert] Compile finished.
+[2018-08-06 19:12:40.789] [setup] [info] Fragment Shader [../resources/shader/cubeMap.frag] Compile finished.
+[2018-08-06 19:12:40.790] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:12:40.972] [setup] [info] [../resources/texture/pbr/grass/albedo.png] loaded.
+[2018-08-06 19:12:41.029] [setup] [info] [../resources/texture/pbr/grass/metallic.png] loaded.
+[2018-08-06 19:12:41.290] [setup] [info] [../resources/texture/pbr/grass/normal.png] loaded.
+[2018-08-06 19:12:41.448] [setup] [info] [../resources/texture/pbr/grass/ao.png] loaded.
+[2018-08-06 19:12:41.545] [setup] [info] [../resources/texture/pbr/grass/roughness.png] loaded.
+[2018-08-06 19:12:41.579] [setup] [info] [../resources/texture/pbr/gold/albedo.png] loaded.
+[2018-08-06 19:12:41.620] [setup] [info] [../resources/texture/pbr/gold/metallic.png] loaded.
+[2018-08-06 19:12:41.654] [setup] [info] [../resources/texture/pbr/gold/normal.png] loaded.
+[2018-08-06 19:12:41.685] [setup] [info] [../resources/texture/pbr/gold/ao.png] loaded.
+[2018-08-06 19:12:41.732] [setup] [info] [../resources/texture/pbr/gold/roughness.png] loaded.
+[2018-08-06 19:12:41.915] [setup] [info] [../resources/texture/pbr/rusted_iron/albedo.png] loaded.
+[2018-08-06 19:12:41.996] [setup] [info] [../resources/texture/pbr/rusted_iron/metallic.png] loaded.
+[2018-08-06 19:12:42.126] [setup] [info] [../resources/texture/pbr/rusted_iron/normal.png] loaded.
+[2018-08-06 19:12:42.165] [setup] [info] [../resources/texture/pbr/rusted_iron/ao.png] loaded.
+[2018-08-06 19:12:42.222] [setup] [info] [../resources/texture/pbr/rusted_iron/roughness.png] loaded.
+[2018-08-06 19:12:42.229] [setup] [info] Vertex Shader [../resources/shader/equiRectangularMapToCubemap.vert] Compile finished.
+[2018-08-06 19:12:42.230] [setup] [info] Fragment Shader [../resources/shader/equiRectangularMapToCubemap.frag] Compile finished.
+[2018-08-06 19:12:42.233] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:12:42.306] [setup] [info] [../resources/texture/hdr/newport_loft.hdr] loaded.
+[2018-08-06 19:12:42.308] [setup] [info] Whole Initialization took 3.22389 second.
+[2018-08-06 19:17:11.970] [setup] [info] Vendor : NVIDIA Corporation, Renderer : GeForce GTX 1060/PCIe/SSE2
+[2018-08-06 19:17:11.985] [setup] [info] Bounding Box min : (-19.7371, -19.7371, -19.7371), max : (19.7371, 19.7371, 19.7371)
+[2018-08-06 19:17:11.986] [setup] [info] Scaling model finished.
+[2018-08-06 19:17:11.988] [setup] [info] Vertex Shader [../resources/shader/deferredShader.vert] Compile finished.
+[2018-08-06 19:17:11.989] [setup] [info] Fragment Shader [../resources/shader/deferredShader.frag] Compile finished.
+[2018-08-06 19:17:11.990] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:17:11.990] [setup] [info] Vertex Shader [../resources/shader/gBuffer.vert] Compile finished.
+[2018-08-06 19:17:11.991] [setup] [info] Fragment Shader [../resources/shader/gBuffer.frag] Compile finished.
+[2018-08-06 19:17:11.991] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:17:11.992] [setup] [info] Vertex Shader [../resources/shader/simple_shader.vert] Compile finished.
+[2018-08-06 19:17:11.992] [setup] [info] Fragment Shader [../resources/shader/simple_shader.frag] Compile finished.
+[2018-08-06 19:17:11.992] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:17:11.993] [setup] [info] Vertex Shader [../resources/shader/pbrShader.vert] Compile finished.
+[2018-08-06 19:17:11.994] [setup] [info] Fragment Shader [../resources/shader/pbrShader.frag] Compile finished.
+[2018-08-06 19:17:11.994] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:17:11.995] [setup] [info] Vertex Shader [../resources/shader/cubeMap.vert] Compile finished.
+[2018-08-06 19:17:11.995] [setup] [info] Fragment Shader [../resources/shader/cubeMap.frag] Compile finished.
+[2018-08-06 19:17:11.995] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:17:12.167] [setup] [info] [../resources/texture/pbr/grass/albedo.png] loaded.
+[2018-08-06 19:17:12.227] [setup] [info] [../resources/texture/pbr/grass/metallic.png] loaded.
+[2018-08-06 19:17:12.503] [setup] [info] [../resources/texture/pbr/grass/normal.png] loaded.
+[2018-08-06 19:17:12.659] [setup] [info] [../resources/texture/pbr/grass/ao.png] loaded.
+[2018-08-06 19:17:12.764] [setup] [info] [../resources/texture/pbr/grass/roughness.png] loaded.
+[2018-08-06 19:17:12.797] [setup] [info] [../resources/texture/pbr/gold/albedo.png] loaded.
+[2018-08-06 19:17:12.837] [setup] [info] [../resources/texture/pbr/gold/metallic.png] loaded.
+[2018-08-06 19:17:12.872] [setup] [info] [../resources/texture/pbr/gold/normal.png] loaded.
+[2018-08-06 19:17:12.906] [setup] [info] [../resources/texture/pbr/gold/ao.png] loaded.
+[2018-08-06 19:17:12.949] [setup] [info] [../resources/texture/pbr/gold/roughness.png] loaded.
+[2018-08-06 19:17:13.128] [setup] [info] [../resources/texture/pbr/rusted_iron/albedo.png] loaded.
+[2018-08-06 19:17:13.214] [setup] [info] [../resources/texture/pbr/rusted_iron/metallic.png] loaded.
+[2018-08-06 19:17:13.354] [setup] [info] [../resources/texture/pbr/rusted_iron/normal.png] loaded.
+[2018-08-06 19:17:13.390] [setup] [info] [../resources/texture/pbr/rusted_iron/ao.png] loaded.
+[2018-08-06 19:17:13.445] [setup] [info] [../resources/texture/pbr/rusted_iron/roughness.png] loaded.
+[2018-08-06 19:17:13.456] [setup] [info] Vertex Shader [../resources/shader/equiRectangularMapToCubemap.vert] Compile finished.
+[2018-08-06 19:17:13.456] [setup] [info] Fragment Shader [../resources/shader/equiRectangularMapToCubemap.frag] Compile finished.
+[2018-08-06 19:17:13.458] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:17:13.539] [setup] [info] [../resources/texture/hdr/newport_loft.hdr] loaded.
+[2018-08-06 19:17:13.541] [setup] [info] Whole Initialization took 3.38478 second.
+[2018-08-06 19:20:34.387] [setup] [info] Vendor : NVIDIA Corporation, Renderer : GeForce GTX 1060/PCIe/SSE2
+[2018-08-06 19:20:34.403] [setup] [info] Bounding Box min : (-19.7371, -19.7371, -19.7371), max : (19.7371, 19.7371, 19.7371)
+[2018-08-06 19:20:34.403] [setup] [info] Scaling model finished.
+[2018-08-06 19:20:34.405] [setup] [info] Vertex Shader [../resources/shader/deferredShader.vert] Compile finished.
+[2018-08-06 19:20:34.407] [setup] [info] Fragment Shader [../resources/shader/deferredShader.frag] Compile finished.
+[2018-08-06 19:20:34.408] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:20:34.409] [setup] [info] Vertex Shader [../resources/shader/gBuffer.vert] Compile finished.
+[2018-08-06 19:20:34.409] [setup] [info] Fragment Shader [../resources/shader/gBuffer.frag] Compile finished.
+[2018-08-06 19:20:34.409] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:20:34.410] [setup] [info] Vertex Shader [../resources/shader/simple_shader.vert] Compile finished.
+[2018-08-06 19:20:34.410] [setup] [info] Fragment Shader [../resources/shader/simple_shader.frag] Compile finished.
+[2018-08-06 19:20:34.410] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:20:34.411] [setup] [info] Vertex Shader [../resources/shader/pbrShader.vert] Compile finished.
+[2018-08-06 19:20:34.411] [setup] [info] Fragment Shader [../resources/shader/pbrShader.frag] Compile finished.
+[2018-08-06 19:20:34.412] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:20:34.435] [setup] [info] Vertex Shader [../resources/shader/cubeMap.vert] Compile finished.
+[2018-08-06 19:20:34.443] [setup] [info] Fragment Shader [../resources/shader/cubeMap.frag] Compile finished.
+[2018-08-06 19:20:34.484] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:20:34.659] [setup] [info] [../resources/texture/pbr/grass/albedo.png] loaded.
+[2018-08-06 19:20:34.720] [setup] [info] [../resources/texture/pbr/grass/metallic.png] loaded.
+[2018-08-06 19:20:34.985] [setup] [info] [../resources/texture/pbr/grass/normal.png] loaded.
+[2018-08-06 19:20:35.154] [setup] [info] [../resources/texture/pbr/grass/ao.png] loaded.
+[2018-08-06 19:20:35.268] [setup] [info] [../resources/texture/pbr/grass/roughness.png] loaded.
+[2018-08-06 19:20:35.309] [setup] [info] [../resources/texture/pbr/gold/albedo.png] loaded.
+[2018-08-06 19:20:35.349] [setup] [info] [../resources/texture/pbr/gold/metallic.png] loaded.
+[2018-08-06 19:20:35.385] [setup] [info] [../resources/texture/pbr/gold/normal.png] loaded.
+[2018-08-06 19:20:35.419] [setup] [info] [../resources/texture/pbr/gold/ao.png] loaded.
+[2018-08-06 19:20:35.466] [setup] [info] [../resources/texture/pbr/gold/roughness.png] loaded.
+[2018-08-06 19:20:35.646] [setup] [info] [../resources/texture/pbr/rusted_iron/albedo.png] loaded.
+[2018-08-06 19:20:35.729] [setup] [info] [../resources/texture/pbr/rusted_iron/metallic.png] loaded.
+[2018-08-06 19:20:35.867] [setup] [info] [../resources/texture/pbr/rusted_iron/normal.png] loaded.
+[2018-08-06 19:20:35.914] [setup] [info] [../resources/texture/pbr/rusted_iron/ao.png] loaded.
+[2018-08-06 19:20:35.968] [setup] [info] [../resources/texture/pbr/rusted_iron/roughness.png] loaded.
+[2018-08-06 19:20:35.978] [setup] [info] Vertex Shader [../resources/shader/equiRectangularMapToCubemap.vert] Compile finished.
+[2018-08-06 19:20:35.978] [setup] [info] Fragment Shader [../resources/shader/equiRectangularMapToCubemap.frag] Compile finished.
+[2018-08-06 19:20:35.979] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:20:36.056] [setup] [info] [../resources/texture/hdr/newport_loft.hdr] loaded.
+[2018-08-06 19:20:36.059] [setup] [info] Whole Initialization took 3.4253 second.
+[2018-08-06 19:23:14.104] [setup] [info] Vendor : NVIDIA Corporation, Renderer : GeForce GTX 1060/PCIe/SSE2
+[2018-08-06 19:23:14.116] [setup] [info] Bounding Box min : (-19.7371, -19.7371, -19.7371), max : (19.7371, 19.7371, 19.7371)
+[2018-08-06 19:23:14.122] [setup] [info] Scaling model finished.
+[2018-08-06 19:23:14.123] [setup] [info] Vertex Shader [../resources/shader/deferredShader.vert] Compile finished.
+[2018-08-06 19:23:14.124] [setup] [info] Fragment Shader [../resources/shader/deferredShader.frag] Compile finished.
+[2018-08-06 19:23:14.125] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:23:14.126] [setup] [info] Vertex Shader [../resources/shader/gBuffer.vert] Compile finished.
+[2018-08-06 19:23:14.127] [setup] [info] Fragment Shader [../resources/shader/gBuffer.frag] Compile finished.
+[2018-08-06 19:23:14.127] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:23:14.128] [setup] [info] Vertex Shader [../resources/shader/simple_shader.vert] Compile finished.
+[2018-08-06 19:23:14.128] [setup] [info] Fragment Shader [../resources/shader/simple_shader.frag] Compile finished.
+[2018-08-06 19:23:14.128] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:23:14.129] [setup] [info] Vertex Shader [../resources/shader/pbrShader.vert] Compile finished.
+[2018-08-06 19:23:14.129] [setup] [info] Fragment Shader [../resources/shader/pbrShader.frag] Compile finished.
+[2018-08-06 19:23:14.129] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:23:14.130] [setup] [info] Vertex Shader [../resources/shader/cubeMap.vert] Compile finished.
+[2018-08-06 19:23:14.131] [setup] [info] Fragment Shader [../resources/shader/cubeMap.frag] Compile finished.
+[2018-08-06 19:23:14.132] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:23:14.316] [setup] [info] [../resources/texture/pbr/grass/albedo.png] loaded.
+[2018-08-06 19:23:14.377] [setup] [info] [../resources/texture/pbr/grass/metallic.png] loaded.
+[2018-08-06 19:23:14.643] [setup] [info] [../resources/texture/pbr/grass/normal.png] loaded.
+[2018-08-06 19:23:14.800] [setup] [info] [../resources/texture/pbr/grass/ao.png] loaded.
+[2018-08-06 19:23:14.896] [setup] [info] [../resources/texture/pbr/grass/roughness.png] loaded.
+[2018-08-06 19:23:14.930] [setup] [info] [../resources/texture/pbr/gold/albedo.png] loaded.
+[2018-08-06 19:23:14.968] [setup] [info] [../resources/texture/pbr/gold/metallic.png] loaded.
+[2018-08-06 19:23:15.009] [setup] [info] [../resources/texture/pbr/gold/normal.png] loaded.
+[2018-08-06 19:23:15.048] [setup] [info] [../resources/texture/pbr/gold/ao.png] loaded.
+[2018-08-06 19:23:15.107] [setup] [info] [../resources/texture/pbr/gold/roughness.png] loaded.
+[2018-08-06 19:23:15.288] [setup] [info] [../resources/texture/pbr/rusted_iron/albedo.png] loaded.
+[2018-08-06 19:23:15.379] [setup] [info] [../resources/texture/pbr/rusted_iron/metallic.png] loaded.
+[2018-08-06 19:23:15.508] [setup] [info] [../resources/texture/pbr/rusted_iron/normal.png] loaded.
+[2018-08-06 19:23:15.545] [setup] [info] [../resources/texture/pbr/rusted_iron/ao.png] loaded.
+[2018-08-06 19:23:15.601] [setup] [info] [../resources/texture/pbr/rusted_iron/roughness.png] loaded.
+[2018-08-06 19:23:15.612] [setup] [info] Vertex Shader [../resources/shader/equiRectangularMapToCubemap.vert] Compile finished.
+[2018-08-06 19:23:15.613] [setup] [info] Fragment Shader [../resources/shader/equiRectangularMapToCubemap.frag] Compile finished.
+[2018-08-06 19:23:15.614] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:23:15.690] [setup] [info] [../resources/texture/hdr/newport_loft.hdr] loaded.
+[2018-08-06 19:23:15.693] [setup] [info] Whole Initialization took 3.3229 second.
+[2018-08-06 19:29:52.939] [setup] [info] Vendor : NVIDIA Corporation, Renderer : GeForce GTX 1060/PCIe/SSE2
+[2018-08-06 19:29:52.956] [setup] [info] Bounding Box min : (-19.7371, -19.7371, -19.7371), max : (19.7371, 19.7371, 19.7371)
+[2018-08-06 19:29:52.956] [setup] [info] Scaling model finished.
+[2018-08-06 19:29:52.957] [setup] [info] Vertex Shader [../resources/shader/deferredShader.vert] Compile finished.
+[2018-08-06 19:29:52.957] [setup] [info] Fragment Shader [../resources/shader/deferredShader.frag] Compile finished.
+[2018-08-06 19:29:52.958] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:29:52.959] [setup] [info] Vertex Shader [../resources/shader/gBuffer.vert] Compile finished.
+[2018-08-06 19:29:52.959] [setup] [info] Fragment Shader [../resources/shader/gBuffer.frag] Compile finished.
+[2018-08-06 19:29:52.959] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:29:52.960] [setup] [info] Vertex Shader [../resources/shader/simple_shader.vert] Compile finished.
+[2018-08-06 19:29:52.960] [setup] [info] Fragment Shader [../resources/shader/simple_shader.frag] Compile finished.
+[2018-08-06 19:29:52.960] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:29:52.960] [setup] [info] Vertex Shader [../resources/shader/pbrShader.vert] Compile finished.
+[2018-08-06 19:29:52.961] [setup] [info] Fragment Shader [../resources/shader/pbrShader.frag] Compile finished.
+[2018-08-06 19:29:52.961] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:29:52.962] [setup] [info] Vertex Shader [../resources/shader/cubeMap.vert] Compile finished.
+[2018-08-06 19:29:52.962] [setup] [info] Fragment Shader [../resources/shader/cubeMap.frag] Compile finished.
+[2018-08-06 19:29:52.963] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:29:53.136] [setup] [info] [../resources/texture/pbr/grass/albedo.png] loaded.
+[2018-08-06 19:29:53.194] [setup] [info] [../resources/texture/pbr/grass/metallic.png] loaded.
+[2018-08-06 19:29:53.459] [setup] [info] [../resources/texture/pbr/grass/normal.png] loaded.
+[2018-08-06 19:29:53.621] [setup] [info] [../resources/texture/pbr/grass/ao.png] loaded.
+[2018-08-06 19:29:53.731] [setup] [info] [../resources/texture/pbr/grass/roughness.png] loaded.
+[2018-08-06 19:29:53.765] [setup] [info] [../resources/texture/pbr/gold/albedo.png] loaded.
+[2018-08-06 19:29:53.805] [setup] [info] [../resources/texture/pbr/gold/metallic.png] loaded.
+[2018-08-06 19:29:53.840] [setup] [info] [../resources/texture/pbr/gold/normal.png] loaded.
+[2018-08-06 19:29:53.873] [setup] [info] [../resources/texture/pbr/gold/ao.png] loaded.
+[2018-08-06 19:29:53.918] [setup] [info] [../resources/texture/pbr/gold/roughness.png] loaded.
+[2018-08-06 19:29:54.097] [setup] [info] [../resources/texture/pbr/rusted_iron/albedo.png] loaded.
+[2018-08-06 19:29:54.178] [setup] [info] [../resources/texture/pbr/rusted_iron/metallic.png] loaded.
+[2018-08-06 19:29:54.322] [setup] [info] [../resources/texture/pbr/rusted_iron/normal.png] loaded.
+[2018-08-06 19:29:54.357] [setup] [info] [../resources/texture/pbr/rusted_iron/ao.png] loaded.
+[2018-08-06 19:29:54.421] [setup] [info] [../resources/texture/pbr/rusted_iron/roughness.png] loaded.
+[2018-08-06 19:29:54.429] [setup] [info] Vertex Shader [../resources/shader/equiRectangularMapToCubemap.vert] Compile finished.
+[2018-08-06 19:29:54.430] [setup] [info] Fragment Shader [../resources/shader/equiRectangularMapToCubemap.frag] Compile finished.
+[2018-08-06 19:29:54.434] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:29:54.508] [setup] [info] [../resources/texture/hdr/newport_loft.hdr] loaded.
+[2018-08-06 19:29:54.511] [setup] [info] Whole Initialization took 3.37691 second.
+[2018-08-06 19:30:14.347] [setup] [info] Vendor : NVIDIA Corporation, Renderer : GeForce GTX 1060/PCIe/SSE2
+[2018-08-06 19:30:14.374] [setup] [info] Bounding Box min : (-19.7371, -19.7371, -19.7371), max : (19.7371, 19.7371, 19.7371)
+[2018-08-06 19:30:14.375] [setup] [info] Scaling model finished.
+[2018-08-06 19:30:14.376] [setup] [info] Vertex Shader [../resources/shader/deferredShader.vert] Compile finished.
+[2018-08-06 19:30:14.376] [setup] [info] Fragment Shader [../resources/shader/deferredShader.frag] Compile finished.
+[2018-08-06 19:30:14.377] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:30:14.377] [setup] [info] Vertex Shader [../resources/shader/gBuffer.vert] Compile finished.
+[2018-08-06 19:30:14.378] [setup] [info] Fragment Shader [../resources/shader/gBuffer.frag] Compile finished.
+[2018-08-06 19:30:14.378] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:30:14.379] [setup] [info] Vertex Shader [../resources/shader/simple_shader.vert] Compile finished.
+[2018-08-06 19:30:14.380] [setup] [info] Fragment Shader [../resources/shader/simple_shader.frag] Compile finished.
+[2018-08-06 19:30:14.380] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:30:14.383] [setup] [info] Vertex Shader [../resources/shader/pbrShader.vert] Compile finished.
+[2018-08-06 19:30:14.384] [setup] [info] Fragment Shader [../resources/shader/pbrShader.frag] Compile finished.
+[2018-08-06 19:30:14.385] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:30:14.386] [setup] [info] Vertex Shader [../resources/shader/cubeMap.vert] Compile finished.
+[2018-08-06 19:30:14.386] [setup] [info] Fragment Shader [../resources/shader/cubeMap.frag] Compile finished.
+[2018-08-06 19:30:14.387] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:30:14.572] [setup] [info] [../resources/texture/pbr/grass/albedo.png] loaded.
+[2018-08-06 19:30:14.636] [setup] [info] [../resources/texture/pbr/grass/metallic.png] loaded.
+[2018-08-06 19:30:14.899] [setup] [info] [../resources/texture/pbr/grass/normal.png] loaded.
+[2018-08-06 19:30:15.057] [setup] [info] [../resources/texture/pbr/grass/ao.png] loaded.
+[2018-08-06 19:30:15.155] [setup] [info] [../resources/texture/pbr/grass/roughness.png] loaded.
+[2018-08-06 19:30:15.191] [setup] [info] [../resources/texture/pbr/gold/albedo.png] loaded.
+[2018-08-06 19:30:15.235] [setup] [info] [../resources/texture/pbr/gold/metallic.png] loaded.
+[2018-08-06 19:30:15.270] [setup] [info] [../resources/texture/pbr/gold/normal.png] loaded.
+[2018-08-06 19:30:15.305] [setup] [info] [../resources/texture/pbr/gold/ao.png] loaded.
+[2018-08-06 19:30:15.355] [setup] [info] [../resources/texture/pbr/gold/roughness.png] loaded.
+[2018-08-06 19:30:15.532] [setup] [info] [../resources/texture/pbr/rusted_iron/albedo.png] loaded.
+[2018-08-06 19:30:15.619] [setup] [info] [../resources/texture/pbr/rusted_iron/metallic.png] loaded.
+[2018-08-06 19:30:15.751] [setup] [info] [../resources/texture/pbr/rusted_iron/normal.png] loaded.
+[2018-08-06 19:30:15.784] [setup] [info] [../resources/texture/pbr/rusted_iron/ao.png] loaded.
+[2018-08-06 19:30:15.838] [setup] [info] [../resources/texture/pbr/rusted_iron/roughness.png] loaded.
+[2018-08-06 19:30:15.845] [setup] [info] Vertex Shader [../resources/shader/equiRectangularMapToCubemap.vert] Compile finished.
+[2018-08-06 19:30:15.845] [setup] [info] Fragment Shader [../resources/shader/equiRectangularMapToCubemap.frag] Compile finished.
+[2018-08-06 19:30:15.847] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:30:15.923] [setup] [info] [../resources/texture/hdr/newport_loft.hdr] loaded.
+[2018-08-06 19:30:15.926] [setup] [info] Whole Initialization took 3.3249 second.
+[2018-08-06 19:30:50.489] [setup] [info] Vendor : NVIDIA Corporation, Renderer : GeForce GTX 1060/PCIe/SSE2
+[2018-08-06 19:30:50.503] [setup] [info] Bounding Box min : (-19.7371, -19.7371, -19.7371), max : (19.7371, 19.7371, 19.7371)
+[2018-08-06 19:30:50.503] [setup] [info] Scaling model finished.
+[2018-08-06 19:30:50.505] [setup] [info] Vertex Shader [../resources/shader/deferredShader.vert] Compile finished.
+[2018-08-06 19:30:50.505] [setup] [info] Fragment Shader [../resources/shader/deferredShader.frag] Compile finished.
+[2018-08-06 19:30:50.506] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:30:50.506] [setup] [info] Vertex Shader [../resources/shader/gBuffer.vert] Compile finished.
+[2018-08-06 19:30:50.507] [setup] [info] Fragment Shader [../resources/shader/gBuffer.frag] Compile finished.
+[2018-08-06 19:30:50.507] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:30:50.508] [setup] [info] Vertex Shader [../resources/shader/simple_shader.vert] Compile finished.
+[2018-08-06 19:30:50.508] [setup] [info] Fragment Shader [../resources/shader/simple_shader.frag] Compile finished.
+[2018-08-06 19:30:50.508] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:30:50.508] [setup] [info] Vertex Shader [../resources/shader/pbrShader.vert] Compile finished.
+[2018-08-06 19:30:50.508] [setup] [info] Fragment Shader [../resources/shader/pbrShader.frag] Compile finished.
+[2018-08-06 19:30:50.509] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:30:50.509] [setup] [info] Vertex Shader [../resources/shader/cubeMap.vert] Compile finished.
+[2018-08-06 19:30:50.509] [setup] [info] Fragment Shader [../resources/shader/cubeMap.frag] Compile finished.
+[2018-08-06 19:30:50.510] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:30:50.703] [setup] [info] [../resources/texture/pbr/grass/albedo.png] loaded.
+[2018-08-06 19:30:50.768] [setup] [info] [../resources/texture/pbr/grass/metallic.png] loaded.
+[2018-08-06 19:30:51.028] [setup] [info] [../resources/texture/pbr/grass/normal.png] loaded.
+[2018-08-06 19:30:51.195] [setup] [info] [../resources/texture/pbr/grass/ao.png] loaded.
+[2018-08-06 19:30:51.293] [setup] [info] [../resources/texture/pbr/grass/roughness.png] loaded.
+[2018-08-06 19:30:51.327] [setup] [info] [../resources/texture/pbr/gold/albedo.png] loaded.
+[2018-08-06 19:30:51.368] [setup] [info] [../resources/texture/pbr/gold/metallic.png] loaded.
+[2018-08-06 19:30:51.406] [setup] [info] [../resources/texture/pbr/gold/normal.png] loaded.
+[2018-08-06 19:30:51.444] [setup] [info] [../resources/texture/pbr/gold/ao.png] loaded.
+[2018-08-06 19:30:51.493] [setup] [info] [../resources/texture/pbr/gold/roughness.png] loaded.
+[2018-08-06 19:30:51.673] [setup] [info] [../resources/texture/pbr/rusted_iron/albedo.png] loaded.
+[2018-08-06 19:30:51.756] [setup] [info] [../resources/texture/pbr/rusted_iron/metallic.png] loaded.
+[2018-08-06 19:30:51.888] [setup] [info] [../resources/texture/pbr/rusted_iron/normal.png] loaded.
+[2018-08-06 19:30:51.929] [setup] [info] [../resources/texture/pbr/rusted_iron/ao.png] loaded.
+[2018-08-06 19:30:52.003] [setup] [info] [../resources/texture/pbr/rusted_iron/roughness.png] loaded.
+[2018-08-06 19:30:52.012] [setup] [info] Vertex Shader [../resources/shader/equiRectangularMapToCubemap.vert] Compile finished.
+[2018-08-06 19:30:52.012] [setup] [info] Fragment Shader [../resources/shader/equiRectangularMapToCubemap.frag] Compile finished.
+[2018-08-06 19:30:52.014] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:30:52.091] [setup] [info] [../resources/texture/hdr/newport_loft.hdr] loaded.
+[2018-08-06 19:30:52.093] [setup] [info] Whole Initialization took 3.31621 second.
+[2018-08-06 19:31:10.680] [setup] [info] Vendor : NVIDIA Corporation, Renderer : GeForce GTX 1060/PCIe/SSE2
+[2018-08-06 19:31:10.693] [setup] [info] Bounding Box min : (-19.7371, -19.7371, -19.7371), max : (19.7371, 19.7371, 19.7371)
+[2018-08-06 19:31:10.694] [setup] [info] Scaling model finished.
+[2018-08-06 19:31:10.694] [setup] [info] Vertex Shader [../resources/shader/deferredShader.vert] Compile finished.
+[2018-08-06 19:31:10.695] [setup] [info] Fragment Shader [../resources/shader/deferredShader.frag] Compile finished.
+[2018-08-06 19:31:10.695] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:31:10.696] [setup] [info] Vertex Shader [../resources/shader/gBuffer.vert] Compile finished.
+[2018-08-06 19:31:10.696] [setup] [info] Fragment Shader [../resources/shader/gBuffer.frag] Compile finished.
+[2018-08-06 19:31:10.697] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:31:10.697] [setup] [info] Vertex Shader [../resources/shader/simple_shader.vert] Compile finished.
+[2018-08-06 19:31:10.697] [setup] [info] Fragment Shader [../resources/shader/simple_shader.frag] Compile finished.
+[2018-08-06 19:31:10.700] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:31:10.701] [setup] [info] Vertex Shader [../resources/shader/pbrShader.vert] Compile finished.
+[2018-08-06 19:31:10.702] [setup] [info] Fragment Shader [../resources/shader/pbrShader.frag] Compile finished.
+[2018-08-06 19:31:10.703] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:31:10.703] [setup] [info] Vertex Shader [../resources/shader/cubeMap.vert] Compile finished.
+[2018-08-06 19:31:10.704] [setup] [info] Fragment Shader [../resources/shader/cubeMap.frag] Compile finished.
+[2018-08-06 19:31:10.704] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:31:10.877] [setup] [info] [../resources/texture/pbr/grass/albedo.png] loaded.
+[2018-08-06 19:31:10.938] [setup] [info] [../resources/texture/pbr/grass/metallic.png] loaded.
+[2018-08-06 19:31:11.205] [setup] [info] [../resources/texture/pbr/grass/normal.png] loaded.
+[2018-08-06 19:31:11.368] [setup] [info] [../resources/texture/pbr/grass/ao.png] loaded.
+[2018-08-06 19:31:11.475] [setup] [info] [../resources/texture/pbr/grass/roughness.png] loaded.
+[2018-08-06 19:31:11.507] [setup] [info] [../resources/texture/pbr/gold/albedo.png] loaded.
+[2018-08-06 19:31:11.553] [setup] [info] [../resources/texture/pbr/gold/metallic.png] loaded.
+[2018-08-06 19:31:11.588] [setup] [info] [../resources/texture/pbr/gold/normal.png] loaded.
+[2018-08-06 19:31:11.620] [setup] [info] [../resources/texture/pbr/gold/ao.png] loaded.
+[2018-08-06 19:31:11.668] [setup] [info] [../resources/texture/pbr/gold/roughness.png] loaded.
+[2018-08-06 19:31:11.841] [setup] [info] [../resources/texture/pbr/rusted_iron/albedo.png] loaded.
+[2018-08-06 19:31:11.924] [setup] [info] [../resources/texture/pbr/rusted_iron/metallic.png] loaded.
+[2018-08-06 19:31:12.056] [setup] [info] [../resources/texture/pbr/rusted_iron/normal.png] loaded.
+[2018-08-06 19:31:12.091] [setup] [info] [../resources/texture/pbr/rusted_iron/ao.png] loaded.
+[2018-08-06 19:31:12.146] [setup] [info] [../resources/texture/pbr/rusted_iron/roughness.png] loaded.
+[2018-08-06 19:31:12.156] [setup] [info] Vertex Shader [../resources/shader/equiRectangularMapToCubemap.vert] Compile finished.
+[2018-08-06 19:31:12.156] [setup] [info] Fragment Shader [../resources/shader/equiRectangularMapToCubemap.frag] Compile finished.
+[2018-08-06 19:31:12.158] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:31:12.234] [setup] [info] [../resources/texture/hdr/newport_loft.hdr] loaded.
+[2018-08-06 19:31:12.237] [setup] [info] Whole Initialization took 3.29223 second.
+[2018-08-06 19:31:23.806] [setup] [info] Vendor : NVIDIA Corporation, Renderer : GeForce GTX 1060/PCIe/SSE2
+[2018-08-06 19:31:23.827] [setup] [info] Bounding Box min : (-19.7371, -19.7371, -19.7371), max : (19.7371, 19.7371, 19.7371)
+[2018-08-06 19:31:23.827] [setup] [info] Scaling model finished.
+[2018-08-06 19:31:23.830] [setup] [info] Vertex Shader [../resources/shader/deferredShader.vert] Compile finished.
+[2018-08-06 19:31:23.837] [setup] [info] Fragment Shader [../resources/shader/deferredShader.frag] Compile finished.
+[2018-08-06 19:31:23.839] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:31:23.841] [setup] [info] Vertex Shader [../resources/shader/gBuffer.vert] Compile finished.
+[2018-08-06 19:31:23.842] [setup] [info] Fragment Shader [../resources/shader/gBuffer.frag] Compile finished.
+[2018-08-06 19:31:23.848] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:31:23.852] [setup] [info] Vertex Shader [../resources/shader/simple_shader.vert] Compile finished.
+[2018-08-06 19:31:23.853] [setup] [info] Fragment Shader [../resources/shader/simple_shader.frag] Compile finished.
+[2018-08-06 19:31:23.853] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:31:23.854] [setup] [info] Vertex Shader [../resources/shader/pbrShader.vert] Compile finished.
+[2018-08-06 19:31:23.855] [setup] [info] Fragment Shader [../resources/shader/pbrShader.frag] Compile finished.
+[2018-08-06 19:31:23.855] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:31:23.856] [setup] [info] Vertex Shader [../resources/shader/cubeMap.vert] Compile finished.
+[2018-08-06 19:31:23.856] [setup] [info] Fragment Shader [../resources/shader/cubeMap.frag] Compile finished.
+[2018-08-06 19:31:23.856] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:31:24.044] [setup] [info] [../resources/texture/pbr/grass/albedo.png] loaded.
+[2018-08-06 19:31:24.105] [setup] [info] [../resources/texture/pbr/grass/metallic.png] loaded.
+[2018-08-06 19:31:24.368] [setup] [info] [../resources/texture/pbr/grass/normal.png] loaded.
+[2018-08-06 19:31:24.539] [setup] [info] [../resources/texture/pbr/grass/ao.png] loaded.
+[2018-08-06 19:31:24.637] [setup] [info] [../resources/texture/pbr/grass/roughness.png] loaded.
+[2018-08-06 19:31:24.671] [setup] [info] [../resources/texture/pbr/gold/albedo.png] loaded.
+[2018-08-06 19:31:24.711] [setup] [info] [../resources/texture/pbr/gold/metallic.png] loaded.
+[2018-08-06 19:31:24.747] [setup] [info] [../resources/texture/pbr/gold/normal.png] loaded.
+[2018-08-06 19:31:24.780] [setup] [info] [../resources/texture/pbr/gold/ao.png] loaded.
+[2018-08-06 19:31:24.829] [setup] [info] [../resources/texture/pbr/gold/roughness.png] loaded.
+[2018-08-06 19:31:25.006] [setup] [info] [../resources/texture/pbr/rusted_iron/albedo.png] loaded.
+[2018-08-06 19:31:25.093] [setup] [info] [../resources/texture/pbr/rusted_iron/metallic.png] loaded.
+[2018-08-06 19:31:25.222] [setup] [info] [../resources/texture/pbr/rusted_iron/normal.png] loaded.
+[2018-08-06 19:31:25.259] [setup] [info] [../resources/texture/pbr/rusted_iron/ao.png] loaded.
+[2018-08-06 19:31:25.317] [setup] [info] [../resources/texture/pbr/rusted_iron/roughness.png] loaded.
+[2018-08-06 19:31:25.325] [setup] [info] Vertex Shader [../resources/shader/equiRectangularMapToCubemap.vert] Compile finished.
+[2018-08-06 19:31:25.327] [setup] [info] Fragment Shader [../resources/shader/equiRectangularMapToCubemap.frag] Compile finished.
+[2018-08-06 19:31:25.329] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:31:25.404] [setup] [info] [../resources/texture/hdr/newport_loft.hdr] loaded.
+[2018-08-06 19:31:25.406] [setup] [info] Whole Initialization took 3.33434 second.
+[2018-08-06 19:31:52.968] [setup] [info] Vendor : NVIDIA Corporation, Renderer : GeForce GTX 1060/PCIe/SSE2
+[2018-08-06 19:31:52.992] [setup] [info] Bounding Box min : (-19.7371, -19.7371, -19.7371), max : (19.7371, 19.7371, 19.7371)
+[2018-08-06 19:31:52.992] [setup] [info] Scaling model finished.
+[2018-08-06 19:31:52.993] [setup] [info] Vertex Shader [../resources/shader/deferredShader.vert] Compile finished.
+[2018-08-06 19:31:52.993] [setup] [info] Fragment Shader [../resources/shader/deferredShader.frag] Compile finished.
+[2018-08-06 19:31:52.994] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:31:52.994] [setup] [info] Vertex Shader [../resources/shader/gBuffer.vert] Compile finished.
+[2018-08-06 19:31:52.995] [setup] [info] Fragment Shader [../resources/shader/gBuffer.frag] Compile finished.
+[2018-08-06 19:31:52.995] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:31:52.996] [setup] [info] Vertex Shader [../resources/shader/simple_shader.vert] Compile finished.
+[2018-08-06 19:31:52.996] [setup] [info] Fragment Shader [../resources/shader/simple_shader.frag] Compile finished.
+[2018-08-06 19:31:52.996] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:31:52.996] [setup] [info] Vertex Shader [../resources/shader/pbrShader.vert] Compile finished.
+[2018-08-06 19:31:52.997] [setup] [info] Fragment Shader [../resources/shader/pbrShader.frag] Compile finished.
+[2018-08-06 19:31:52.997] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:31:52.998] [setup] [info] Vertex Shader [../resources/shader/cubeMap.vert] Compile finished.
+[2018-08-06 19:31:52.998] [setup] [info] Fragment Shader [../resources/shader/cubeMap.frag] Compile finished.
+[2018-08-06 19:31:52.998] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:31:53.173] [setup] [info] [../resources/texture/pbr/grass/albedo.png] loaded.
+[2018-08-06 19:31:53.233] [setup] [info] [../resources/texture/pbr/grass/metallic.png] loaded.
+[2018-08-06 19:31:53.498] [setup] [info] [../resources/texture/pbr/grass/normal.png] loaded.
+[2018-08-06 19:31:53.657] [setup] [info] [../resources/texture/pbr/grass/ao.png] loaded.
+[2018-08-06 19:31:53.761] [setup] [info] [../resources/texture/pbr/grass/roughness.png] loaded.
+[2018-08-06 19:31:53.800] [setup] [info] [../resources/texture/pbr/gold/albedo.png] loaded.
+[2018-08-06 19:31:53.839] [setup] [info] [../resources/texture/pbr/gold/metallic.png] loaded.
+[2018-08-06 19:31:53.874] [setup] [info] [../resources/texture/pbr/gold/normal.png] loaded.
+[2018-08-06 19:31:53.906] [setup] [info] [../resources/texture/pbr/gold/ao.png] loaded.
+[2018-08-06 19:31:53.970] [setup] [info] [../resources/texture/pbr/gold/roughness.png] loaded.
+[2018-08-06 19:31:54.143] [setup] [info] [../resources/texture/pbr/rusted_iron/albedo.png] loaded.
+[2018-08-06 19:31:54.229] [setup] [info] [../resources/texture/pbr/rusted_iron/metallic.png] loaded.
+[2018-08-06 19:31:54.362] [setup] [info] [../resources/texture/pbr/rusted_iron/normal.png] loaded.
+[2018-08-06 19:31:54.400] [setup] [info] [../resources/texture/pbr/rusted_iron/ao.png] loaded.
+[2018-08-06 19:31:54.457] [setup] [info] [../resources/texture/pbr/rusted_iron/roughness.png] loaded.
+[2018-08-06 19:31:54.465] [setup] [info] Vertex Shader [../resources/shader/equiRectangularMapToCubemap.vert] Compile finished.
+[2018-08-06 19:31:54.466] [setup] [info] Fragment Shader [../resources/shader/equiRectangularMapToCubemap.frag] Compile finished.
+[2018-08-06 19:31:54.469] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:31:54.552] [setup] [info] [../resources/texture/hdr/newport_loft.hdr] loaded.
+[2018-08-06 19:31:54.554] [setup] [info] Whole Initialization took 3.33698 second.
+[2018-08-06 19:32:18.706] [setup] [info] Vendor : NVIDIA Corporation, Renderer : GeForce GTX 1060/PCIe/SSE2
+[2018-08-06 19:32:18.722] [setup] [info] Bounding Box min : (-19.7371, -19.7371, -19.7371), max : (19.7371, 19.7371, 19.7371)
+[2018-08-06 19:32:18.723] [setup] [info] Scaling model finished.
+[2018-08-06 19:32:18.724] [setup] [info] Vertex Shader [../resources/shader/deferredShader.vert] Compile finished.
+[2018-08-06 19:32:18.724] [setup] [info] Fragment Shader [../resources/shader/deferredShader.frag] Compile finished.
+[2018-08-06 19:32:18.725] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:32:18.725] [setup] [info] Vertex Shader [../resources/shader/gBuffer.vert] Compile finished.
+[2018-08-06 19:32:18.726] [setup] [info] Fragment Shader [../resources/shader/gBuffer.frag] Compile finished.
+[2018-08-06 19:32:18.726] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:32:18.726] [setup] [info] Vertex Shader [../resources/shader/simple_shader.vert] Compile finished.
+[2018-08-06 19:32:18.726] [setup] [info] Fragment Shader [../resources/shader/simple_shader.frag] Compile finished.
+[2018-08-06 19:32:18.727] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:32:18.727] [setup] [info] Vertex Shader [../resources/shader/pbrShader.vert] Compile finished.
+[2018-08-06 19:32:18.727] [setup] [info] Fragment Shader [../resources/shader/pbrShader.frag] Compile finished.
+[2018-08-06 19:32:18.728] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:32:18.729] [setup] [info] Vertex Shader [../resources/shader/cubeMap.vert] Compile finished.
+[2018-08-06 19:32:18.729] [setup] [info] Fragment Shader [../resources/shader/cubeMap.frag] Compile finished.
+[2018-08-06 19:32:18.730] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:32:18.920] [setup] [info] [../resources/texture/pbr/grass/albedo.png] loaded.
+[2018-08-06 19:32:18.981] [setup] [info] [../resources/texture/pbr/grass/metallic.png] loaded.
+[2018-08-06 19:32:19.256] [setup] [info] [../resources/texture/pbr/grass/normal.png] loaded.
+[2018-08-06 19:32:19.431] [setup] [info] [../resources/texture/pbr/grass/ao.png] loaded.
+[2018-08-06 19:32:19.535] [setup] [info] [../resources/texture/pbr/grass/roughness.png] loaded.
+[2018-08-06 19:32:19.571] [setup] [info] [../resources/texture/pbr/gold/albedo.png] loaded.
+[2018-08-06 19:32:19.617] [setup] [info] [../resources/texture/pbr/gold/metallic.png] loaded.
+[2018-08-06 19:32:19.656] [setup] [info] [../resources/texture/pbr/gold/normal.png] loaded.
+[2018-08-06 19:32:19.690] [setup] [info] [../resources/texture/pbr/gold/ao.png] loaded.
+[2018-08-06 19:32:19.736] [setup] [info] [../resources/texture/pbr/gold/roughness.png] loaded.
+[2018-08-06 19:32:19.914] [setup] [info] [../resources/texture/pbr/rusted_iron/albedo.png] loaded.
+[2018-08-06 19:32:20.006] [setup] [info] [../resources/texture/pbr/rusted_iron/metallic.png] loaded.
+[2018-08-06 19:32:20.140] [setup] [info] [../resources/texture/pbr/rusted_iron/normal.png] loaded.
+[2018-08-06 19:32:20.182] [setup] [info] [../resources/texture/pbr/rusted_iron/ao.png] loaded.
+[2018-08-06 19:32:20.247] [setup] [info] [../resources/texture/pbr/rusted_iron/roughness.png] loaded.
+[2018-08-06 19:32:20.257] [setup] [info] Vertex Shader [../resources/shader/equiRectangularMapToCubemap.vert] Compile finished.
+[2018-08-06 19:32:20.271] [setup] [info] Fragment Shader [../resources/shader/equiRectangularMapToCubemap.frag] Compile finished.
+[2018-08-06 19:32:20.273] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:32:20.344] [setup] [info] [../resources/texture/hdr/newport_loft.hdr] loaded.
+[2018-08-06 19:32:20.346] [setup] [info] Whole Initialization took 3.4281 second.
+[2018-08-06 19:32:32.023] [setup] [info] Vendor : NVIDIA Corporation, Renderer : GeForce GTX 1060/PCIe/SSE2
+[2018-08-06 19:32:32.053] [setup] [info] Bounding Box min : (-19.7371, -19.7371, -19.7371), max : (19.7371, 19.7371, 19.7371)
+[2018-08-06 19:32:32.054] [setup] [info] Scaling model finished.
+[2018-08-06 19:32:32.055] [setup] [info] Vertex Shader [../resources/shader/deferredShader.vert] Compile finished.
+[2018-08-06 19:32:32.055] [setup] [info] Fragment Shader [../resources/shader/deferredShader.frag] Compile finished.
+[2018-08-06 19:32:32.055] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:32:32.056] [setup] [info] Vertex Shader [../resources/shader/gBuffer.vert] Compile finished.
+[2018-08-06 19:32:32.056] [setup] [info] Fragment Shader [../resources/shader/gBuffer.frag] Compile finished.
+[2018-08-06 19:32:32.056] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:32:32.056] [setup] [info] Vertex Shader [../resources/shader/simple_shader.vert] Compile finished.
+[2018-08-06 19:32:32.057] [setup] [info] Fragment Shader [../resources/shader/simple_shader.frag] Compile finished.
+[2018-08-06 19:32:32.057] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:32:32.057] [setup] [info] Vertex Shader [../resources/shader/pbrShader.vert] Compile finished.
+[2018-08-06 19:32:32.057] [setup] [info] Fragment Shader [../resources/shader/pbrShader.frag] Compile finished.
+[2018-08-06 19:32:32.058] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:32:32.058] [setup] [info] Vertex Shader [../resources/shader/cubeMap.vert] Compile finished.
+[2018-08-06 19:32:32.058] [setup] [info] Fragment Shader [../resources/shader/cubeMap.frag] Compile finished.
+[2018-08-06 19:32:32.058] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:32:32.240] [setup] [info] [../resources/texture/pbr/grass/albedo.png] loaded.
+[2018-08-06 19:32:32.304] [setup] [info] [../resources/texture/pbr/grass/metallic.png] loaded.
+[2018-08-06 19:32:32.572] [setup] [info] [../resources/texture/pbr/grass/normal.png] loaded.
+[2018-08-06 19:32:32.738] [setup] [info] [../resources/texture/pbr/grass/ao.png] loaded.
+[2018-08-06 19:32:32.842] [setup] [info] [../resources/texture/pbr/grass/roughness.png] loaded.
+[2018-08-06 19:32:32.875] [setup] [info] [../resources/texture/pbr/gold/albedo.png] loaded.
+[2018-08-06 19:32:32.918] [setup] [info] [../resources/texture/pbr/gold/metallic.png] loaded.
+[2018-08-06 19:32:32.956] [setup] [info] [../resources/texture/pbr/gold/normal.png] loaded.
+[2018-08-06 19:32:32.992] [setup] [info] [../resources/texture/pbr/gold/ao.png] loaded.
+[2018-08-06 19:32:33.038] [setup] [info] [../resources/texture/pbr/gold/roughness.png] loaded.
+[2018-08-06 19:32:33.224] [setup] [info] [../resources/texture/pbr/rusted_iron/albedo.png] loaded.
+[2018-08-06 19:32:33.315] [setup] [info] [../resources/texture/pbr/rusted_iron/metallic.png] loaded.
+[2018-08-06 19:32:33.444] [setup] [info] [../resources/texture/pbr/rusted_iron/normal.png] loaded.
+[2018-08-06 19:32:33.484] [setup] [info] [../resources/texture/pbr/rusted_iron/ao.png] loaded.
+[2018-08-06 19:32:33.543] [setup] [info] [../resources/texture/pbr/rusted_iron/roughness.png] loaded.
+[2018-08-06 19:32:33.554] [setup] [info] Vertex Shader [../resources/shader/equiRectangularMapToCubemap.vert] Compile finished.
+[2018-08-06 19:32:33.555] [setup] [info] Fragment Shader [../resources/shader/equiRectangularMapToCubemap.frag] Compile finished.
+[2018-08-06 19:32:33.556] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:32:33.629] [setup] [info] [../resources/texture/hdr/newport_loft.hdr] loaded.
+[2018-08-06 19:32:33.631] [setup] [info] Whole Initialization took 3.46995 second.
+[2018-08-06 19:33:08.638] [setup] [info] Vendor : NVIDIA Corporation, Renderer : GeForce GTX 1060/PCIe/SSE2
+[2018-08-06 19:33:08.651] [setup] [info] Bounding Box min : (-19.7371, -19.7371, -19.7371), max : (19.7371, 19.7371, 19.7371)
+[2018-08-06 19:33:08.652] [setup] [info] Scaling model finished.
+[2018-08-06 19:33:08.654] [setup] [info] Vertex Shader [../resources/shader/deferredShader.vert] Compile finished.
+[2018-08-06 19:33:08.654] [setup] [info] Fragment Shader [../resources/shader/deferredShader.frag] Compile finished.
+[2018-08-06 19:33:08.655] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:33:08.656] [setup] [info] Vertex Shader [../resources/shader/gBuffer.vert] Compile finished.
+[2018-08-06 19:33:08.657] [setup] [info] Fragment Shader [../resources/shader/gBuffer.frag] Compile finished.
+[2018-08-06 19:33:08.657] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:33:08.658] [setup] [info] Vertex Shader [../resources/shader/simple_shader.vert] Compile finished.
+[2018-08-06 19:33:08.659] [setup] [info] Fragment Shader [../resources/shader/simple_shader.frag] Compile finished.
+[2018-08-06 19:33:08.659] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:33:08.659] [setup] [info] Vertex Shader [../resources/shader/pbrShader.vert] Compile finished.
+[2018-08-06 19:33:08.659] [setup] [info] Fragment Shader [../resources/shader/pbrShader.frag] Compile finished.
+[2018-08-06 19:33:08.660] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:33:08.660] [setup] [info] Vertex Shader [../resources/shader/cubeMap.vert] Compile finished.
+[2018-08-06 19:33:08.661] [setup] [info] Fragment Shader [../resources/shader/cubeMap.frag] Compile finished.
+[2018-08-06 19:33:08.661] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:33:08.844] [setup] [info] [../resources/texture/pbr/grass/albedo.png] loaded.
+[2018-08-06 19:33:08.914] [setup] [info] [../resources/texture/pbr/grass/metallic.png] loaded.
+[2018-08-06 19:33:09.182] [setup] [info] [../resources/texture/pbr/grass/normal.png] loaded.
+[2018-08-06 19:33:09.343] [setup] [info] [../resources/texture/pbr/grass/ao.png] loaded.
+[2018-08-06 19:33:09.440] [setup] [info] [../resources/texture/pbr/grass/roughness.png] loaded.
+[2018-08-06 19:33:09.473] [setup] [info] [../resources/texture/pbr/gold/albedo.png] loaded.
+[2018-08-06 19:33:09.514] [setup] [info] [../resources/texture/pbr/gold/metallic.png] loaded.
+[2018-08-06 19:33:09.553] [setup] [info] [../resources/texture/pbr/gold/normal.png] loaded.
+[2018-08-06 19:33:09.589] [setup] [info] [../resources/texture/pbr/gold/ao.png] loaded.
+[2018-08-06 19:33:09.638] [setup] [info] [../resources/texture/pbr/gold/roughness.png] loaded.
+[2018-08-06 19:33:09.816] [setup] [info] [../resources/texture/pbr/rusted_iron/albedo.png] loaded.
+[2018-08-06 19:33:09.903] [setup] [info] [../resources/texture/pbr/rusted_iron/metallic.png] loaded.
+[2018-08-06 19:33:10.029] [setup] [info] [../resources/texture/pbr/rusted_iron/normal.png] loaded.
+[2018-08-06 19:33:10.064] [setup] [info] [../resources/texture/pbr/rusted_iron/ao.png] loaded.
+[2018-08-06 19:33:10.122] [setup] [info] [../resources/texture/pbr/rusted_iron/roughness.png] loaded.
+[2018-08-06 19:33:10.130] [setup] [info] Vertex Shader [../resources/shader/equiRectangularMapToCubemap.vert] Compile finished.
+[2018-08-06 19:33:10.131] [setup] [info] Fragment Shader [../resources/shader/equiRectangularMapToCubemap.frag] Compile finished.
+[2018-08-06 19:33:10.132] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:33:10.207] [setup] [info] [../resources/texture/hdr/newport_loft.hdr] loaded.
+[2018-08-06 19:33:10.209] [setup] [info] Whole Initialization took 3.27733 second.
+[2018-08-06 19:33:36.105] [setup] [info] Vendor : NVIDIA Corporation, Renderer : GeForce GTX 1060/PCIe/SSE2
+[2018-08-06 19:33:36.119] [setup] [info] Bounding Box min : (-19.7371, -19.7371, -19.7371), max : (19.7371, 19.7371, 19.7371)
+[2018-08-06 19:33:36.119] [setup] [info] Scaling model finished.
+[2018-08-06 19:33:36.121] [setup] [info] Vertex Shader [../resources/shader/deferredShader.vert] Compile finished.
+[2018-08-06 19:33:36.121] [setup] [info] Fragment Shader [../resources/shader/deferredShader.frag] Compile finished.
+[2018-08-06 19:33:36.122] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:33:36.122] [setup] [info] Vertex Shader [../resources/shader/gBuffer.vert] Compile finished.
+[2018-08-06 19:33:36.123] [setup] [info] Fragment Shader [../resources/shader/gBuffer.frag] Compile finished.
+[2018-08-06 19:33:36.123] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:33:36.124] [setup] [info] Vertex Shader [../resources/shader/simple_shader.vert] Compile finished.
+[2018-08-06 19:33:36.124] [setup] [info] Fragment Shader [../resources/shader/simple_shader.frag] Compile finished.
+[2018-08-06 19:33:36.124] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:33:36.125] [setup] [info] Vertex Shader [../resources/shader/pbrShader.vert] Compile finished.
+[2018-08-06 19:33:36.125] [setup] [info] Fragment Shader [../resources/shader/pbrShader.frag] Compile finished.
+[2018-08-06 19:33:36.125] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:33:36.126] [setup] [info] Vertex Shader [../resources/shader/cubeMap.vert] Compile finished.
+[2018-08-06 19:33:36.126] [setup] [info] Fragment Shader [../resources/shader/cubeMap.frag] Compile finished.
+[2018-08-06 19:33:36.126] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:33:36.305] [setup] [info] [../resources/texture/pbr/grass/albedo.png] loaded.
+[2018-08-06 19:33:36.376] [setup] [info] [../resources/texture/pbr/grass/metallic.png] loaded.
+[2018-08-06 19:33:36.635] [setup] [info] [../resources/texture/pbr/grass/normal.png] loaded.
+[2018-08-06 19:33:36.792] [setup] [info] [../resources/texture/pbr/grass/ao.png] loaded.
+[2018-08-06 19:33:36.890] [setup] [info] [../resources/texture/pbr/grass/roughness.png] loaded.
+[2018-08-06 19:33:36.925] [setup] [info] [../resources/texture/pbr/gold/albedo.png] loaded.
+[2018-08-06 19:33:36.976] [setup] [info] [../resources/texture/pbr/gold/metallic.png] loaded.
+[2018-08-06 19:33:37.012] [setup] [info] [../resources/texture/pbr/gold/normal.png] loaded.
+[2018-08-06 19:33:37.046] [setup] [info] [../resources/texture/pbr/gold/ao.png] loaded.
+[2018-08-06 19:33:37.090] [setup] [info] [../resources/texture/pbr/gold/roughness.png] loaded.
+[2018-08-06 19:33:37.266] [setup] [info] [../resources/texture/pbr/rusted_iron/albedo.png] loaded.
+[2018-08-06 19:33:37.352] [setup] [info] [../resources/texture/pbr/rusted_iron/metallic.png] loaded.
+[2018-08-06 19:33:37.478] [setup] [info] [../resources/texture/pbr/rusted_iron/normal.png] loaded.
+[2018-08-06 19:33:37.516] [setup] [info] [../resources/texture/pbr/rusted_iron/ao.png] loaded.
+[2018-08-06 19:33:37.571] [setup] [info] [../resources/texture/pbr/rusted_iron/roughness.png] loaded.
+[2018-08-06 19:33:37.579] [setup] [info] Vertex Shader [../resources/shader/equiRectangularMapToCubemap.vert] Compile finished.
+[2018-08-06 19:33:37.579] [setup] [info] Fragment Shader [../resources/shader/equiRectangularMapToCubemap.frag] Compile finished.
+[2018-08-06 19:33:37.581] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:33:37.656] [setup] [info] [../resources/texture/hdr/newport_loft.hdr] loaded.
+[2018-08-06 19:33:37.658] [setup] [info] Whole Initialization took 3.25885 second.
+[2018-08-06 19:34:28.613] [setup] [info] Vendor : NVIDIA Corporation, Renderer : GeForce GTX 1060/PCIe/SSE2
+[2018-08-06 19:34:28.625] [setup] [info] Bounding Box min : (-19.7371, -19.7371, -19.7371), max : (19.7371, 19.7371, 19.7371)
+[2018-08-06 19:34:28.632] [setup] [info] Scaling model finished.
+[2018-08-06 19:34:28.634] [setup] [info] Vertex Shader [../resources/shader/deferredShader.vert] Compile finished.
+[2018-08-06 19:34:28.635] [setup] [info] Fragment Shader [../resources/shader/deferredShader.frag] Compile finished.
+[2018-08-06 19:34:28.635] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:34:28.636] [setup] [info] Vertex Shader [../resources/shader/gBuffer.vert] Compile finished.
+[2018-08-06 19:34:28.636] [setup] [info] Fragment Shader [../resources/shader/gBuffer.frag] Compile finished.
+[2018-08-06 19:34:28.636] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:34:28.636] [setup] [info] Vertex Shader [../resources/shader/simple_shader.vert] Compile finished.
+[2018-08-06 19:34:28.636] [setup] [info] Fragment Shader [../resources/shader/simple_shader.frag] Compile finished.
+[2018-08-06 19:34:28.637] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:34:28.637] [setup] [info] Vertex Shader [../resources/shader/pbrShader.vert] Compile finished.
+[2018-08-06 19:34:28.637] [setup] [info] Fragment Shader [../resources/shader/pbrShader.frag] Compile finished.
+[2018-08-06 19:34:28.638] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:34:28.638] [setup] [info] Vertex Shader [../resources/shader/cubeMap.vert] Compile finished.
+[2018-08-06 19:34:28.638] [setup] [info] Fragment Shader [../resources/shader/cubeMap.frag] Compile finished.
+[2018-08-06 19:34:28.638] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:34:28.810] [setup] [info] [../resources/texture/pbr/grass/albedo.png] loaded.
+[2018-08-06 19:34:28.871] [setup] [info] [../resources/texture/pbr/grass/metallic.png] loaded.
+[2018-08-06 19:34:29.138] [setup] [info] [../resources/texture/pbr/grass/normal.png] loaded.
+[2018-08-06 19:34:29.299] [setup] [info] [../resources/texture/pbr/grass/ao.png] loaded.
+[2018-08-06 19:34:29.411] [setup] [info] [../resources/texture/pbr/grass/roughness.png] loaded.
+[2018-08-06 19:34:29.447] [setup] [info] [../resources/texture/pbr/gold/albedo.png] loaded.
+[2018-08-06 19:34:29.496] [setup] [info] [../resources/texture/pbr/gold/metallic.png] loaded.
+[2018-08-06 19:34:29.531] [setup] [info] [../resources/texture/pbr/gold/normal.png] loaded.
+[2018-08-06 19:34:29.564] [setup] [info] [../resources/texture/pbr/gold/ao.png] loaded.
+[2018-08-06 19:34:29.608] [setup] [info] [../resources/texture/pbr/gold/roughness.png] loaded.
+[2018-08-06 19:34:29.814] [setup] [info] [../resources/texture/pbr/rusted_iron/albedo.png] loaded.
+[2018-08-06 19:34:29.900] [setup] [info] [../resources/texture/pbr/rusted_iron/metallic.png] loaded.
+[2018-08-06 19:34:30.027] [setup] [info] [../resources/texture/pbr/rusted_iron/normal.png] loaded.
+[2018-08-06 19:34:30.067] [setup] [info] [../resources/texture/pbr/rusted_iron/ao.png] loaded.
+[2018-08-06 19:34:30.126] [setup] [info] [../resources/texture/pbr/rusted_iron/roughness.png] loaded.
+[2018-08-06 19:34:30.136] [setup] [info] Vertex Shader [../resources/shader/equiRectangularMapToCubemap.vert] Compile finished.
+[2018-08-06 19:34:30.137] [setup] [info] Fragment Shader [../resources/shader/equiRectangularMapToCubemap.frag] Compile finished.
+[2018-08-06 19:34:30.139] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:34:30.214] [setup] [info] [../resources/texture/hdr/newport_loft.hdr] loaded.
+[2018-08-06 19:34:30.216] [setup] [info] Whole Initialization took 3.32467 second.
+[2018-08-06 19:35:37.499] [setup] [info] Vendor : NVIDIA Corporation, Renderer : GeForce GTX 1060/PCIe/SSE2
+[2018-08-06 19:35:37.515] [setup] [info] Bounding Box min : (-19.7371, -19.7371, -19.7371), max : (19.7371, 19.7371, 19.7371)
+[2018-08-06 19:35:37.515] [setup] [info] Scaling model finished.
+[2018-08-06 19:35:37.516] [setup] [info] Vertex Shader [../resources/shader/deferredShader.vert] Compile finished.
+[2018-08-06 19:35:37.517] [setup] [info] Fragment Shader [../resources/shader/deferredShader.frag] Compile finished.
+[2018-08-06 19:35:37.518] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:35:37.519] [setup] [info] Vertex Shader [../resources/shader/gBuffer.vert] Compile finished.
+[2018-08-06 19:35:37.520] [setup] [info] Fragment Shader [../resources/shader/gBuffer.frag] Compile finished.
+[2018-08-06 19:35:37.521] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:35:37.522] [setup] [info] Vertex Shader [../resources/shader/simple_shader.vert] Compile finished.
+[2018-08-06 19:35:37.523] [setup] [info] Fragment Shader [../resources/shader/simple_shader.frag] Compile finished.
+[2018-08-06 19:35:37.524] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:35:37.524] [setup] [info] Vertex Shader [../resources/shader/pbrShader.vert] Compile finished.
+[2018-08-06 19:35:37.524] [setup] [info] Fragment Shader [../resources/shader/pbrShader.frag] Compile finished.
+[2018-08-06 19:35:37.525] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:35:37.525] [setup] [info] Vertex Shader [../resources/shader/cubeMap.vert] Compile finished.
+[2018-08-06 19:35:37.526] [setup] [info] Fragment Shader [../resources/shader/cubeMap.frag] Compile finished.
+[2018-08-06 19:35:37.527] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:35:37.698] [setup] [info] [../resources/texture/pbr/grass/albedo.png] loaded.
+[2018-08-06 19:35:37.761] [setup] [info] [../resources/texture/pbr/grass/metallic.png] loaded.
+[2018-08-06 19:35:38.030] [setup] [info] [../resources/texture/pbr/grass/normal.png] loaded.
+[2018-08-06 19:35:38.188] [setup] [info] [../resources/texture/pbr/grass/ao.png] loaded.
+[2018-08-06 19:35:38.286] [setup] [info] [../resources/texture/pbr/grass/roughness.png] loaded.
+[2018-08-06 19:35:38.322] [setup] [info] [../resources/texture/pbr/gold/albedo.png] loaded.
+[2018-08-06 19:35:38.361] [setup] [info] [../resources/texture/pbr/gold/metallic.png] loaded.
+[2018-08-06 19:35:38.396] [setup] [info] [../resources/texture/pbr/gold/normal.png] loaded.
+[2018-08-06 19:35:38.429] [setup] [info] [../resources/texture/pbr/gold/ao.png] loaded.
+[2018-08-06 19:35:38.474] [setup] [info] [../resources/texture/pbr/gold/roughness.png] loaded.
+[2018-08-06 19:35:38.656] [setup] [info] [../resources/texture/pbr/rusted_iron/albedo.png] loaded.
+[2018-08-06 19:35:38.746] [setup] [info] [../resources/texture/pbr/rusted_iron/metallic.png] loaded.
+[2018-08-06 19:35:38.877] [setup] [info] [../resources/texture/pbr/rusted_iron/normal.png] loaded.
+[2018-08-06 19:35:38.912] [setup] [info] [../resources/texture/pbr/rusted_iron/ao.png] loaded.
+[2018-08-06 19:35:38.973] [setup] [info] [../resources/texture/pbr/rusted_iron/roughness.png] loaded.
+[2018-08-06 19:35:38.980] [setup] [info] Vertex Shader [../resources/shader/equiRectangularMapToCubemap.vert] Compile finished.
+[2018-08-06 19:35:38.981] [setup] [info] Fragment Shader [../resources/shader/equiRectangularMapToCubemap.frag] Compile finished.
+[2018-08-06 19:35:38.983] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:35:39.059] [setup] [info] [../resources/texture/hdr/newport_loft.hdr] loaded.
+[2018-08-06 19:35:39.062] [setup] [info] Whole Initialization took 3.30465 second.
+[2018-08-06 19:36:08.146] [setup] [info] Vendor : NVIDIA Corporation, Renderer : GeForce GTX 1060/PCIe/SSE2
+[2018-08-06 19:36:08.161] [setup] [info] Bounding Box min : (-19.7371, -19.7371, -19.7371), max : (19.7371, 19.7371, 19.7371)
+[2018-08-06 19:36:08.162] [setup] [info] Scaling model finished.
+[2018-08-06 19:36:08.163] [setup] [info] Vertex Shader [../resources/shader/deferredShader.vert] Compile finished.
+[2018-08-06 19:36:08.163] [setup] [info] Fragment Shader [../resources/shader/deferredShader.frag] Compile finished.
+[2018-08-06 19:36:08.164] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:36:08.165] [setup] [info] Vertex Shader [../resources/shader/gBuffer.vert] Compile finished.
+[2018-08-06 19:36:08.165] [setup] [info] Fragment Shader [../resources/shader/gBuffer.frag] Compile finished.
+[2018-08-06 19:36:08.166] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:36:08.166] [setup] [info] Vertex Shader [../resources/shader/simple_shader.vert] Compile finished.
+[2018-08-06 19:36:08.167] [setup] [info] Fragment Shader [../resources/shader/simple_shader.frag] Compile finished.
+[2018-08-06 19:36:08.167] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:36:08.167] [setup] [info] Vertex Shader [../resources/shader/pbrShader.vert] Compile finished.
+[2018-08-06 19:36:08.167] [setup] [info] Fragment Shader [../resources/shader/pbrShader.frag] Compile finished.
+[2018-08-06 19:36:08.168] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:36:08.168] [setup] [info] Vertex Shader [../resources/shader/cubeMap.vert] Compile finished.
+[2018-08-06 19:36:08.169] [setup] [info] Fragment Shader [../resources/shader/cubeMap.frag] Compile finished.
+[2018-08-06 19:36:08.169] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:36:08.354] [setup] [info] [../resources/texture/pbr/grass/albedo.png] loaded.
+[2018-08-06 19:36:08.412] [setup] [info] [../resources/texture/pbr/grass/metallic.png] loaded.
+[2018-08-06 19:36:08.678] [setup] [info] [../resources/texture/pbr/grass/normal.png] loaded.
+[2018-08-06 19:36:08.834] [setup] [info] [../resources/texture/pbr/grass/ao.png] loaded.
+[2018-08-06 19:36:08.937] [setup] [info] [../resources/texture/pbr/grass/roughness.png] loaded.
+[2018-08-06 19:36:08.989] [setup] [info] [../resources/texture/pbr/gold/albedo.png] loaded.
+[2018-08-06 19:36:09.028] [setup] [info] [../resources/texture/pbr/gold/metallic.png] loaded.
+[2018-08-06 19:36:09.063] [setup] [info] [../resources/texture/pbr/gold/normal.png] loaded.
+[2018-08-06 19:36:09.096] [setup] [info] [../resources/texture/pbr/gold/ao.png] loaded.
+[2018-08-06 19:36:09.141] [setup] [info] [../resources/texture/pbr/gold/roughness.png] loaded.
+[2018-08-06 19:36:09.328] [setup] [info] [../resources/texture/pbr/rusted_iron/albedo.png] loaded.
+[2018-08-06 19:36:09.411] [setup] [info] [../resources/texture/pbr/rusted_iron/metallic.png] loaded.
+[2018-08-06 19:36:09.544] [setup] [info] [../resources/texture/pbr/rusted_iron/normal.png] loaded.
+[2018-08-06 19:36:09.579] [setup] [info] [../resources/texture/pbr/rusted_iron/ao.png] loaded.
+[2018-08-06 19:36:09.634] [setup] [info] [../resources/texture/pbr/rusted_iron/roughness.png] loaded.
+[2018-08-06 19:36:09.644] [setup] [info] Vertex Shader [../resources/shader/equiRectangularMapToCubemap.vert] Compile finished.
+[2018-08-06 19:36:09.645] [setup] [info] Fragment Shader [../resources/shader/equiRectangularMapToCubemap.frag] Compile finished.
+[2018-08-06 19:36:09.646] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:36:09.724] [setup] [info] [../resources/texture/hdr/newport_loft.hdr] loaded.
+[2018-08-06 19:36:09.726] [setup] [info] Whole Initialization took 3.43623 second.
+[2018-08-06 19:36:21.623] [setup] [info] Vendor : NVIDIA Corporation, Renderer : GeForce GTX 1060/PCIe/SSE2
+[2018-08-06 19:36:21.638] [setup] [info] Bounding Box min : (-19.7371, -19.7371, -19.7371), max : (19.7371, 19.7371, 19.7371)
+[2018-08-06 19:36:21.638] [setup] [info] Scaling model finished.
+[2018-08-06 19:36:21.640] [setup] [info] Vertex Shader [../resources/shader/deferredShader.vert] Compile finished.
+[2018-08-06 19:36:21.640] [setup] [info] Fragment Shader [../resources/shader/deferredShader.frag] Compile finished.
+[2018-08-06 19:36:21.641] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:36:21.642] [setup] [info] Vertex Shader [../resources/shader/gBuffer.vert] Compile finished.
+[2018-08-06 19:36:21.642] [setup] [info] Fragment Shader [../resources/shader/gBuffer.frag] Compile finished.
+[2018-08-06 19:36:21.643] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:36:21.643] [setup] [info] Vertex Shader [../resources/shader/simple_shader.vert] Compile finished.
+[2018-08-06 19:36:21.643] [setup] [info] Fragment Shader [../resources/shader/simple_shader.frag] Compile finished.
+[2018-08-06 19:36:21.644] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:36:21.644] [setup] [info] Vertex Shader [../resources/shader/pbrShader.vert] Compile finished.
+[2018-08-06 19:36:21.645] [setup] [info] Fragment Shader [../resources/shader/pbrShader.frag] Compile finished.
+[2018-08-06 19:36:21.645] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:36:21.646] [setup] [info] Vertex Shader [../resources/shader/cubeMap.vert] Compile finished.
+[2018-08-06 19:36:21.646] [setup] [info] Fragment Shader [../resources/shader/cubeMap.frag] Compile finished.
+[2018-08-06 19:36:21.646] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:36:21.819] [setup] [info] [../resources/texture/pbr/grass/albedo.png] loaded.
+[2018-08-06 19:36:21.879] [setup] [info] [../resources/texture/pbr/grass/metallic.png] loaded.
+[2018-08-06 19:36:22.144] [setup] [info] [../resources/texture/pbr/grass/normal.png] loaded.
+[2018-08-06 19:36:22.350] [setup] [info] [../resources/texture/pbr/grass/ao.png] loaded.
+[2018-08-06 19:36:22.447] [setup] [info] [../resources/texture/pbr/grass/roughness.png] loaded.
+[2018-08-06 19:36:22.481] [setup] [info] [../resources/texture/pbr/gold/albedo.png] loaded.
+[2018-08-06 19:36:22.526] [setup] [info] [../resources/texture/pbr/gold/metallic.png] loaded.
+[2018-08-06 19:36:22.560] [setup] [info] [../resources/texture/pbr/gold/normal.png] loaded.
+[2018-08-06 19:36:22.591] [setup] [info] [../resources/texture/pbr/gold/ao.png] loaded.
+[2018-08-06 19:36:22.641] [setup] [info] [../resources/texture/pbr/gold/roughness.png] loaded.
+[2018-08-06 19:36:22.825] [setup] [info] [../resources/texture/pbr/rusted_iron/albedo.png] loaded.
+[2018-08-06 19:36:22.909] [setup] [info] [../resources/texture/pbr/rusted_iron/metallic.png] loaded.
+[2018-08-06 19:36:23.043] [setup] [info] [../resources/texture/pbr/rusted_iron/normal.png] loaded.
+[2018-08-06 19:36:23.078] [setup] [info] [../resources/texture/pbr/rusted_iron/ao.png] loaded.
+[2018-08-06 19:36:23.132] [setup] [info] [../resources/texture/pbr/rusted_iron/roughness.png] loaded.
+[2018-08-06 19:36:23.142] [setup] [info] Vertex Shader [../resources/shader/equiRectangularMapToCubemap.vert] Compile finished.
+[2018-08-06 19:36:23.143] [setup] [info] Fragment Shader [../resources/shader/equiRectangularMapToCubemap.frag] Compile finished.
+[2018-08-06 19:36:23.144] [setup] [info] Linking Program Succeed.
+[2018-08-06 19:36:23.222] [setup] [info] [../resources/texture/hdr/newport_loft.hdr] loaded.
+[2018-08-06 19:36:23.225] [setup] [info] Whole Initialization took 3.47141 second.
