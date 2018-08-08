@@ -88,7 +88,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <Optimization>Full</Optimization>
+      <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
@@ -165,14 +165,22 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\resources\shader\brdf.frag" />
+    <None Include="..\resources\shader\brdf.vert" />
+    <None Include="..\resources\shader\cubeMap.frag" />
+    <None Include="..\resources\shader\cubeMap.vert" />
     <None Include="..\resources\shader\deferredShader.frag" />
     <None Include="..\resources\shader\deferredShader.vert" />
+    <None Include="..\resources\shader\equiRectangularMapToCubemap.frag" />
+    <None Include="..\resources\shader\equiRectangularMapToCubemap.vert" />
     <None Include="..\resources\shader\gBuffer.frag" />
     <None Include="..\resources\shader\gBuffer.vert" />
+    <None Include="..\resources\shader\irradianceMap.frag" />
     <None Include="..\resources\shader\pbrShader.frag" />
     <None Include="..\resources\shader\pbrShader.vert" />
     <None Include="..\resources\shader\post_processing.frag" />
     <None Include="..\resources\shader\post_processing.vert" />
+    <None Include="..\resources\shader\prefilterMap.frag" />
     <None Include="..\resources\shader\simple_shader.frag" />
     <None Include="..\resources\shader\simple_shader.vert" />
   </ItemGroup>

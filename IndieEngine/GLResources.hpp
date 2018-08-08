@@ -20,6 +20,7 @@ public:
 	static unsigned int createDepthStencilRBO(int width, int height);
 	static unsigned int createCubeMap(const std::vector<std::string>& faces);
 	static unsigned int createTexture(const std::string& path, bool gamma);
+	static unsigned int createHDRTexture(const std::string& path);
 };
 
 #endif

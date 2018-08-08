@@ -14,6 +14,8 @@
 struct GLFWwindow;
 
 enum class Material : int;
+enum class Model : int;
+enum class Environment : int;
 
 class EngineGUI
 {
@@ -28,6 +30,8 @@ protected:
 	float rotationVelocity;
 	float scaleRatio;
 	int materialIdx;
+	int modelIdx;
+	int environmentIdx;
 public:
 	EngineGUI();
 	virtual ~EngineGUI();

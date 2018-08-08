@@ -40,8 +40,8 @@ bool EngineApp::init(void)
 	if (!buildUniformBuffers())
 		return false;
 
-	if (!buildFramebuffer())
-		return false;
+	//if (!buildFramebuffer())
+	//	return false;
 
 	if (!loadTextures())
 		return false;
@@ -76,7 +76,7 @@ void EngineApp::drawScene(void) const
 
 	const glm::vec3 viewPos = camera.getViewPos();
 
-	glClearColor(Color::Black[0], Color::Black[1], Color::Black[2], Color::Black[3]);
+	glClearColor(Color::Blue[0], Color::Blue[1], Color::Blue[2], Color::Blue[3]);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	float time = engineTimer.getTotalTime();
@@ -95,7 +95,7 @@ void EngineApp::drawScene(void) const
 	model = glm::scale(model, glm::vec3(scaleRatio));
 
 	pbrShader->sendUniform("model", model);
-	renderModel.drawModel(GL_TRIANGLES);
+	renderModels[modelIdx]->drawModel(GL_TRIANGLES);
 
 	for (int i = 0; i < lightPositions.size(); ++i)
 	{
@@ -105,7 +105,7 @@ void EngineApp::drawScene(void) const
 		model = glm::translate(glm::mat4(), lightPositions[i]);
 
 		pbrShader->sendUniform("model", model);
-		renderModel.drawModel(GL_TRIANGLES);
+		renderModels[modelIdx]->drawModel(GL_TRIANGLES);
 	}
 
 	pbrShader->sendUniform("viewPos", viewPos);
@@ -116,6 +116,27 @@ void EngineApp::drawScene(void) const
 	if (!useReinhard)
 		pbrShader->sendUniform("exposure", exposure);
 
+	glActiveTexture(GL_TEXTURE5);
+	glBindTexture(GL_TEXTURE_CUBE_MAP, irradianceMaps[environmentIdx]);
+	glActiveTexture(GL_TEXTURE6);
+	glBindTexture(GL_TEXTURE_CUBE_MAP, prefilterMaps[environmentIdx]);
+	glActiveTexture(GL_TEXTURE7);
+	glBindTexture(GL_TEXTURE_2D, brdfLUTTextures[environmentIdx]);
+
+	glFrontFace(GL_CW);
+	cubeMapShader->useProgram();
+	cubeMapShader->sendUniform("gamma", gamma);
+	cubeMapShader->sendUniform("exposure", exposure);
+	cubeMapShader->sendUniform("useReinhard", useReinhard);
+	
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_CUBE_MAP, envCubeMaps[environmentIdx]);
+	
+	envCube.drawMesh(GL_TRIANGLES);
+	glFrontFace(GL_CCW);
+
+	//unbind
+	glBindBuffer(GL_UNIFORM_BUFFER, 0);
 	glBindVertexArray(0);
 	glBindTexture(GL_TEXTURE_2D, 0);
 
@@ -126,7 +147,17 @@ bool EngineApp::loadTextures(void)
 {
 	materials.push_back(std::make_unique<EnginePBRMaterial>("../resources/texture/pbr/grass/"));
 	materials.push_back(std::make_unique<EnginePBRMaterial>("../resources/texture/pbr/gold/"));
+	materials.push_back(std::make_unique<EnginePBRMaterial>("../resources/texture/pbr/silver/"));
 	materials.push_back(std::make_unique<EnginePBRMaterial>("../resources/texture/pbr/rusted_iron/"));
+	materials.push_back(std::make_unique<EnginePBRMaterial>("../resources/texture/pbr/plastic/"));
+	materials.push_back(std::make_unique<EnginePBRMaterial>("../resources/texture/pbr/wall/"));
+	materials.push_back(std::make_unique<EnginePBRMaterial>("../resources/texture/pbr/wood/"));
+
+	if (!buildIBLMap({ "House.hdr",  
+					   "Factory.hdr",
+					   "Lake.hdr",
+					   "City.hdr"}))
+		return false;
 
 	return true;
 }
@@ -165,10 +196,8 @@ bool EngineApp::setupLightSources(void)
 
 bool EngineApp::buildGeometryBuffers(void)
 {
-	if (!renderModel.loadModel("../resources/model/shaderball/shaderball2.obj"))
-		return false;
-
-	testMesh.setupWithFixedGeometryShape(IndieShape::INDIE_BOX);
+	renderModels.push_back(std::make_unique<GLModel>("../resources/model/shaderball/shaderball2.obj"));
+	renderModels.push_back(std::make_unique<GLModel>("../resources/model/sphere/sphere.obj"));
 
 	return true;
 }
@@ -181,6 +210,7 @@ bool EngineApp::buildShaderFiles(void)
 		gBufferShader = std::make_shared<GLShader>("../resources/shader/gBuffer.vert", "../resources/shader/gBuffer.frag", nullptr);
 		simpleShader = std::make_shared<GLShader>("../resources/shader/simple_shader.vert", "../resources/shader/simple_shader.frag", nullptr);
 		pbrShader = std::make_shared<GLShader>("../resources/shader/pbrShader.vert", "../resources/shader/pbrShader.frag", nullptr);
+		cubeMapShader = std::make_shared<GLShader>("../resources/shader/cubeMap.vert", "../resources/shader/cubeMap.frag", nullptr);
 	}
 	catch (std::exception e)
 	{
@@ -205,6 +235,12 @@ bool EngineApp::buildShaderFiles(void)
 	pbrShader->sendUniform("metallicMap", 2);
 	pbrShader->sendUniform("roughnessMap", 3);
 	pbrShader->sendUniform("aoMap", 4);
+	pbrShader->sendUniform("irradianceMap", 5);
+	pbrShader->sendUniform("prefilterMap", 6);
+	pbrShader->sendUniform("brdfLUT", 7);
+
+	cubeMapShader->useProgram();
+	cubeMapShader->sendUniform("envMap", 0);
 
 	return true;
 }
@@ -288,6 +324,236 @@ bool EngineApp::buildFramebuffer(void)
 	glDeleteBuffers(1, &VBO);
 	glDeleteBuffers(1, &IBO);
 
+	return true;
+}
+
+bool EngineApp::buildIBLMap(const std::initializer_list<std::string>& pathList)
+{
+	const int hdrResolution = 512;
+
+	GLShader convertShader("../resources/shader/equiRectangularMapToCubemap.vert", "../resources/shader/equiRectangularMapToCubemap.frag");
+	GLShader irradianceMapShader("../resources/shader/equiRectangularMapToCubemap.vert", "../resources/shader/irradianceMap.frag");
+	GLShader prefilterShader("../resources/shader/equiRectangularMapToCubemap.vert", "../resources/shader/prefilterMap.frag");
+	GLShader brdfShader("../resources/shader/brdf.vert", "../resources/shader/brdf.frag");
+	envCube.setupWithFixedGeometryShape(IndieShape::INDIE_BOX);
+
+	//simple quad
+	GLfloat vertices[] =
+	{
+		-1.0f,  1.0f, 0.0f, 0.0f, 1.0f,
+		-1.0f, -1.0f, 0.0f, 0.0f, 0.0f,
+		1.0f,  1.0f, 0.0f, 1.0f, 1.0f,
+		1.0f, -1.0f, 0.0f, 1.0f, 0.0f
+	};
+
+	GLuint quadVAO, quadVBO;
+	glGenVertexArrays(1, &quadVAO);
+	glGenBuffers(1, &quadVBO);
+	glBindVertexArray(quadVAO);
+	glBindBuffer(GL_ARRAY_BUFFER, quadVBO);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), &vertices[0], GL_STATIC_DRAW);
+	glEnableVertexAttribArray(0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 5, (void*)0);
+	glEnableVertexAttribArray(1);
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 5, (void*)(sizeof(GLfloat) * 3));
+
+	glBindVertexArray(0);
+
+	glm::mat4 captureProjection = glm::perspective(glm::radians(90.0f), 1.0f, 0.1f, 10.0f);
+	glm::mat4 captureViews[] =
+	{
+		glm::lookAt(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1.0f,  0.0f, 0.0f), glm::vec3(0.0f, -1.0f, 0.0f)),
+		glm::lookAt(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(-1.0f, 0.0f, 0.0f), glm::vec3(0.0f, -1.0f, 0.0f)),
+		glm::lookAt(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f,  1.0f, 0.0f), glm::vec3(0.0f, 0.0f,  1.0f)),
+		glm::lookAt(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, -1.0f, 0.0f), glm::vec3(0.0f, 0.0f, -1.0f)),
+		glm::lookAt(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 1.0f),  glm::vec3(0.0f, -1.0f, 0.0f)),
+		glm::lookAt(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, -1.0f, 0.0f))
+	};
+
+	unsigned int captureFBO, captureRBO;
+
+	glGenFramebuffers(1, &captureFBO);
+	glGenRenderbuffers(1, &captureRBO);
+
+	for (const auto& path : pathList)
+	{
+		glBindFramebuffer(GL_FRAMEBUFFER, captureFBO);
+		glBindRenderbuffer(GL_RENDERBUFFER, captureRBO);
+		glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT24, hdrResolution, hdrResolution);
+		glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, captureRBO);
+		
+		unsigned int hdrTexture;
+		if ((hdrTexture = GLResources::createHDRTexture("../resources/texture/hdr/" + path)) == 0)
+		{
+			glDeleteRenderbuffers(1, &captureRBO);
+			glDeleteFramebuffers(1, &captureFBO);
+			return false;
+		}
+
+		unsigned int envCubeMap;
+		glGenTextures(1, &envCubeMap);
+		glBindTexture(GL_TEXTURE_CUBE_MAP, envCubeMap);
+
+		for (unsigned int i = 0; i < 6; ++i)
+			glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_RGB16F, hdrResolution, hdrResolution, 0, GL_RGB, GL_FLOAT, nullptr);
+
+		glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+		glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+		glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
+		glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+		glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+		glGenerateMipmap(GL_TEXTURE_CUBE_MAP);
+
+		convertShader.useProgram();
+		convertShader.sendUniform("equiRectangularMap", 0);
+		convertShader.sendUniform("projection", captureProjection);
+
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, hdrTexture);
+
+		glViewport(0, 0, hdrResolution, hdrResolution);
+		glBindFramebuffer(GL_FRAMEBUFFER, captureFBO);
+
+		glFrontFace(GL_CW);
+		for (unsigned int i = 0; i < 6; ++i)
+		{
+			convertShader.sendUniform("view", captureViews[i]);
+			glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, envCubeMap, 0);
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+			envCube.drawMesh(GL_TRIANGLES);
+		}
+		glBindFramebuffer(GL_FRAMEBUFFER, 0);
+		glFrontFace(GL_CCW);
+
+		glBindTexture(GL_TEXTURE_CUBE_MAP, envCubeMap);
+		glGenerateMipmap(GL_TEXTURE_CUBE_MAP);
+
+		unsigned int irradianceMap;
+		glGenTextures(1, &irradianceMap);
+		glBindTexture(GL_TEXTURE_CUBE_MAP, irradianceMap);
+
+		for (unsigned int i = 0; i < 6; ++i)
+			glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_RGB16F, 32, 32, 0, GL_RGB, GL_FLOAT, nullptr);
+
+		glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+		glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+		glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
+		glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+		glBindFramebuffer(GL_FRAMEBUFFER, captureFBO);
+		glBindRenderbuffer(GL_RENDERBUFFER, captureRBO);
+		glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT24, 32, 32);
+
+		irradianceMapShader.useProgram();
+		irradianceMapShader.sendUniform("envMap", 0);
+		irradianceMapShader.sendUniform("projection", captureProjection);
+
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_CUBE_MAP, envCubeMap);
+
+		glViewport(0, 0, 32, 32);
+		glBindFramebuffer(GL_FRAMEBUFFER, captureFBO);
+
+		glFrontFace(GL_CW);
+		for (unsigned int i = 0; i < 6; ++i)
+		{
+			irradianceMapShader.sendUniform("view", captureViews[i]);
+			glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, irradianceMap, 0);
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+			envCube.drawMesh(GL_TRIANGLES);
+		}
+		glBindFramebuffer(GL_FRAMEBUFFER, 0);
+		glFrontFace(GL_CCW);
+
+		unsigned int prefilterMap;
+		glGenTextures(1, &prefilterMap);
+		glBindTexture(GL_TEXTURE_CUBE_MAP, prefilterMap);
+		for (unsigned int i = 0; i < 6; ++i)
+			glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_RGB16F, 128, 128, 0, GL_RGB, GL_FLOAT, nullptr);
+
+		glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+		glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+		glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
+		glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+		glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+		glGenerateMipmap(GL_TEXTURE_CUBE_MAP);
+
+		prefilterShader.useProgram();
+		prefilterShader.sendUniform("envMap", 0);
+		prefilterShader.sendUniform("projection", captureProjection);
+
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_CUBE_MAP, envCubeMap);
+
+		glBindFramebuffer(GL_FRAMEBUFFER, captureFBO);
+		glFrontFace(GL_CW);
+		unsigned int maxMipLevels = 5;
+		for (unsigned int mip = 0; mip < maxMipLevels; ++mip)
+		{
+			unsigned int mipWidth = static_cast<int>(128 * std::pow(0.5, mip));
+			unsigned int mipHeight = static_cast<int>(128 * std::pow(0.5, mip));
+
+			glBindRenderbuffer(GL_RENDERBUFFER, captureRBO);
+			glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT24, mipWidth, mipHeight);
+			glViewport(0, 0, mipWidth, mipHeight);
+
+			float roughness = static_cast<float>(mip) / static_cast<float>(maxMipLevels - 1);
+			prefilterShader.sendUniform("roughness", roughness);
+
+			for (unsigned int i = 0; i < 6; ++i)
+			{
+				prefilterShader.sendUniform("view", captureViews[i]);
+				glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, prefilterMap, mip);
+				glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+				envCube.drawMesh(GL_TRIANGLES);
+			}
+		}
+		glFrontFace(GL_CCW);
+		glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+		unsigned int brdfLUTTexture;
+		glGenTextures(1, &brdfLUTTexture);
+		glBindTexture(GL_TEXTURE_2D, brdfLUTTexture);
+
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RG16F, hdrResolution, hdrResolution, 0, GL_RG, GL_FLOAT, nullptr);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+		glBindFramebuffer(GL_FRAMEBUFFER, captureFBO);
+		glBindRenderbuffer(GL_RENDERBUFFER, captureRBO);
+		glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT24, hdrResolution, hdrResolution);
+		glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, brdfLUTTexture, 0);
+
+		glViewport(0, 0, hdrResolution, hdrResolution);
+		brdfShader.useProgram();
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+		glBindVertexArray(quadVAO);
+		glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+		glBindVertexArray(0);
+
+		glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+		envCubeMaps.push_back(envCubeMap);
+		irradianceMaps.push_back(irradianceMap);
+		prefilterMaps.push_back(prefilterMap);
+		brdfLUTTextures.push_back(brdfLUTTexture);
+	}
+	
+	glDeleteBuffers(1, &quadVBO);
+	glDeleteVertexArrays(1, &quadVAO);
+	glDeleteRenderbuffers(1, &captureRBO);
+	glDeleteFramebuffers(1, &captureFBO);
+
+	onResize();
 	return true;
 }
 

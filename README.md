@@ -2,6 +2,8 @@
 
 Indie Graphics Engine implemented with Modern OpenGL.
 
+![](./IndieEngine.gif)
+
 my github blog url : https://snowapril.github.io
 
 ## Dependencies
@@ -10,3 +12,4 @@ my github blog url : https://snowapril.github.io
 * spdlog
 * glm
 * stb_image
+* assimp

@@ -8,11 +8,17 @@ in VS_OUT {
 
 out vec4 fragColor;
 
+//material paremeters
 uniform sampler2D albedoMap;
 uniform sampler2D normalMap;
 uniform sampler2D metallicMap;
 uniform sampler2D roughnessMap;
 uniform sampler2D aoMap;
+
+//IBL 
+uniform samplerCube irradianceMap;
+uniform samplerCube prefilterMap;
+uniform sampler2D brdfLUT;
 
 uniform vec3 lightPositions[4];
 uniform vec3 lightColors[4];
@@ -25,27 +31,12 @@ uniform bool useReinhard;
 
 const float PI = 3.14159265359;
 
-vec3 getNormalFromMap()
-{
-    vec3 tangentNormal = texture(normalMap, fs_in.TexCoords).xyz * 2.0 - 1.0;
-
-    vec3 Q1  = dFdx(fs_in.FragPos);
-    vec3 Q2  = dFdy(fs_in.FragPos);
-    vec2 st1 = dFdx(fs_in.TexCoords);
-    vec2 st2 = dFdy(fs_in.TexCoords);
-
-    vec3 N   = normalize(fs_in.Normal);
-    vec3 T  = normalize(Q1*st2.t - Q2*st1.t);
-    vec3 B  = -normalize(cross(N, T));
-    mat3 TBN = mat3(T, B, N);
-
-    return normalize(TBN * tangentNormal);
-}
-
+vec3 getNormalFromMap();
 float DistributionGGX(vec3 N, vec3 H, float roughness);
 float GeometrySchlickGGX(float NdotV, float roughness);
 float GeometrySmith(vec3 N, vec3 V, vec3 L, float roughness);
 vec3 fresnelSchlick(float cosTheta, vec3 F0);
+vec3 fresnelSchlickRoughness(float cosTheta, vec3 F0, float roughness);
 
 void main(void)
 {
@@ -57,6 +48,7 @@ void main(void)
 
 	vec3 N = normalize(Normal);
 	vec3 V = normalize(viewPos - fs_in.FragPos);
+	vec3 R = reflect(-V, N);
 
 	vec3 F0 = vec3(0.04);
 	F0 = mix(F0, albedo, metallic);
@@ -87,7 +79,20 @@ void main(void)
 		Lo += (kD * albedo / PI + specular) * NdotL * radiance;
 	}
 
-	vec3 ambient = vec3(0.03) * albedo * ao;
+	vec3 F = fresnelSchlickRoughness(max(dot(N, V), 0.0), F0, roughness);
+	vec3 kS = F;
+    vec3 kD = 1.0 - kS;
+    kD *= 1.0 - metallic;	
+
+	vec3 irradiance = texture(irradianceMap, N).rgb;
+	vec3 diffuse = irradiance * albedo;
+
+	const float MAX_REFLECTION_LOD = 4.0;
+	vec3 prefilteredColor = textureLod(prefilterMap, R, MAX_REFLECTION_LOD * roughness).rgb;
+	vec2 envBRDF = texture(brdfLUT, vec2(max(dot(N, V), 0.0), roughness)).rg;
+	vec3 specular= prefilteredColor * (F * envBRDF.x + envBRDF.y);
+
+	vec3 ambient = (kD * diffuse + specular) * ao;
 	vec3 color = ambient + Lo;
 
 	//Reinhard tone mapping
@@ -102,7 +107,23 @@ void main(void)
 	fragColor = vec4(color, 1.0);
 }
 
+// ----------------------------------------------------------------------------
+vec3 getNormalFromMap()
+{
+    vec3 tangentNormal = texture(normalMap, fs_in.TexCoords).xyz * 2.0 - 1.0;
 
+    vec3 Q1  = dFdx(fs_in.FragPos);
+    vec3 Q2  = dFdy(fs_in.FragPos);
+    vec2 st1 = dFdx(fs_in.TexCoords);
+    vec2 st2 = dFdy(fs_in.TexCoords);
+
+    vec3 N   = normalize(fs_in.Normal);
+    vec3 T  = normalize(Q1*st2.t - Q2*st1.t);
+    vec3 B  = -normalize(cross(N, T));
+    mat3 TBN = mat3(T, B, N);
+
+    return normalize(TBN * tangentNormal);
+}
 // ----------------------------------------------------------------------------
 float DistributionGGX(vec3 N, vec3 H, float roughness)
 {
@@ -143,3 +164,7 @@ vec3 fresnelSchlick(float cosTheta, vec3 F0)
 {
     return F0 + (1.0 - F0) * pow(1.0 - cosTheta, 5.0);
 }
+vec3 fresnelSchlickRoughness(float cosTheta, vec3 F0, float roughness)
+{
+    return F0 + (max(vec3(1.0 - roughness), F0) - F0) * pow(1.0 - cosTheta, 5.0);
+} 

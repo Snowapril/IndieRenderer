@@ -2,6 +2,7 @@
 #include <glad/glad.h>
 #include <imgui\imgui.h>
 #include <imgui\imgui_impl_glfw_gl3.h>
+#include <imgui\imgui_internal.h>
 
 using namespace ImGui;
 
@@ -9,11 +10,30 @@ enum class Material : int
 {
 	GRASS = 0,
 		GOLD = 1,
-		RUSTED_IRON = 2
+		SILVER = 2,
+		RUSTED_IRON = 3,
+		PLASTIC = 4,
+		WALL = 5,
+		WOOD = 6
+};
+
+enum class Model : int
+{
+	SHADER_BALL = 0,
+	SPHERE = 1
+};
+
+enum class Environment : int
+{
+	HOUSE = 0,
+	FACTORY = 1,
+	LAKE = 2,
+	CITY = 3
 };
 
 EngineGUI::EngineGUI()
-	: isGUIOpen(true), exposure(0.5f), gamma(2.2f), rotationVelocity(1.f), scaleRatio(1.f), toneMappingMode(1), useReinhard(true), materialIdx(0)
+	: isGUIOpen(true), exposure(0.5f), gamma(2.2f), rotationVelocity(1.f), scaleRatio(1.f), toneMappingMode(1),
+		useReinhard(true), materialIdx(0), modelIdx(0), environmentIdx(0)
 {
 
 }
@@ -69,11 +89,32 @@ void EngineGUI::updateGUI(float dt, float height)
 			ImGui::TreePop();
 		}
 
+		if (ImGui::TreeNode("Model"))
+		{
+			ImGui::RadioButton("Shader Ball", &modelIdx, static_cast<int>(Material::GRASS));
+			ImGui::RadioButton("Sphere", &modelIdx, static_cast<int>(Material::GOLD));
+
+			ImGui::TreePop();
+
+		}
 		if (ImGui::TreeNode("Material"))
 		{
 			ImGui::RadioButton("Grass", &materialIdx, static_cast<int>(Material::GRASS));
 			ImGui::RadioButton("Gold", &materialIdx, static_cast<int>(Material::GOLD));
+			ImGui::RadioButton("Silver", &materialIdx, static_cast<int>(Material::SILVER));
 			ImGui::RadioButton("Rusted Iron", &materialIdx, static_cast<int>(Material::RUSTED_IRON));
+			ImGui::RadioButton("Plastic", &materialIdx, static_cast<int>(Material::PLASTIC));
+			ImGui::RadioButton("Wall", &materialIdx, static_cast<int>(Material::WALL));
+			ImGui::RadioButton("Wood", &materialIdx, static_cast<int>(Material::WOOD));
+
+			ImGui::TreePop();
+		}
+		if (ImGui::TreeNode("Environment"))
+		{
+			ImGui::RadioButton("House", &environmentIdx, static_cast<int>(Environment::HOUSE));
+			ImGui::RadioButton("Factory", &environmentIdx, static_cast<int>(Environment::FACTORY));
+			ImGui::RadioButton("Lake", &environmentIdx, static_cast<int>(Environment::LAKE));
+			ImGui::RadioButton("City", &environmentIdx, static_cast<int>(Environment::CITY));
 
 			ImGui::TreePop();
 		}

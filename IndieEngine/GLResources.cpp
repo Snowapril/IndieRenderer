@@ -104,3 +104,34 @@ unsigned int GLResources::createTexture(const std::string& path, bool gamma)
 	EngineLogger::getConsole()->info("[{}] loaded.", path);
 	return texture;
 }
+
+unsigned int GLResources::createHDRTexture(const std::string& path)
+{
+	stbi_set_flip_vertically_on_load(true);
+	GLuint texture;
+	glGenTextures(1, &texture);
+	glBindTexture(GL_TEXTURE_2D, texture);
+
+	int width, height, nrChannels;
+
+	float * data = stbi_loadf(path.c_str(), &width, &height, &nrChannels, 0);
+	if (data == nullptr || width == 0 || nrChannels == 0) {
+		EngineLogger::getConsole()->critical("Cannot Load texture from path [ {} ]", path);
+		return 0;
+	}
+
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB16F, width, height, 0, GL_RGB, GL_FLOAT, data);
+
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+	glBindTexture(GL_TEXTURE_2D, 0);
+
+	stbi_image_free(data);
+	stbi_set_flip_vertically_on_load(false);
+
+	EngineLogger::getConsole()->info("[{}] loaded.", path);
+	return texture;
+}
