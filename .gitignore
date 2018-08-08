@@ -62,7 +62,7 @@ StyleCopReport.xml
 *_i.h
 *.ilk
 *.meta
-*.obj
+*.mtl
 *.iobj
 *.pch
 *.pdb
