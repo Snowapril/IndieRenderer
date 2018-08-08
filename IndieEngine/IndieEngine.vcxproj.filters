@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{790c7eca-08c6-4483-bcf5-039e0045fde2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{aca0f003-08a5-4d07-abf9-7f3aaa6628f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="glsl">
+      <UniqueIdentifier>{b36d92d9-4fe0-4397-bd03-3beb84f61f63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="imgui">
+      <UniqueIdentifier>{3fd2425b-fb4a-474d-9449-dbda4b21af90}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="EngineTimer.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="GLApp.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineProperty.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="GLMesh.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="GLShader.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineApp.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineLogger.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="GLModel.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="GLDebugger.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineCamera.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineGUI.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineProfiler.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="GLResources.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="GLCustomModel.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="EnginePBRMaterial.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="EngineTimer.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dependencies\glad.c">
+      <Filter>include</Filter>
+    </ClCompile>
+    <ClCompile Include="GLApp.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="GLMesh.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="GLShader.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineApp.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineLogger.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="GLModel.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineCamera.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineGUI.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineProfiler.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="GLResources.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dependencies\imgui\imgui.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dependencies\imgui\imgui_draw.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dependencies\imgui\imgui_impl_glfw_gl3.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="GLCustomModel.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="EnginePBRMaterial.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\resources\shader\post_processing.frag">
+      <Filter>glsl</Filter>
+    </None>
+    <None Include="..\resources\shader\post_processing.vert">
+      <Filter>glsl</Filter>
+    </None>
+    <None Include="..\resources\shader\simple_shader.frag">
+      <Filter>glsl</Filter>
+    </None>
+    <None Include="..\resources\shader\simple_shader.vert">
+      <Filter>glsl</Filter>
+    </None>
+    <None Include="..\resources\shader\deferredShader.frag">
+      <Filter>glsl</Filter>
+    </None>
+    <None Include="..\resources\shader\deferredShader.vert">
+      <Filter>glsl</Filter>
+    </None>
+    <None Include="..\resources\shader\gBuffer.frag">
+      <Filter>glsl</Filter>
+    </None>
+    <None Include="..\resources\shader\gBuffer.vert">
+      <Filter>glsl</Filter>
+    </None>
+    <None Include="..\resources\shader\pbrShader.frag">
+      <Filter>glsl</Filter>
+    </None>
+    <None Include="..\resources\shader\pbrShader.vert">
+      <Filter>glsl</Filter>
+    </None>
+    <None Include="..\resources\shader\equiRectangularMapToCubemap.frag">
+      <Filter>glsl</Filter>
+    </None>
+    <None Include="..\resources\shader\equiRectangularMapToCubemap.vert">
+      <Filter>glsl</Filter>
+    </None>
+    <None Include="..\resources\shader\cubeMap.frag">
+      <Filter>glsl</Filter>
+    </None>
+    <None Include="..\resources\shader\cubeMap.vert">
+      <Filter>glsl</Filter>
+    </None>
+    <None Include="..\resources\shader\irradianceMap.frag">
+      <Filter>glsl</Filter>
+    </None>
+    <None Include="..\resources\shader\prefilterMap.frag">
+      <Filter>glsl</Filter>
+    </None>
+    <None Include="..\resources\shader\brdf.frag">
+      <Filter>glsl</Filter>
+    </None>
+    <None Include="..\resources\shader\brdf.vert">
+      <Filter>glsl</Filter>
+    </None>
+  </ItemGroup>
+</Project>
