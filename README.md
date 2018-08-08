@@ -1,9 +1,11 @@
 # Indie Engine 
 
-Indie Graphics Engine implemented with Modern OpenGL.
+**Indie Graphics Engine** implemented with Modern OpenGL.
 
-[![IndieEngine](./IndieEngine.jpg)](https://www.youtube.com/watch?v=I5qreAkpIwY)
-
+<center>
+[<img src=./IndieEngine.jpg width=70%></img>](https://www.youtube.com/watch?v=I5qreAkpIwY)
+## Youtube Link
+</center>
 my github blog url : https://snowapril.github.io
 
 ## Dependencies
