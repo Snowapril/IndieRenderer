@@ -1,0 +1,713 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{C05D0444-00F8-3171-9D1D-2324C3759F94}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>x64</Platform>
+    <ProjectName>assimp</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\User\Desktop\GLEngine\lib\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">assimp.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">assimp-vc140-mt</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\User\Desktop\GLEngine\lib\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">assimp.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">assimp-vc140-mt</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\User\Desktop\GLEngine\lib\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">assimp.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">assimp-vc140-mt</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\User\Desktop\GLEngine\lib\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">assimp.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">assimp-vc140-mt</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.lib</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\User\Desktop\GLEngine\api\assimp;C:\Users\User\Desktop\GLEngine\api\assimp\include;C:\Users\User\Desktop\GLEngine\api\assimp\contrib\zlib;C:\Users\User\Desktop\GLEngine\api\assimp\code\..\contrib\rapidjson\include;C:\Users\User\Desktop\GLEngine\api\assimp\code\..\contrib\openddlparser\include;C:\Users\User\Desktop\GLEngine\api\assimp\code\..\contrib\unzip;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>Debug/</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;OPENDDL_NO_USE_CPP11;ASSIMP_BUILD_NO_C4D_IMPORTER;ASSIMP_BUILD_DLL_EXPORT;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;OPENDDLPARSER_BUILD;CMAKE_INTDIR="Debug";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;OPENDDL_NO_USE_CPP11;ASSIMP_BUILD_NO_C4D_IMPORTER;ASSIMP_BUILD_DLL_EXPORT;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;OPENDDLPARSER_BUILD;CMAKE_INTDIR=\"Debug\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\User\Desktop\GLEngine\api\assimp;C:\Users\User\Desktop\GLEngine\api\assimp\include;C:\Users\User\Desktop\GLEngine\api\assimp\contrib\zlib;C:\Users\User\Desktop\GLEngine\api\assimp\code\..\contrib\rapidjson\include;C:\Users\User\Desktop\GLEngine\api\assimp\code\..\contrib\openddlparser\include;C:\Users\User\Desktop\GLEngine\api\assimp\code\..\contrib\unzip;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\User\Desktop\GLEngine\api\assimp;C:\Users\User\Desktop\GLEngine\api\assimp\include;C:\Users\User\Desktop\GLEngine\api\assimp\contrib\zlib;C:\Users\User\Desktop\GLEngine\api\assimp\code\..\contrib\rapidjson\include;C:\Users\User\Desktop\GLEngine\api\assimp\code\..\contrib\openddlparser\include;C:\Users\User\Desktop\GLEngine\api\assimp\code\..\contrib\unzip;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\User\Desktop\GLEngine\api\assimp;C:\Users\User\Desktop\GLEngine\api\assimp\include;C:\Users\User\Desktop\GLEngine\api\assimp\contrib\zlib;C:\Users\User\Desktop\GLEngine\api\assimp\code\..\contrib\rapidjson\include;C:\Users\User\Desktop\GLEngine\api\assimp\code\..\contrib\openddlparser\include;C:\Users\User\Desktop\GLEngine\api\assimp\code\..\contrib\unzip;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>Release/</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;OPENDDL_NO_USE_CPP11;ASSIMP_BUILD_NO_C4D_IMPORTER;ASSIMP_BUILD_DLL_EXPORT;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;OPENDDLPARSER_BUILD;CMAKE_INTDIR="Release";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;OPENDDL_NO_USE_CPP11;ASSIMP_BUILD_NO_C4D_IMPORTER;ASSIMP_BUILD_DLL_EXPORT;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;OPENDDLPARSER_BUILD;CMAKE_INTDIR=\"Release\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\User\Desktop\GLEngine\api\assimp;C:\Users\User\Desktop\GLEngine\api\assimp\include;C:\Users\User\Desktop\GLEngine\api\assimp\contrib\zlib;C:\Users\User\Desktop\GLEngine\api\assimp\code\..\contrib\rapidjson\include;C:\Users\User\Desktop\GLEngine\api\assimp\code\..\contrib\openddlparser\include;C:\Users\User\Desktop\GLEngine\api\assimp\code\..\contrib\unzip;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\User\Desktop\GLEngine\api\assimp;C:\Users\User\Desktop\GLEngine\api\assimp\include;C:\Users\User\Desktop\GLEngine\api\assimp\contrib\zlib;C:\Users\User\Desktop\GLEngine\api\assimp\code\..\contrib\rapidjson\include;C:\Users\User\Desktop\GLEngine\api\assimp\code\..\contrib\openddlparser\include;C:\Users\User\Desktop\GLEngine\api\assimp\code\..\contrib\unzip;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\User\Desktop\GLEngine\api\assimp;C:\Users\User\Desktop\GLEngine\api\assimp\include;C:\Users\User\Desktop\GLEngine\api\assimp\contrib\zlib;C:\Users\User\Desktop\GLEngine\api\assimp\code\..\contrib\rapidjson\include;C:\Users\User\Desktop\GLEngine\api\assimp\code\..\contrib\openddlparser\include;C:\Users\User\Desktop\GLEngine\api\assimp\code\..\contrib\unzip;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>MinSizeRel/</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;OPENDDL_NO_USE_CPP11;ASSIMP_BUILD_NO_C4D_IMPORTER;ASSIMP_BUILD_DLL_EXPORT;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;OPENDDLPARSER_BUILD;CMAKE_INTDIR="MinSizeRel";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;OPENDDL_NO_USE_CPP11;ASSIMP_BUILD_NO_C4D_IMPORTER;ASSIMP_BUILD_DLL_EXPORT;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;OPENDDLPARSER_BUILD;CMAKE_INTDIR=\"MinSizeRel\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\User\Desktop\GLEngine\api\assimp;C:\Users\User\Desktop\GLEngine\api\assimp\include;C:\Users\User\Desktop\GLEngine\api\assimp\contrib\zlib;C:\Users\User\Desktop\GLEngine\api\assimp\code\..\contrib\rapidjson\include;C:\Users\User\Desktop\GLEngine\api\assimp\code\..\contrib\openddlparser\include;C:\Users\User\Desktop\GLEngine\api\assimp\code\..\contrib\unzip;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\User\Desktop\GLEngine\api\assimp;C:\Users\User\Desktop\GLEngine\api\assimp\include;C:\Users\User\Desktop\GLEngine\api\assimp\contrib\zlib;C:\Users\User\Desktop\GLEngine\api\assimp\code\..\contrib\rapidjson\include;C:\Users\User\Desktop\GLEngine\api\assimp\code\..\contrib\openddlparser\include;C:\Users\User\Desktop\GLEngine\api\assimp\code\..\contrib\unzip;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\User\Desktop\GLEngine\api\assimp;C:\Users\User\Desktop\GLEngine\api\assimp\include;C:\Users\User\Desktop\GLEngine\api\assimp\contrib\zlib;C:\Users\User\Desktop\GLEngine\api\assimp\code\..\contrib\rapidjson\include;C:\Users\User\Desktop\GLEngine\api\assimp\code\..\contrib\openddlparser\include;C:\Users\User\Desktop\GLEngine\api\assimp\code\..\contrib\unzip;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>RelWithDebInfo/</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;OPENDDL_NO_USE_CPP11;ASSIMP_BUILD_NO_C4D_IMPORTER;ASSIMP_BUILD_DLL_EXPORT;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;OPENDDLPARSER_BUILD;CMAKE_INTDIR="RelWithDebInfo";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;OPENDDL_NO_USE_CPP11;ASSIMP_BUILD_NO_C4D_IMPORTER;ASSIMP_BUILD_DLL_EXPORT;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;OPENDDLPARSER_BUILD;CMAKE_INTDIR=\"RelWithDebInfo\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\User\Desktop\GLEngine\api\assimp;C:\Users\User\Desktop\GLEngine\api\assimp\include;C:\Users\User\Desktop\GLEngine\api\assimp\contrib\zlib;C:\Users\User\Desktop\GLEngine\api\assimp\code\..\contrib\rapidjson\include;C:\Users\User\Desktop\GLEngine\api\assimp\code\..\contrib\openddlparser\include;C:\Users\User\Desktop\GLEngine\api\assimp\code\..\contrib\unzip;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\User\Desktop\GLEngine\api\assimp;C:\Users\User\Desktop\GLEngine\api\assimp\include;C:\Users\User\Desktop\GLEngine\api\assimp\contrib\zlib;C:\Users\User\Desktop\GLEngine\api\assimp\code\..\contrib\rapidjson\include;C:\Users\User\Desktop\GLEngine\api\assimp\code\..\contrib\openddlparser\include;C:\Users\User\Desktop\GLEngine\api\assimp\code\..\contrib\unzip;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/User/Desktop/GLEngine/api/assimp/code/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -HC:/Users/User/Desktop/GLEngine -BC:/Users/User/Desktop/GLEngine --check-stamp-file C:/Users/User/Desktop/GLEngine/api/assimp/code/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/User/Desktop/GLEngine/api/assimp/code/CMakeLists.txt;C:\Users\User\Desktop\GLEngine\api\assimp\code\CMakeLists.txt;C:\Users\User\Desktop\GLEngine\api\assimp\code\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\User\Desktop\GLEngine\api\assimp\code\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Users/User/Desktop/GLEngine/api/assimp/code/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -HC:/Users/User/Desktop/GLEngine -BC:/Users/User/Desktop/GLEngine --check-stamp-file C:/Users/User/Desktop/GLEngine/api/assimp/code/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/User/Desktop/GLEngine/api/assimp/code/CMakeLists.txt;C:\Users\User\Desktop\GLEngine\api\assimp\code\CMakeLists.txt;C:\Users\User\Desktop\GLEngine\api\assimp\code\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\User\Desktop\GLEngine\api\assimp\code\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/Users/User/Desktop/GLEngine/api/assimp/code/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -HC:/Users/User/Desktop/GLEngine -BC:/Users/User/Desktop/GLEngine --check-stamp-file C:/Users/User/Desktop/GLEngine/api/assimp/code/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/User/Desktop/GLEngine/api/assimp/code/CMakeLists.txt;C:\Users\User\Desktop\GLEngine\api\assimp\code\CMakeLists.txt;C:\Users\User\Desktop\GLEngine\api\assimp\code\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\User\Desktop\GLEngine\api\assimp\code\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/Users/User/Desktop/GLEngine/api/assimp/code/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -HC:/Users/User/Desktop/GLEngine -BC:/Users/User/Desktop/GLEngine --check-stamp-file C:/Users/User/Desktop/GLEngine/api/assimp/code/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/User/Desktop/GLEngine/api/assimp/code/CMakeLists.txt;C:\Users\User\Desktop\GLEngine\api\assimp\code\CMakeLists.txt;C:\Users\User\Desktop\GLEngine\api\assimp\code\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\User\Desktop\GLEngine\api\assimp\code\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\Assimp.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\fast_atof.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\qnan.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\BaseImporter.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\BaseImporter.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\BaseProcess.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\BaseProcess.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\Importer.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\ScenePrivate.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\PostStepRegistry.cpp" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\ImporterRegistry.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\ByteSwapper.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\DefaultProgressHandler.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\DefaultIOStream.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\DefaultIOStream.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\DefaultIOSystem.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\DefaultIOSystem.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\CInterfaceIOWrapper.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\Hash.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\Importer.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\IFF.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\MemoryIOWrapper.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\ParsingUtils.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\StreamReader.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\StreamWriter.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\StringComparison.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\StringUtils.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\SGSpatialSort.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\SGSpatialSort.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\VertexTriangleAdjacency.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\VertexTriangleAdjacency.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\GenericProperty.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\SpatialSort.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\SpatialSort.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\SceneCombiner.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\SceneCombiner.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\ScenePreprocessor.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\ScenePreprocessor.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\SkeletonMeshBuilder.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\SkeletonMeshBuilder.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\SplitByBoneCountProcess.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\SplitByBoneCountProcess.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\SmoothingGroups.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\StandardShapes.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\StandardShapes.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\TargetAnimation.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\TargetAnimation.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\RemoveComments.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\RemoveComments.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\Subdivision.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\Subdivision.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\Vertex.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\LineSplitter.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\TinyFormatter.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\Profiler.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\LogAux.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\Bitmap.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\Bitmap.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\XMLTools.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\Version.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\include\assimp\DefaultLogger.hpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\include\assimp\LogStream.hpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\include\assimp\Logger.hpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\include\assimp\NullLogger.hpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\Win32DebugLogStream.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\DefaultLogger.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\FileLogStream.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\StdOStreamLogStream.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\Exporter.cpp" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\AssimpCExport.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\BlobIOSystem.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\CalcTangentsProcess.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\CalcTangentsProcess.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\ComputeUVMappingProcess.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\ComputeUVMappingProcess.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\ConvertToLHProcess.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\ConvertToLHProcess.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\FindDegenerates.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\FindDegenerates.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\FindInstancesProcess.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\FindInstancesProcess.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\FindInvalidDataProcess.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\FindInvalidDataProcess.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\FixNormalsStep.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\FixNormalsStep.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\GenFaceNormalsProcess.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\GenFaceNormalsProcess.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\GenVertexNormalsProcess.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\GenVertexNormalsProcess.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\PretransformVertices.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\PretransformVertices.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\ImproveCacheLocality.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\ImproveCacheLocality.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\JoinVerticesProcess.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\JoinVerticesProcess.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\LimitBoneWeightsProcess.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\LimitBoneWeightsProcess.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\RemoveRedundantMaterials.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\RemoveRedundantMaterials.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\RemoveVCProcess.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\RemoveVCProcess.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\SortByPTypeProcess.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\SortByPTypeProcess.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\SplitLargeMeshes.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\SplitLargeMeshes.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\TextureTransform.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\TextureTransform.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\TriangulateProcess.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\TriangulateProcess.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\ValidateDataStructure.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\ValidateDataStructure.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\OptimizeGraph.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\OptimizeGraph.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\OptimizeMeshes.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\OptimizeMeshes.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\DeboneProcess.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\DeboneProcess.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\ProcessHelper.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\ProcessHelper.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\PolyTools.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\MakeVerboseFormat.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\MakeVerboseFormat.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\MaterialSystem.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\MaterialSystem.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\StepExporter.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\StepExporter.cpp" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\3DSConverter.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\3DSHelper.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\3DSLoader.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\3DSLoader.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\3DSExporter.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\3DSExporter.cpp" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\ACLoader.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\ACLoader.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\ASELoader.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\ASELoader.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\ASEParser.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\ASEParser.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\AssbinExporter.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\AssbinExporter.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\AssbinLoader.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\AssbinLoader.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\AssxmlExporter.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\AssxmlExporter.cpp" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\B3DImporter.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\B3DImporter.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\BVHLoader.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\BVHLoader.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\ColladaHelper.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\ColladaLoader.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\ColladaLoader.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\ColladaParser.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\ColladaParser.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\ColladaExporter.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\ColladaExporter.cpp" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\DXFLoader.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\DXFLoader.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\DXFHelper.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\CSMLoader.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\CSMLoader.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\HMPFileData.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\HMPLoader.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\HMPLoader.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\HalfLifeFileData.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\IRRLoader.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\IRRLoader.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\IRRMeshLoader.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\IRRMeshLoader.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\IRRShared.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\IRRShared.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\LWOAnimation.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\LWOAnimation.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\LWOBLoader.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\LWOFileData.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\LWOLoader.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\LWOLoader.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\LWOMaterial.cpp" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\LWSLoader.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\LWSLoader.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\MD2FileData.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\MD2Loader.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\MD2Loader.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\MD2NormalTable.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\MD3FileData.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\MD3Loader.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\MD3Loader.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\MD5Loader.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\MD5Loader.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\MD5Parser.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\MD5Parser.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\MDCFileData.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\MDCLoader.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\MDCLoader.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\MDCNormalTable.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\MDLDefaultColorMap.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\MDLFileData.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\MDLLoader.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\MDLLoader.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\MDLMaterialLoader.cpp" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\NFFLoader.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\NFFLoader.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\NDOLoader.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\NDOLoader.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\OFFLoader.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\OFFLoader.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\ObjFileData.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\ObjFileImporter.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\ObjFileImporter.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\ObjFileMtlImporter.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\ObjFileMtlImporter.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\ObjFileParser.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\ObjFileParser.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\ObjTools.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\ObjExporter.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\ObjExporter.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\OgreImporter.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\OgreStructs.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\OgreParsingUtils.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\OgreBinarySerializer.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\OgreXmlSerializer.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\OgreImporter.cpp" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\OgreStructs.cpp" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\OgreBinarySerializer.cpp" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\OgreXmlSerializer.cpp" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\OgreMaterial.cpp" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\OpenGEXExporter.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\OpenGEXExporter.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\OpenGEXImporter.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\OpenGEXImporter.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\OpenGEXStructs.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\PlyLoader.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\PlyLoader.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\PlyParser.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\PlyParser.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\PlyExporter.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\PlyExporter.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\MS3DLoader.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\MS3DLoader.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\COBLoader.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\COBLoader.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\COBScene.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\BlenderLoader.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\BlenderLoader.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\BlenderDNA.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\BlenderDNA.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\BlenderDNA.inl" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\BlenderScene.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\BlenderScene.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\BlenderSceneGen.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\BlenderIntermediate.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\BlenderModifier.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\BlenderModifier.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\BlenderBMesh.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\BlenderBMesh.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\BlenderTessellator.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\BlenderTessellator.cpp" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\IFCLoader.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\IFCLoader.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\IFCReaderGen.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\IFCReaderGen.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\IFCUtil.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\IFCUtil.cpp" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\IFCGeometry.cpp" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\IFCMaterial.cpp" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\IFCProfile.cpp" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\IFCCurve.cpp" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\IFCBoolean.cpp" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\IFCOpenings.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\STEPFile.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\STEPFileReader.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\STEPFileReader.cpp" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\STEPFileEncoding.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\STEPFileEncoding.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\XGLLoader.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\XGLLoader.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\FBXImporter.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\FBXCompileConfig.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\FBXImporter.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\FBXParser.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\FBXParser.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\FBXTokenizer.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\FBXTokenizer.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\FBXImportSettings.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\FBXConverter.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\FBXConverter.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\FBXUtil.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\FBXUtil.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\FBXDocument.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\FBXDocument.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\FBXProperties.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\FBXProperties.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\FBXMeshGeometry.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\FBXMeshGeometry.cpp" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\FBXMaterial.cpp" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\FBXModel.cpp" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\FBXAnimation.cpp" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\FBXNodeAttribute.cpp" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\FBXDeformer.cpp" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\FBXBinaryTokenizer.cpp" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\FBXDocumentUtil.cpp" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\Q3DLoader.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\Q3DLoader.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\Q3BSPFileData.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\Q3BSPFileParser.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\Q3BSPFileParser.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\Q3BSPFileImporter.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\Q3BSPFileImporter.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\Q3BSPZipArchive.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\Q3BSPZipArchive.cpp" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\RawLoader.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\RawLoader.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\SIBImporter.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\SIBImporter.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\SMDLoader.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\SMDLoader.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\STLLoader.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\STLLoader.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\STLExporter.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\STLExporter.cpp" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\TerragenLoader.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\TerragenLoader.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\UnrealLoader.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\UnrealLoader.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\XFileHelper.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\XFileImporter.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\XFileImporter.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\XFileParser.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\XFileParser.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\XFileExporter.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\XFileExporter.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\glTFAsset.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\glTFAsset.inl" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\glTFAssetWriter.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\glTFAssetWriter.inl" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\glTFImporter.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\glTFImporter.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\glTFExporter.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\glTFExporter.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\code\irrXMLWrapper.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\contrib\irrXML\CXMLReaderImpl.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\contrib\irrXML\heapsort.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\contrib\irrXML\irrArray.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\contrib\irrXML\irrString.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\contrib\irrXML\irrTypes.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\contrib\irrXML\irrXML.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\contrib\irrXML\irrXML.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\contrib\ConvertUTF\ConvertUTF.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\contrib\ConvertUTF\ConvertUTF.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\contrib\unzip\crypt.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\contrib\unzip\ioapi.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\contrib\unzip\ioapi.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\contrib\unzip\unzip.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\contrib\unzip\unzip.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\contrib\poly2tri\poly2tri\common\shapes.cc" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\contrib\poly2tri\poly2tri\common\shapes.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\contrib\poly2tri\poly2tri\common\utils.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\contrib\poly2tri\poly2tri\sweep\advancing_front.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\contrib\poly2tri\poly2tri\sweep\advancing_front.cc" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\contrib\poly2tri\poly2tri\sweep\cdt.cc" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\contrib\poly2tri\poly2tri\sweep\cdt.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\contrib\poly2tri\poly2tri\sweep\sweep.cc" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\contrib\poly2tri\poly2tri\sweep\sweep.h" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\contrib\poly2tri\poly2tri\sweep\sweep_context.cc" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\contrib\poly2tri\poly2tri\sweep\sweep_context.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\contrib\clipper\clipper.hpp" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\contrib\clipper\clipper.cpp" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\contrib\openddlparser\code\OpenDDLParser.cpp" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\contrib\openddlparser\code\DDLNode.cpp" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\contrib\openddlparser\code\OpenDDLCommon.cpp" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\contrib\openddlparser\code\OpenDDLExport.cpp" />
+    <ClCompile Include="C:\Users\User\Desktop\GLEngine\api\assimp\contrib\openddlparser\code\Value.cpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\contrib\openddlparser\include\openddlparser\OpenDDLParser.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\contrib\openddlparser\include\openddlparser\OpenDDLParserUtils.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\contrib\openddlparser\include\openddlparser\OpenDDLCommon.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\contrib\openddlparser\include\openddlparser\OpenDDLExport.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\contrib\openddlparser\include\openddlparser\DDLNode.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\contrib\openddlparser\include\openddlparser\Value.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\include\assimp\anim.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\include\assimp\ai_assert.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\include\assimp\camera.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\include\assimp\color4.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\include\assimp\color4.inl" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\include\assimp\config.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\include\assimp\defs.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\include\assimp\cfileio.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\include\assimp\light.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\include\assimp\material.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\include\assimp\material.inl" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\include\assimp\matrix3x3.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\include\assimp\matrix3x3.inl" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\include\assimp\matrix4x4.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\include\assimp\matrix4x4.inl" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\include\assimp\mesh.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\include\assimp\postprocess.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\include\assimp\quaternion.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\include\assimp\quaternion.inl" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\include\assimp\scene.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\include\assimp\metadata.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\include\assimp\texture.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\include\assimp\types.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\include\assimp\vector2.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\include\assimp\vector2.inl" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\include\assimp\vector3.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\include\assimp\vector3.inl" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\include\assimp\version.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\include\assimp\cimport.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\include\assimp\importerdesc.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\include\assimp\Importer.hpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\include\assimp\ProgressHandler.hpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\include\assimp\IOStream.hpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\include\assimp\IOSystem.hpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\include\assimp\cexport.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\include\assimp\Exporter.hpp" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\include\assimp\Compiler\pushpack1.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\include\assimp\Compiler\poppack1.h" />
+    <ClInclude Include="C:\Users\User\Desktop\GLEngine\api\assimp\include\assimp\Compiler\pstdint.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="C:\Users\User\Desktop\GLEngine\ZERO_CHECK.vcxproj">
+      <Project>{69AA1A07-8A67-3FE6-A5E6-B88E281C3D6F}</Project>
+      <Name>ZERO_CHECK</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\GLEngine\api\assimp\contrib\zlib\zlibstatic.vcxproj">
+      <Project>{1C5499CF-4C4E-33FF-990B-9B5C2CC611B8}</Project>
+      <Name>zlibstatic</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

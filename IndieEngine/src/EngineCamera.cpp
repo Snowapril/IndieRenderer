@@ -3,7 +3,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include "../include/EngineProperty.hpp"
 #include <glm/gtc/type_ptr.hpp>
-#include <GL/glfw3.h>
+#include <GLFW/glfw3.h>
 
 EngineCamera::EngineCamera()
 	: fov(CAMERA_MAX_FOV), position(0.f, 1.5f, 3.f), isFirstCursorMove(true), speed(CAMERA_SPEED),

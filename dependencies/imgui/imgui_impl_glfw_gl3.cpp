@@ -11,12 +11,12 @@
 
 // GL3W/GLFW
 #include <glad/glad.h>
-#include <GL/glfw3.h>
+#include <GLFW/glfw3.h>
 #ifdef _WIN32
 #undef APIENTRY
 #define GLFW_EXPOSE_NATIVE_WIN32
 #define GLFW_EXPOSE_NATIVE_WGL
-#include <GL/glfw3native.h>
+#include <GLFW/glfw3native.h>
 #endif
 
 // Data

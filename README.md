@@ -35,6 +35,26 @@ my github blog url : https://snowapril.github.io
 * ETC
 	- Switching between Window/Full screen.
 
+## How to build
+Honestly, i am not good at Cmake. i would appreciate it if you could properly use below list to your environment.
+1. Open CMake GUI.
+2. set both source code directory and binaries directory as project root folder.
+3. Configure.
+4. Generate with default options.
+5. Open Generated Project.
+6. Build "ALL_BUILD" project.
+7. Set "IndieEngine" project as startup project.
+8. Run (Ctrl + F5).
+
+## How to Use
+When you run IndieEngine, there is GUI at the left side of your application.
+There are many options you can control. 
+
+##### Keys
+Enter : toggle Full screen mode.
+RMB   : Zoom in/out
+ESC   : Quit program.
+
 ## Dependencies
 * glfw3
 * glad

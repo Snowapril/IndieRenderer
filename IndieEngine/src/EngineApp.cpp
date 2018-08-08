@@ -145,13 +145,13 @@ void EngineApp::drawScene(void) const
 
 bool EngineApp::loadTextures(void)
 {
-	materials.push_back(std::make_unique<EnginePBRMaterial>("../resources/texture/pbr/grass/"));
-	materials.push_back(std::make_unique<EnginePBRMaterial>("../resources/texture/pbr/gold/"));
-	materials.push_back(std::make_unique<EnginePBRMaterial>("../resources/texture/pbr/silver/"));
-	materials.push_back(std::make_unique<EnginePBRMaterial>("../resources/texture/pbr/rusted_iron/"));
-	materials.push_back(std::make_unique<EnginePBRMaterial>("../resources/texture/pbr/plastic/"));
-	materials.push_back(std::make_unique<EnginePBRMaterial>("../resources/texture/pbr/wall/"));
-	materials.push_back(std::make_unique<EnginePBRMaterial>("../resources/texture/pbr/wood/"));
+	materials.push_back(std::make_unique<EnginePBRMaterial>("resources/texture/pbr/grass/"));
+	materials.push_back(std::make_unique<EnginePBRMaterial>("resources/texture/pbr/gold/"));
+	materials.push_back(std::make_unique<EnginePBRMaterial>("resources/texture/pbr/silver/"));
+	materials.push_back(std::make_unique<EnginePBRMaterial>("resources/texture/pbr/rusted_iron/"));
+	materials.push_back(std::make_unique<EnginePBRMaterial>("resources/texture/pbr/plastic/"));
+	materials.push_back(std::make_unique<EnginePBRMaterial>("resources/texture/pbr/wall/"));
+	materials.push_back(std::make_unique<EnginePBRMaterial>("resources/texture/pbr/wood/"));
 
 	if (!buildIBLMap({ "House.hdr",  
 					   "Factory.hdr",
@@ -196,8 +196,8 @@ bool EngineApp::setupLightSources(void)
 
 bool EngineApp::buildGeometryBuffers(void)
 {
-	renderModels.push_back(std::make_unique<GLModel>("../resources/model/shaderball/shaderball2.obj"));
-	renderModels.push_back(std::make_unique<GLModel>("../resources/model/sphere/sphere.obj"));
+	renderModels.push_back(std::make_unique<GLModel>("resources/model/shaderball/shaderball2.obj"));
+	renderModels.push_back(std::make_unique<GLModel>("resources/model/sphere/sphere.obj"));
 
 	return true;
 }
@@ -206,11 +206,11 @@ bool EngineApp::buildShaderFiles(void)
 {
 	try 
 	{
-		deferredShader = std::make_shared<GLShader>("../resources/shader/deferredShader.vert", "../resources/shader/deferredShader.frag", nullptr);
-		gBufferShader = std::make_shared<GLShader>("../resources/shader/gBuffer.vert", "../resources/shader/gBuffer.frag", nullptr);
-		simpleShader = std::make_shared<GLShader>("../resources/shader/simple_shader.vert", "../resources/shader/simple_shader.frag", nullptr);
-		pbrShader = std::make_shared<GLShader>("../resources/shader/pbrShader.vert", "../resources/shader/pbrShader.frag", nullptr);
-		cubeMapShader = std::make_shared<GLShader>("../resources/shader/cubeMap.vert", "../resources/shader/cubeMap.frag", nullptr);
+		deferredShader = std::make_shared<GLShader>("resources/shader/deferredShader.vert", "resources/shader/deferredShader.frag", nullptr);
+		gBufferShader = std::make_shared<GLShader>("resources/shader/gBuffer.vert", "resources/shader/gBuffer.frag", nullptr);
+		simpleShader = std::make_shared<GLShader>("resources/shader/simple_shader.vert", "resources/shader/simple_shader.frag", nullptr);
+		pbrShader = std::make_shared<GLShader>("resources/shader/pbrShader.vert", "resources/shader/pbrShader.frag", nullptr);
+		cubeMapShader = std::make_shared<GLShader>("resources/shader/cubeMap.vert", "resources/shader/cubeMap.frag", nullptr);
 	}
 	catch (std::exception e)
 	{
@@ -331,10 +331,10 @@ bool EngineApp::buildIBLMap(const std::initializer_list<std::string>& pathList)
 {
 	const int hdrResolution = 512;
 
-	GLShader convertShader("../resources/shader/equiRectangularMapToCubemap.vert", "../resources/shader/equiRectangularMapToCubemap.frag");
-	GLShader irradianceMapShader("../resources/shader/equiRectangularMapToCubemap.vert", "../resources/shader/irradianceMap.frag");
-	GLShader prefilterShader("../resources/shader/equiRectangularMapToCubemap.vert", "../resources/shader/prefilterMap.frag");
-	GLShader brdfShader("../resources/shader/brdf.vert", "../resources/shader/brdf.frag");
+	GLShader convertShader("resources/shader/equiRectangularMapToCubemap.vert", "resources/shader/equiRectangularMapToCubemap.frag");
+	GLShader irradianceMapShader("resources/shader/equiRectangularMapToCubemap.vert", "resources/shader/irradianceMap.frag");
+	GLShader prefilterShader("resources/shader/equiRectangularMapToCubemap.vert", "resources/shader/prefilterMap.frag");
+	GLShader brdfShader("resources/shader/brdf.vert", "resources/shader/brdf.frag");
 	envCube.setupWithFixedGeometryShape(IndieShape::INDIE_BOX);
 
 	//simple quad
@@ -383,7 +383,7 @@ bool EngineApp::buildIBLMap(const std::initializer_list<std::string>& pathList)
 		glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, captureRBO);
 		
 		unsigned int hdrTexture;
-		if ((hdrTexture = GLResources::createHDRTexture("../resources/texture/hdr/" + path)) == 0)
+		if ((hdrTexture = GLResources::createHDRTexture("resources/texture/hdr/" + path)) == 0)
 		{
 			glDeleteRenderbuffers(1, &captureRBO);
 			glDeleteFramebuffers(1, &captureFBO);
