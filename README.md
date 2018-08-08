@@ -3,6 +3,7 @@
 **Indie Graphics Engine** implemented with Modern OpenGL and C++
 
 Link to demo : https://www.youtube.com/watch?v=I5qreAkpIwY
+
 my github blog url : https://snowapril.github.io
 
 ## Screenshot
@@ -52,7 +53,9 @@ There are many options you can control.
 
 ##### Keys
 Enter : toggle Full screen mode.
+
 RMB   : Zoom in/out
+
 ESC   : Quit program.
 
 ## Dependencies
