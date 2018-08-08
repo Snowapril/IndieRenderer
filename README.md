@@ -2,7 +2,7 @@
 
 Indie Graphics Engine implemented with Modern OpenGL.
 
-![IndieEngine](./IndieEngine.gif)
+<img src="./IndieEngine.gif" width="512">
 
 my github blog url : https://snowapril.github.io
 
