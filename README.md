@@ -69,7 +69,7 @@ ESC   : Quit program.
 ## Tested Environment
 
 | CPU  | GPU | OS    | it Work?  |
-|-------|:---:|-----------|-------:|
+|:-----:|:---:|:---------:|:------:|
 | i7-7700HQ  | Nvidia Geforce GTX 1060 | Windows 64bit     | O |
 | i5-? | HD630  | Windows 64bit      | O   |
 
