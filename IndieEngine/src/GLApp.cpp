@@ -1,10 +1,10 @@
-#include "GLApp.hpp"
-#include "EngineProperty.hpp"
+#include "../include/GLApp.hpp"
+#include "../include/EngineProperty.hpp"
 #include <cassert>
 #include <sstream>
-#include "EngineLogger.hpp"
-#include "GLDebugger.hpp"
-#include "EngineProfiler.hpp"
+#include "../include/EngineLogger.hpp"
+#include "../include/GLDebugger.hpp"
+#include "../include/EngineProfiler.hpp"
 
 GLApp::GLApp()
 	: appWindow(0), appPaused(false), fullscreen(false), minimized(false), maximized(false), resizing(false), enableCulling(true),

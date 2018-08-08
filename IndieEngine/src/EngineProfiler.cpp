@@ -1,4 +1,4 @@
-#include "EngineProfiler.hpp"
+#include "../include/EngineProfiler.hpp"
 #include <Windows.h>
 #include <fstream>
 #include <iomanip>

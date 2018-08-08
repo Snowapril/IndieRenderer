@@ -1,6 +1,6 @@
-#include "EnginePBRMaterial.hpp"
+#include "../include/EnginePBRMaterial.hpp"
 #include <glad/glad.h>
-#include "GLResources.hpp"
+#include "../include/GLResources.hpp"
 
 EnginePBRMaterial::EnginePBRMaterial(const std::string& path)
 	: albedoMap(0), normalMap(0), metallicMap(0), roughnessMap(0), aoMap(0)

@@ -1,12 +1,12 @@
-#include "EngineApp.hpp"
-#include "EngineProperty.hpp"
-#include "EngineLogger.hpp"
+#include "../include/EngineApp.hpp"
+#include "../include/EngineProperty.hpp"
+#include "../include/EngineLogger.hpp"
 #include <glm/gtc/matrix_transform.hpp>
-#include "EngineProfiler.hpp"
-#include "GLResources.hpp"
+#include "../include/EngineProfiler.hpp"
+#include "../include/GLResources.hpp"
 #include <chrono>
 
-#include "GLDebugger.hpp"
+#include "../include/GLDebugger.hpp"
 
 EngineApp::EngineApp()
 	: GLApp(), EngineGUI()

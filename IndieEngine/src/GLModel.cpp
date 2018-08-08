@@ -1,11 +1,11 @@
-#include "GLModel.hpp"
-#include "EngineLogger.hpp"
+#include "../include/GLModel.hpp"
+#include "../include/EngineLogger.hpp"
 #include <fstream>
 #include <limits>
 #include <chrono>
 #include <unordered_map>
 #include <sstream>
-#include "EngineProfiler.hpp"
+#include "../include/EngineProfiler.hpp"
 
 
 GLModel::GLModel()

@@ -1,4 +1,4 @@
-#include "EngineGUI.hpp"
+#include "../include/EngineGUI.hpp"
 #include <glad/glad.h>
 #include <imgui\imgui.h>
 #include <imgui\imgui_impl_glfw_gl3.h>

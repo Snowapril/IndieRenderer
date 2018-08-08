@@ -1,7 +1,7 @@
-#include "EngineCamera.hpp"
+#include "../include/EngineCamera.hpp"
 #include <glad/glad.h>
 #include <glm/gtc/matrix_transform.hpp>
-#include "EngineProperty.hpp"
+#include "../include/EngineProperty.hpp"
 #include <glm/gtc/type_ptr.hpp>
 #include <GL/glfw3.h>
 

@@ -1,6 +1,6 @@
-#include "GLResources.hpp"
+#include "../include/GLResources.hpp"
 #include <glad/glad.h>
-#include "EngineLogger.hpp"
+#include "../include/EngineLogger.hpp"
 
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb/stb_image.h>

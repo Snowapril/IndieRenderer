@@ -1,11 +1,11 @@
-#include "GLShader.hpp"
+#include "../include/GLShader.hpp"
 #include <glad/glad.h>
-#include "EngineLogger.hpp"
+#include "../include/EngineLogger.hpp"
 #include <string>
 #include <fstream>
 #include <sstream>
 #include <glm/gtc/type_ptr.hpp>
-#include "EngineProfiler.hpp"
+#include "../include/EngineProfiler.hpp"
 
 GLShader::GLShader()
 	: programID(0)

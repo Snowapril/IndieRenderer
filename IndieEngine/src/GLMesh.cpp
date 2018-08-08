@@ -1,4 +1,4 @@
-#include "GLMesh.hpp"
+#include "../include/GLMesh.hpp"
 #include <glad/glad.h>
 
 GLMesh::GLMesh()

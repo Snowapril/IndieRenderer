@@ -1,11 +1,11 @@
-#include "GLCustomModel.hpp"
-#include "EngineLogger.hpp"
+#include "../include/GLCustomModel.hpp"
+#include "../include/EngineLogger.hpp"
 #include <fstream>
 #include <limits>
 #include <chrono>
 #include <unordered_map>
 #include <sstream>
-#include "EngineProfiler.hpp"
+#include "../include/EngineProfiler.hpp"
 
 
 GLCustomModel::GLCustomModel()

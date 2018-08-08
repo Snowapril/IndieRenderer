@@ -4,8 +4,8 @@
 
 #include <memory>
 #include <iostream>
-#include "EngineApp.hpp"
-#include "EngineLogger.hpp"
+#include "../include/EngineApp.hpp"
+#include "../include/EngineLogger.hpp"
 
 /// for optimus feature, in my case HD630? is default and GTX 1060 is external graphics card.
 extern "C" 
