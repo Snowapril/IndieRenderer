@@ -51,7 +51,7 @@ Honestly, i am not good at Cmake. i would appreciate it if you could properly us
 When you run IndieEngine, there is GUI at the left side of your application.
 There are many options you can control. 
 
-##### Keys
+#### Keys
 Enter : toggle Full screen mode.
 
 RMB   : Zoom in/out
@@ -65,6 +65,13 @@ ESC   : Quit program.
 * glm
 * stb_image
 * assimp
+
+## Tested Environment
+
+| CPU  | GPU | OS    | it Work?  |
+|-------|:---:|-----------|-------:|
+| i7-7700HQ  | Nvidia Geforce GTX 1060 | Windows 64bit     | O |
+| i5-? | HD630  | Windows 64bit      | O   |
 
 ## Credits
 * Joey de Vries (LearnOpenGL)
